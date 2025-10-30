@@ -1,0 +1,120 @@
+@use "sass:color";
+@use "variables" as *;
+
+// ----------------------
+// Typographie globale
+// todo: importer les bonnes fonts
+// ----------------------
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  color: $color-text;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+// ----------------------
+// Hiérarchie des titres
+// ----------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.3;
+  color: $color-dark;
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-sm;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+  color: color.adjust($color-text, $lightness: 15%);
+}
+
+// ----------------------
+// Textes & éléments riches
+// ----------------------
+
+p {
+  margin-bottom: $spacing-md;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: color.adjust($color-primary, $lightness: 10%);
+  }
+}
+
+strong {
+  font-weight: 600;
+  color: $color-dark;
+}
+
+em {
+  font-style: italic;
+}
+
+ul,
+ol {
+  margin: 0 0 $spacing-md $spacing-lg;
+  padding: 0;
+
+  li {
+    margin-bottom: $spacing-xs;
+  }
+}
+
+blockquote {
+  border-left: 4px solid $color-primary;
+  padding-left: $spacing-md;
+  font-style: italic;
+  color: color.adjust($color-text, $lightness: 10%);
+  margin: $spacing-md 0;
+}
+
+// ----------------------
+// Helpers
+// ----------------------
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-muted {
+  color: color.adjust($color-text, $lightness: 25%);
+}
