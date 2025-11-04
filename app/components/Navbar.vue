@@ -1,20 +1,21 @@
 <template>
   <header class="navbar">
     <nav class="navbar__container">
-      <ul class="navbar__menu navbar__menu--left">
+      <ul class="navbar__menu">
         <li><NuxtLink to="/">Notre approche</NuxtLink></li>
         <li><NuxtLink to="/about">Informations médicales</NuxtLink></li>
-      </ul>
 
-      <NuxtLink to="/" class="navbar__logo">
-        <img :src="logo" alt="Logo Tri-Dent" />
-      </NuxtLink>
+        <NuxtLink to="/" class="navbar__logo">
+          <img :src="logo" alt="Logo Tri-Dent" />
+        </NuxtLink>
 
-      <ul class="navbar__menu navbar__menu--right">
         <li><NuxtLink to="/about">Contactez-nous</NuxtLink></li>
         <li class="navbar__urgent">
           <NuxtLink to="/about">
-            <span class="navbar__icon">🚨</span> Urgences
+            <span class="navbar__icon"
+              ><img :src="notificationImportant" alt="Urgences"
+            /></span>
+            Urgences
           </NuxtLink>
         </li>
       </ul>
@@ -26,19 +27,22 @@
 
 <script setup lang="ts">
 import logo from "~/assets/images/logo trident.svg";
+import notificationImportant from "~/assets/images/notification_important.svg";
 </script>
 
+<!-- todo: responsive -->
 <style lang="scss" scoped>
 @use "@/assets/scss/variables" as *;
 @use "sass:color";
 
 .navbar {
   border-bottom: 1px solid color.adjust($color-dark, $lightness: 70%);
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba($color-dark, 0.05);
+  background-color: $color-white;
+  box-shadow: 0 2px 4px rgba($color-dark, 0.25);
 
   &__container {
     max-width: 1200px;
+    height: 134px;
     margin: 0 auto;
     padding: $spacing-md $spacing-lg;
     display: flex;
@@ -50,6 +54,7 @@ import logo from "~/assets/images/logo trident.svg";
 
   &__menu {
     display: flex;
+    align-items: center;
     gap: $spacing-lg;
     list-style: none;
     padding: 0;
@@ -58,49 +63,49 @@ import logo from "~/assets/images/logo trident.svg";
     a {
       color: $color-text;
       text-decoration: none;
-      font-weight: 500;
+      font-size: 20px;
       transition: color 0.2s ease;
 
       &:hover {
         color: $color-primary;
       }
     }
-
-    &--left {
-      margin-right: auto;
-    }
-
-    &--right {
-      margin-left: auto;
-    }
   }
 
   &__logo img {
-    height: 45px;
+    height: 134px;
     width: auto;
   }
 
   &__urgent a {
-    color: $color-danger;
-    font-weight: 600;
+    display: flex;
 
     &:hover {
       color: color.adjust($color-danger, $lightness: 10%);
     }
   }
 
+  &__icon {
+    width: 30px;
+    height: 26px;
+  }
+
   &__cta {
-    background-color: $color-dark;
+    width: 140px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #144f72;
     color: #fff;
-    padding: $spacing-sm $spacing-md;
     border-radius: $border-radius;
     text-decoration: none;
-    font-weight: 600;
-    margin-left: $spacing-md;
+    font-size: 20px;
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: color.adjust($color-dark, $lightness: 5%);
+      background-color: color.adjust(#144f72, $lightness: 5%);
     }
   }
 }

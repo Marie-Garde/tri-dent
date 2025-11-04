@@ -1,11 +1,11 @@
-@use "sass:color";
-
 // Couleurs principales
 $color-primary: #0071b8;
 $color-secondary: #4fb3ff;
 $color-danger: #e63946;
 $color-dark: #1e293b;
 $color-text: #222;
+$color-white: #fff;
+$color-green: #186369;
 
 // Espacements
 $spacing-xs: 0.25rem;
@@ -15,4 +15,4 @@ $spacing-lg: 2rem;
 $spacing-xl: 4rem;
 
 // Autres
-$border-radius: 6px;
+$border-radius: 5px;

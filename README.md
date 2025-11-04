@@ -101,8 +101,8 @@ Résultat attendu :
 
 ## Styles
 
-L'organisaiton des styles se trouve dans `app/assets/scss/`
+L'organisaiton des styles globaux se trouve dans `app/assets/scss/`
 
 - `_variables.scss` : contient les variables globales (couleurs, espacements, tailles, etc.).
 - `_typography.scss` : contient les règles de typographie globales.
-- `global.scss` : importe tous les fichiers partiels et définit le style global du projet.
+- `global.scss` : importe tous les fichiers partiels et définit le style root du projet.
