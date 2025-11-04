@@ -6,7 +6,8 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@use "@/assets/scss/variables" as *;
 .layout {
   width: 100%;
   min-height: 100%;
@@ -17,6 +18,6 @@
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  padding: 0 1rem;
+  padding: 0 $spacing-md;
 }
 </style>

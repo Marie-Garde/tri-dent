@@ -18,6 +18,7 @@ body {
 
 // ----------------------
 // Hiérarchie des titres
+// todo: ajuster les tailles et espacements selon maquettes
 // ----------------------
 
 h1,
@@ -35,11 +36,11 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-size: clamp($spacing-lg, 4vw, 2.5rem);
 }
 
 h2 {
-  font-size: clamp(1.75rem, 3vw, 2rem);
+  font-size: clamp(1.75rem, 3vw, $spacing-lg);
 }
 
 h3 {
@@ -55,7 +56,7 @@ h5 {
 }
 
 h6 {
-  font-size: 1rem;
+  font-size: $spacing-md;
   color: color.adjust($color-text, $lightness: 15%);
 }
 
@@ -77,15 +78,6 @@ a {
   }
 }
 
-strong {
-  font-weight: 600;
-  color: $color-dark;
-}
-
-em {
-  font-style: italic;
-}
-
 ul,
 ol {
   margin: 0 0 $spacing-md $spacing-lg;
@@ -94,27 +86,4 @@ ol {
   li {
     margin-bottom: $spacing-xs;
   }
-}
-
-blockquote {
-  border-left: 4px solid $color-primary;
-  padding-left: $spacing-md;
-  font-style: italic;
-  color: color.adjust($color-text, $lightness: 10%);
-  margin: $spacing-md 0;
-}
-
-// ----------------------
-// Helpers
-// ----------------------
-.text-center {
-  text-align: center;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-muted {
-  color: color.adjust($color-text, $lightness: 25%);
 }

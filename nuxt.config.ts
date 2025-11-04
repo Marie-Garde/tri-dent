@@ -15,6 +15,10 @@ export default defineNuxtConfig({
       },
     },
   },
+  modules: [
+    // ...existing modules...
+    "@nuxt/icon",
+  ],
 });
 // Nuxt 4 permet d’utiliser le mode “app only” sans pages/ (idéal pour des SPA ou micro frontends).
 // Mais quand compatibilityDate est postérieure à juillet 2024, ce mode devient le comportement par défaut.

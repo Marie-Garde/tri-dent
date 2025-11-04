@@ -8,7 +8,9 @@
     </div>
 
     <Layout>
-      <NuxtLink to="/about">Aller sur la page À propos</NuxtLink>
+      <Welcome />
+      <FindUs />
+      <!-- <NuxtLink to="/about">Aller sur la page À propos</NuxtLink> -->
     </Layout>
   </div>
 </template>
@@ -16,6 +18,8 @@
 <script setup lang="ts">
 import hero from "~/assets/images/home/hero_home.png";
 import logo from "~/assets/images/logo trident.svg";
+import Welcome from "~/components/containers/Welcome.vue"; // import explicite
+import FindUs from "~/components/containers/FindUs.vue";
 </script>
 
 <style lang="scss" scoped>
@@ -60,7 +64,7 @@ import logo from "~/assets/images/logo trident.svg";
       text-align: right;
       width: 100%;
       font-size: 64px;
-      padding: 2rem 1rem;
+      padding: $spacing-lg $spacing-md;
       background: linear-gradient(to left, #ffffff90 75%, transparent);
     }
   }
