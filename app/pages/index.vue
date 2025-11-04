@@ -10,6 +10,7 @@
     <Layout>
       <Welcome />
       <FindUs />
+      <Team />
       <!-- <NuxtLink to="/about">Aller sur la page À propos</NuxtLink> -->
     </Layout>
   </div>
@@ -20,6 +21,7 @@ import hero from "~/assets/images/home/hero_home.png";
 import logo from "~/assets/images/logo trident.svg";
 import Welcome from "~/components/containers/Welcome.vue"; // import explicite
 import FindUs from "~/components/containers/FindUs.vue";
+import Team from "~/components/containers/Team.vue";
 </script>
 
 <style lang="scss" scoped>
