@@ -1,6 +1,68 @@
 <template>
   <div>
-    <h1>Bienvenue sur mon site Nuxt 4 !</h1>
-    <NuxtLink to="/about">Aller sur la page À propos</NuxtLink>
+    <div class="herobanner">
+      <div class="herobanner__content">
+        <div class="logo"><img :src="logo" alt="Logo Tri-Dent" /></div>
+        <h1>Cabinet dentaire Tri-Dent</h1>
+      </div>
+    </div>
+
+    <Layout>
+      <NuxtLink to="/about">Aller sur la page À propos</NuxtLink>
+    </Layout>
   </div>
 </template>
+
+<script setup lang="ts">
+import hero from "~/assets/images/home/hero_home.png";
+import logo from "~/assets/images/logo trident.svg";
+</script>
+
+<style lang="scss" scoped>
+@use "@/assets/scss/variables" as *;
+@use "sass:color";
+
+.herobanner {
+  width: 100%;
+  height: 100vh;
+  background-image: url("~/assets/images/home/hero_home.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+
+  &__content {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+
+    .logo {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 250px;
+      width: 250px;
+      display: flex;
+      align-items: flex-end;
+      background-color: $color-white;
+      clip-path: polygon(0 10%, 0% 100%, 100% 100%);
+      img {
+        width: 60%;
+      }
+    }
+
+    h1 {
+      // todo: typo
+      margin: 0;
+      text-align: right;
+      width: 100%;
+      font-size: 64px;
+      padding: 2rem 1rem;
+      background: linear-gradient(to left, #ffffff90 75%, transparent);
+    }
+  }
+}
+</style>

@@ -4,11 +4,6 @@
     <NuxtRouteAnnouncer />
     <!-- Exemple de layout global -->
     <header>
-      <!-- todo: créer le composant navbar et l'implémenter ici -->
-      <!-- <nav>
-        <NuxtLink to="/">Accueil</NuxtLink>
-        <NuxtLink to="/about">À propos</NuxtLink>
-      </nav> -->
       <Navbar />
     </header>
     <main>
