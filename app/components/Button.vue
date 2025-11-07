@@ -39,23 +39,21 @@ withDefaults(defineProps<Props>(), {
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s ease;
-}
+  &--primary {
+    background-color: $color-yellow;
+    color: $color-dark;
 
-.button--primary {
-  background-color: $color-cta;
-  color: $color-dark;
-
-  &:hover {
-    background-color: color.adjust($color-cta, $lightness: 90%);
+    &:hover {
+      background-color: color.adjust($color-yellow, $lightness: 90%);
+    }
   }
-}
+  &--secondary {
+    background-color: $color-green;
+    color: $color-white;
 
-.button--secondary {
-  background-color: $color-secondary;
-  color: $color-dark;
-
-  &:hover {
-    background-color: color.adjust($color-secondary, $lightness: 90%);
+    &:hover {
+      background-color: color.adjust($color-secondary, $lightness: 90%);
+    }
   }
 }
 </style>

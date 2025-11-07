@@ -10,8 +10,6 @@
       <NuxtPage />
     </main>
 
-    <footer>
-      <p>&copy; 2025 — L'envolée numérique</p>
-    </footer>
+    <Footer />
   </div>
 </template>

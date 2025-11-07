@@ -11,17 +11,21 @@
       <Welcome />
       <FindUs />
       <Team />
-      <!-- <NuxtLink to="/about">Aller sur la page À propos</NuxtLink> -->
+      <div class="full-width-image">
+        <img :src="indoor" alt="Indoor Image" />
+      </div>
+      <MedicalInformations />
     </Layout>
   </div>
 </template>
 
 <script setup lang="ts">
-import hero from "~/assets/images/home/hero_home.png";
+import indoor from "~/assets/images/home/cabinet-indoor.png";
 import logo from "~/assets/images/logo trident.svg";
 import Welcome from "~/components/containers/Welcome.vue"; // import explicite
 import FindUs from "~/components/containers/FindUs.vue";
 import Team from "~/components/containers/Team.vue";
+import MedicalInformations from "~/components/containers/MedicalInformations.vue";
 </script>
 
 <style lang="scss" scoped>
@@ -69,6 +73,15 @@ import Team from "~/components/containers/Team.vue";
       padding: $spacing-lg $spacing-md;
       background: linear-gradient(to left, #ffffff90 75%, transparent);
     }
+  }
+}
+
+.full-width-image {
+  width: 100%;
+  img {
+    width: 100%;
+    height: auto;
+    display: block; // Remove extra space below image
   }
 }
 </style>
