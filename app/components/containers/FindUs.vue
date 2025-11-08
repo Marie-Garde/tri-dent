@@ -23,6 +23,13 @@
           </span>
         </p>
       </template>
+      <template #image>
+        <img
+          src="/images/home/cabinet.png"
+          alt="Cabinet Tri-Dent"
+          class="find-us__image"
+        />
+      </template>
     </SideTextImage>
   </div>
 </template>
@@ -53,6 +60,15 @@ import Divider from "~/components/Divider.vue";
 
   &__button {
     margin-top: $spacing-xl;
+  }
+
+  &__image {
+    object-fit: cover;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 </style>

@@ -156,42 +156,12 @@ const assistants = computed(() =>
   }
 
   &__grid {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; // center each row
+    justify-content: center;
     gap: $spacing-lg;
     align-items: start;
-
-    /* force each card to a fixed column width so rows can be centered */
-    > * {
-      flex: 0 0 230px;
-      max-width: 230px;
-    }
-  }
-}
-
-@media (max-width: 1024px) {
-  .team {
-    &__grid {
-      > * {
-        flex: 0 0 200px;
-        max-width: 200px;
-      }
-      gap: 1.5rem;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .team {
-    &__grid {
-      /* two columns on small screens */
-      > * {
-        flex: 0 0 calc(50% - 0.625rem);
-        max-width: none;
-      }
-      gap: 1.25rem;
-    }
   }
 }
 </style>

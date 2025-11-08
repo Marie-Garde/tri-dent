@@ -12,14 +12,7 @@
       </div>
     </div>
 
-    <!-- zone image : on utilise la prop `img` comme background -->
-    <div
-      class="side-text-image__image"
-      :style="img ? { backgroundImage: `url(${img})` } : undefined"
-    >
-      <!-- élément caché visuellement mais accessible pour fournir un alt aux lecteurs d'écran -->
-      <img v-if="img" :src="img" :alt="imgAlt || ''" class="visually-hidden" />
-      <!-- slot image optionnel : garde la flexibilité si on veut override -->
+    <div class="side-text-image__image">
       <slot name="image"></slot>
     </div>
   </div>
@@ -31,13 +24,9 @@ import elipse from "~/assets/images/SideTextImage/elipse.png";
 withDefaults(
   defineProps<{
     rtl?: boolean;
-    img?: string;
-    imgAlt?: string;
   }>(),
   {
     rtl: false,
-    img: "",
-    imgAlt: "",
   }
 );
 </script>
@@ -48,45 +37,40 @@ withDefaults(
   gap: $spacing-lg;
   align-items: center;
 
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+
   &--rtl {
     flex-direction: row-reverse;
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
   }
 
   &__elipse {
     height: 430px;
     margin-right: 3rem;
+    @media (max-width: 767px) {
+      margin-right: $spacing-md;
+    }
   }
 
   &__content {
     display: flex;
+    flex-direction: row;
   }
 
   &__image {
-    height: 450px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .side-text-image__content,
-  .side-text-image__image {
-    flex: 1;
+    overflow: hidden;
   }
 }
 
-/* Visually hidden but accessible to screen readers */
-.visually-hidden {
-  position: absolute !important;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
+.side-text-image__content,
+.side-text-image__image {
+  flex: 1;
 }
 </style>

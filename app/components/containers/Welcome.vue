@@ -14,7 +14,13 @@
           >En savoir plus sur notre approche</Button
         >
       </template>
-      <!-- slot #image supprimé : on utilise la prop :img maintenant -->
+      <template #image>
+        <img
+          src="/images/home/home team.png"
+          alt="team"
+          class="welcome__image"
+        />
+      </template>
     </SideTextImage>
   </div>
 </template>
@@ -36,7 +42,16 @@ import Button from "~/components/Button.vue";
   }
 
   &__button {
-    margin-top: $spacing-xl;
+    margin-top: 2.5rem;
+  }
+
+  &__image {
+    object-fit: cover;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 </style>

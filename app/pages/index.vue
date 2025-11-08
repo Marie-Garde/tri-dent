@@ -11,11 +11,11 @@
       <Welcome />
       <FindUs />
       <Team />
-      <div class="full-width-image">
-        <img :src="indoor" alt="Indoor Image" />
-      </div>
-      <MedicalInformations />
     </Layout>
+    <div class="full-width-image">
+      <img :src="indoor" alt="Indoor Image" />
+    </div>
+    <MedicalInformations />
   </div>
 </template>
 
@@ -65,7 +65,6 @@ import MedicalInformations from "~/components/containers/MedicalInformations.vue
     }
 
     h1 {
-      // todo: typo
       margin: 0;
       text-align: right;
       width: 100%;
@@ -81,7 +80,7 @@ import MedicalInformations from "~/components/containers/MedicalInformations.vue
   img {
     width: 100%;
     height: auto;
-    display: block; // Remove extra space below image
+    display: block;
   }
 }
 </style>

@@ -4,7 +4,7 @@
     <NuxtRouteAnnouncer />
     <!-- Exemple de layout global -->
     <header>
-      <Navbar />
+      <!-- <Navbar /> -->
     </header>
     <main>
       <NuxtPage />

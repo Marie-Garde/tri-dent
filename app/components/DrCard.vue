@@ -40,7 +40,7 @@ import logo from "~/assets/images/logo trident.svg";
   border: 1px solid $color-primary;
   border-radius: $border-radius;
   background-color: $color-white;
-  padding-bottom: 82px; // Reserve space for the name container
+  padding-bottom: 82px;
   filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.1));
 
   &__image-container {
@@ -93,7 +93,7 @@ import logo from "~/assets/images/logo trident.svg";
 
   &:hover {
     .card__presentation {
-      max-height: 200px; // Set a max-height larger than the content
+      max-height: 200px;
       opacity: 1;
       padding: $spacing-sm $spacing-md $spacing-md;
     }

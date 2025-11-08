@@ -8,15 +8,6 @@
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
     </p>
-    <!-- <Caroussel :slides="cards" :showIndicators="true" :showArrows="true">
-      <template #slide="{ slide }">
-        <div class="mi-card">
-          <img :src="slide.icon" :alt="slide.title" />
-          <h3>{{ slide.title }}</h3>
-          <NuxtLink :to="slide.link">En savoir plus</NuxtLink>
-        </div>
-      </template>
-    </Caroussel> -->
     <Button class="button" variant="secondary" href="/"
       >Plus de ressources</Button
     >
@@ -25,7 +16,6 @@
 
 <script setup>
 import { ref } from "vue";
-import Caroussel from "../Caroussel.vue";
 
 // données JSON : chaque objet peut contenir icon, title, link
 const cards = ref([
@@ -58,7 +48,6 @@ const cards = ref([
 
 <style lang="scss" scoped>
 @use "@/assets/scss/variables" as *;
-// todo: typo
 .medical-information {
   background-color: $color-yellow-transparent;
   margin-top: -$spacing-md;
@@ -86,6 +75,10 @@ const cards = ref([
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
     min-width: 220px;
     text-align: center;
+  }
+
+  @media (max-width: 767px) {
+    padding: $spacing-lg;
   }
 }
 
