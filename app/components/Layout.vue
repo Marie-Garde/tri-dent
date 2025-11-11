@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use "@/assets/scss/variables" as *;
 .layout {
   width: 100%;

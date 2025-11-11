@@ -1,21 +1,25 @@
 <template>
-  <div>
-    <div class="herobanner">
+  <div class="page-wrapper">
+    <section class="herobanner">
       <div class="herobanner__content">
         <div class="logo"><img :src="logo" alt="Logo Tri-Dent" /></div>
         <h1>Cabinet dentaire Tri-Dent</h1>
       </div>
-    </div>
+    </section>
 
-    <Layout>
-      <Welcome />
-      <FindUs />
-      <Team />
-    </Layout>
-    <div class="full-width-image">
-      <img :src="indoor" alt="Indoor Image" />
-    </div>
-    <MedicalInformations />
+    <section class="content-section">
+      <Layout>
+        <Welcome />
+        <FindUs />
+        <Team />
+      </Layout>
+
+      <div class="full-width-image">
+        <img :src="indoor" alt="Indoor Image" />
+      </div>
+
+      <MedicalInformations />
+    </section>
   </div>
 </template>
 
@@ -31,6 +35,26 @@ import MedicalInformations from "~/components/containers/MedicalInformations.vue
 <style lang="scss" scoped>
 @use "@/assets/scss/variables" as *;
 @use "sass:color";
+
+.page-wrapper {
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  /* --- cacher scrollbar sans désactiver le scroll --- */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer / Edge Legacy */
+}
+
+.herobanner,
+.content-section {
+  scroll-snap-align: start;
+}
+
+.content-section {
+  min-height: 100vh;
+}
 
 .herobanner {
   width: 100%;
