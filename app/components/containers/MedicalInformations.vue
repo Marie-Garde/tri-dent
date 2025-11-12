@@ -37,37 +37,37 @@ const cards = ref([
     id: "c1",
     icon: "/images/tooth-brush.svg",
     title: "Brossage de dents",
-    link: "/consultation",
+    link: "/",
   },
   {
     id: "c2",
     icon: "/images/implant.svg",
     title: "L'implantologie",
-    link: "/soins-dentaires",
+    link: "/",
   },
   {
     id: "c3",
     icon: "/images/post-op.svg",
     title: "Soins post opératoires",
-    link: "/ophtalmo",
+    link: "/",
   },
   {
     id: "c4",
     icon: "/images/tooth-brush.svg",
     title: "Brossage de dents",
-    link: "/consultation",
+    link: "/",
   },
   {
     id: "c5",
     icon: "/images/implant.svg",
     title: "L'implantologie",
-    link: "/soins-dentaires",
+    link: "/",
   },
   {
     id: "c6",
     icon: "/images/post-op.svg",
     title: "Soins post opératoires",
-    link: "/ophtalmo",
+    link: "/",
   },
 ]);
 </script>

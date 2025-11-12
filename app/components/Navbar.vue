@@ -15,17 +15,25 @@
 
       <!-- Menu principal -->
       <ul class="navbar__menu" :class="{ open: isOpen }">
-        <li><NuxtLink to="/">Notre approche</NuxtLink></li>
-        <li><NuxtLink to="/about">Informations médicales</NuxtLink></li>
+        <li>
+          <NuxtLink @click="toggleMenu()" to="/">Notre approche</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink @click="toggleMenu()" to="/about"
+            >Informations médicales</NuxtLink
+          >
+        </li>
 
         <!-- Logo centré uniquement sur desktop -->
         <NuxtLink to="/" class="navbar__logo--center">
           <img :src="logo" alt="Logo Tri-Dent" />
         </NuxtLink>
 
-        <li><NuxtLink to="/about">Contactez-nous</NuxtLink></li>
+        <li>
+          <NuxtLink @click="toggleMenu()" to="/about">Contactez-nous</NuxtLink>
+        </li>
         <li class="navbar__urgent">
-          <NuxtLink to="/about">
+          <NuxtLink @click="toggleMenu()" to="/about">
             <span class="navbar__icon">
               <img :src="notificationImportant" alt="Urgences" />
             </span>
@@ -33,7 +41,9 @@
           </NuxtLink>
         </li>
         <li class="navbar__cta-mobile">
-          <NuxtLink to="/about">Prendre rendez-vous</NuxtLink>
+          <NuxtLink @click="toggleMenu()" to="/about"
+            >Prendre rendez-vous</NuxtLink
+          >
         </li>
       </ul>
 
@@ -150,7 +160,6 @@ const toggleMenu = () => {
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s ease-in-out;
-      box-shadow: 0 8px 16px rgba($color-dark, 0.15);
 
       &.open {
         max-height: 500px;
@@ -235,13 +244,13 @@ const toggleMenu = () => {
     }
 
     span.open:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: rotate(45deg) translate(3px, 8px);
     }
     span.open:nth-child(2) {
       opacity: 0;
     }
     span.open:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+      transform: rotate(-45deg) translate(5px, -10px);
     }
 
     @media (max-width: 900px) {
