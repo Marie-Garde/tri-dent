@@ -1,7 +1,6 @@
 <template>
-  <header class="navbar">
+  <header :class="['navbar', { 'navbar--visible': isVisible }]">
     <nav class="navbar__container">
-      <!-- Logo toujours visible -->
       <NuxtLink to="/" class="navbar__logo">
         <img :src="logo" alt="Logo Tri-Dent" />
       </NuxtLink>
@@ -54,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import logo from "~/assets/images/logo trident.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
 
@@ -62,6 +61,23 @@ const isOpen = ref(false);
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
 };
+
+// visible après scroll
+const isVisible = ref(false);
+const SCROLL_THRESHOLD = 20;
+
+const onScroll = () => {
+  isVisible.value = window.scrollY > SCROLL_THRESHOLD;
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", onScroll);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -69,14 +85,28 @@ const toggleMenu = () => {
 @use "sass:color";
 
 .navbar {
-  border-bottom: 1px solid color.adjust($color-dark, $lightness: 70%);
-  background-color: $color-white;
-  box-shadow: 0 2px 4px rgba($color-dark, 0.25);
-  font-family: "Nunito";
-  position: relative;
+  /** sticky en haut de l'écran */
+  position: sticky;
+  top: 0;
   z-index: 1000;
+  height: 0;
+  font-family: "Nunito";
+
+  /** cachée initialement (hors écran) puis apparition par transition */
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.35s ease, opacity 0.35s ease, box-shadow 0.2s ease;
+
+  /** quand visible après scroll */
+  &.navbar--visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
   &__container {
+    border-bottom: 1px solid color.adjust($color-dark, $lightness: 70%);
+    background-color: $color-white;
+    box-shadow: 0 2px 4px rgba($color-dark, 0.25);
     max-width: 1200px;
     height: 134px;
     margin: 0 auto;
