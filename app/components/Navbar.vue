@@ -39,6 +39,7 @@ import notificationImportant from "~/assets/images/notification_important.svg";
   border-bottom: 1px solid color.adjust($color-dark, $lightness: 70%);
   background-color: $color-white;
   box-shadow: 0 2px 4px rgba($color-dark, 0.25);
+  font-family: "Nunito";
 
   &__container {
     max-width: 1200px;
