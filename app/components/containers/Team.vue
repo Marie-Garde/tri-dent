@@ -53,73 +53,65 @@
 // todo: ajouter une présentation -> au hover, la présentation s'affiche
 const teamMembers = [
   {
-    name: "Dr. Sarah Martin",
+    name: "Dr. Réda BOUNAB",
     status: "Associate",
     img: "/images/logo trident.svg",
-    presentation:
-      "Dr. Sarah Martin is a skilled associate with expertise in general medicine.",
+    presentation: "Omnipratique, Implantologie",
   },
   {
-    name: "Dr. Jean Dupont",
+    name: "Dr. Sandrine DE CARVALHO",
     status: "Associate",
     img: "/images/logo trident.svg",
-    presentation:
-      "Dr. Jean Dupont is a dedicated associate specializing in pediatric care.",
+    presentation: "Omnipratique, Implantologie",
   },
   {
-    name: "Dr. Sarah MartDeux",
+    name: "Dr. Laure RISPAL",
     status: "Associate",
     img: "/images/logo trident.svg",
-    presentation:
-      "Dr. Sarah MartDeux focuses on women's health and preventive care.",
+    presentation: "Omnipratique",
   },
   {
-    name: "Dr. Jean Duponton",
+    name: "Dr. Patrick SALINAS",
     status: "Associate",
     img: "/images/logo trident.svg",
-    presentation:
-      "Dr. Jean Duponton is a compassionate associate with a focus on geriatric care.",
+    presentation: "Omnipratique, Orthodontie adulte, Implantologie",
   },
   {
-    name: "Dr. Sarah Martrois",
-    status: "Dr",
-    img: "/images/logo trident.svg",
-    presentation: "Dr. Sarah Martrois is a leading expert in oral surgery.",
-  },
-  {
-    name: "Dr. Jean Duponti",
+    name: "Dr. Mathilde HOURSET",
     status: "Dr",
     img: "/images/logo trident.svg",
     presentation:
-      "Dr. Jean Duponti is known for his innovative approach to dental implants.",
+      "Omnipratique, Pédodontie, Orthodontie interceptive, Occlusodontie",
   },
   {
-    name: "Marie Lambert",
-    status: "Assistante",
+    name: "Dr. Hugo SENTILLES",
+    status: "Dr",
     img: "/images/logo trident.svg",
-    presentation:
-      "Marie Lambert is a friendly assistant who ensures smooth patient experiences.",
+    presentation: "Omnipratique",
   },
   {
-    name: "Pierre Durand",
+    name: "Céline CHAUVERON",
     status: "Assistante",
     img: "/images/logo trident.svg",
-    presentation:
-      "Pierre Durand is a dedicated assistant who supports the team with care.",
+    presentation: "Assistante dentaire",
   },
   {
-    name: "Marie Lamberto",
+    name: "Maylis GOURBAL",
     status: "Assistante",
     img: "/images/logo trident.svg",
-    presentation:
-      "Marie Lamberto is a compassionate assistant who prioritizes patient comfort.",
+    presentation: "Assistante dentaire",
   },
   {
-    name: "Pierre Durandal",
+    name: "Séverine PUPILLI",
     status: "Assistante",
     img: "/images/logo trident.svg",
-    presentation:
-      "Pierre Durandal is a meticulous assistant who pays attention to every detail.",
+    presentation: "Assistante dentaire",
+  },
+  {
+    name: "Julie SETSOUA",
+    status: "Assistante",
+    img: "/images/logo trident.svg",
+    presentation: "Assistante dentaire",
   },
 ];
 

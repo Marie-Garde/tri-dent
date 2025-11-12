@@ -5,10 +5,10 @@
         <h2>Bienvenue au cabinet dentaire Tri-Dent Cornebarrieu</h2>
         <Divider />
         <p class="welcome__text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor
+          Toute l’équipe du cabinet Tri-dent est heureuse de vous accueillir
+          dans notre nouveau cabinet situé au 3 route d’Aussonne à Cornebarrieu.
+          Nous réalisons les soins conservateurs, d’orthodontie, d’esthétique,
+          d’implantologie, d’occlusodontie et de parodontie.
         </p>
         <Button class="welcome__button" href="/about"
           >En savoir plus sur notre approche</Button

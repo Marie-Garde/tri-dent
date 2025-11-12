@@ -14,11 +14,11 @@
         <p class="footer__container__find-us__text">
           <span class="footer__container__find-us__info">
             <Icon name="mdi:map-marker" size="24" />
-            1 Rte d'Aussonne, 31700 Cornebarrieu
+            3 Rte d'Aussonne, 31700 Cornebarrieu
           </span>
           <span class="footer__container__find-us__info">
             <Icon name="mdi:email" size="24" />
-            trident@gmail.com
+            secretariat@scmtrident.fr
           </span>
           <span class="footer__container__find-us__info">
             <Icon name="mdi:phone" size="24" />
@@ -26,7 +26,7 @@
           </span>
           <span class="footer__container__find-us__info">
             <Icon name="mdi:clock-outline" size="24" />
-            Du Lundi au Vendredi de 9h00 à 18h00
+            lundi au jeudi 9h-12h30 14h-18h et vendredi 9h-13h 14h-17h
           </span>
         </p>
       </div>
@@ -38,10 +38,19 @@
             <NuxtLink to="/">Accueil</NuxtLink>
           </span>
           <span class="footer__container__useful-links__info">
-            <NuxtLink to="/">Conseil de l'odre des dentistes</NuxtLink>
+            <NuxtLink to="https://dentistes31.com/" target="_blank"
+              >Conseil de l'ordre des dentistes</NuxtLink
+            >
           </span>
           <span class="footer__container__useful-links__info">
-            <NuxtLink to="/">Dentiste de garde</NuxtLink>
+            <NuxtLink to="https://dentistes31.com/" target="_blank"
+              >Dentiste de garde</NuxtLink
+            >
+          </span>
+          <span class="footer__container__useful-links__info">
+            <NuxtLink to="https://www.3237.fr/" target="_blank"
+              >Pharmacie de garde</NuxtLink
+            >
           </span>
         </p>
       </div>
