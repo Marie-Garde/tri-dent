@@ -101,6 +101,7 @@ const cards = ref([
     width: 250px;
     height: 294px;
     text-align: center;
+    padding: 0 1rem;
 
     display: flex;
     flex-direction: column;
@@ -112,9 +113,11 @@ const cards = ref([
     }
     h3 {
       margin-top: 1.5rem;
+      font-weight: 500;
     }
     a {
       margin-bottom: $spacing-md;
+      text-decoration: underline;
     }
   }
 

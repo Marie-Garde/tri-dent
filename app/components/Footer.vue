@@ -9,7 +9,7 @@
         />
       </div>
       <div class="footer__container__find-us">
-        <h2>Nous contacter</h2>
+        <h3>Nous contacter</h3>
         <Divider light :style="{ marginLeft: '0' }" />
         <p class="footer__container__find-us__text">
           <span class="footer__container__find-us__info">
@@ -31,7 +31,7 @@
         </p>
       </div>
       <div class="footer__container__useful-links">
-        <h2>Liens utiles</h2>
+        <h3>Liens utiles</h3>
         <Divider light :style="{ marginLeft: '0' }" />
         <p class="footer__container__useful-links__text">
           <span class="footer__container__useful-links__info">
@@ -71,7 +71,6 @@
   padding: $spacing-xl;
   padding-bottom: 0;
 
-  // desktop layout
   &__container {
     display: flex;
     gap: $spacing-xl;
@@ -83,7 +82,7 @@
       flex: 1;
       flex-direction: column;
 
-      h2 {
+      h3 {
         color: $color-white;
       }
 

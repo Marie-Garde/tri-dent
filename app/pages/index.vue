@@ -3,7 +3,7 @@
     <div class="herobanner">
       <div class="herobanner__content">
         <div class="logo"><img :src="logo" alt="Logo Tri-Dent" /></div>
-        <h1>Cabinet dentaire Tri-Dent</h1>
+        <h1 class="stroke">Cabinet dentaire Tri-Dent</h1>
       </div>
     </div>
 
@@ -65,12 +65,10 @@ import MedicalInformations from "~/components/containers/MedicalInformations.vue
     }
 
     h1 {
-      margin: 0;
       text-align: right;
       width: 100%;
-      font-size: 64px;
-      padding: $spacing-lg $spacing-md;
-      background: linear-gradient(to left, #ffffff90 75%, transparent);
+      padding: $spacing-lg;
+      background: linear-gradient(to left, #ffffff90 85%, transparent);
     }
   }
 }
