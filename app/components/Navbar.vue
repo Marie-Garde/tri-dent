@@ -95,7 +95,8 @@ onUnmounted(() => {
   /** cachée initialement (hors écran) puis apparition par transition */
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.35s ease, opacity 0.35s ease, box-shadow 0.2s ease;
+  transition: transform 0.35s ease, height 0.35s ease, opacity 0.35s ease,
+    box-shadow 0.2s ease;
 
   /** quand visible après scroll */
   &.navbar--visible {
@@ -107,10 +108,10 @@ onUnmounted(() => {
     border-bottom: 1px solid color.adjust($color-dark, $lightness: 70%);
     background-color: $color-white;
     box-shadow: 0 2px 4px rgba($color-dark, 0.25);
-    max-width: 1200px;
+    max-width: 100%;
     height: 134px;
     margin: 0 auto;
-    padding: $spacing-md $spacing-lg;
+    padding: 0 $spacing-lg 0 150px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -118,6 +119,7 @@ onUnmounted(() => {
 
     @media (max-width: 900px) {
       height: 70px;
+      padding: 0 $spacing-lg;
     }
   }
 
@@ -128,7 +130,7 @@ onUnmounted(() => {
 
       @media (max-width: 900px) {
         display: block;
-        height: 110px;
+        height: 80px;
       }
     }
 
@@ -157,7 +159,7 @@ onUnmounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: $spacing-md;
+    gap: $spacing-lg;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -166,7 +168,7 @@ onUnmounted(() => {
     a {
       color: $color-text;
       text-decoration: none;
-      font-size: 20px;
+      font-size: $spacing-md;
       transition: color 0.2s ease;
 
       &:hover {
@@ -215,8 +217,8 @@ onUnmounted(() => {
   }
 
   &__cta {
-    width: 140px;
-    height: 70px;
+    width: 180px;
+    padding: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -225,7 +227,7 @@ onUnmounted(() => {
     color: #fff;
     border-radius: $border-radius;
     text-decoration: none;
-    font-size: 20px;
+    font-size: $spacing-md;
     transition: background-color 0.2s ease;
 
     &:hover {

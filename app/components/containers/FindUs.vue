@@ -17,9 +17,10 @@
             <Icon name="mdi:phone" size="24" />
             05 61 06 91 92
           </span>
-          <span class="find-us__info">
+          <span class="find-us__info find-us__info--hours">
             <Icon name="mdi:clock-outline" size="24" />
-            lundi au jeudi 9h-12h30 14h-18h et vendredi 9h-13h 14h-17h
+            lundi au jeudi 9h-12h30 14h-18h<br />
+            vendredi 9h-13h 14h-17h
           </span>
         </p>
       </template>
@@ -56,6 +57,9 @@ import Divider from "~/components/Divider.vue";
     display: flex;
     align-items: center;
     gap: $spacing-sm;
+    &--hours {
+      align-items: flex-start;
+    }
   }
 
   &__button {

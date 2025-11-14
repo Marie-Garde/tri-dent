@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" :class="{ 'card--doctor': status !== 'Assistante' }">
     <div class="card__image-container">
       <img :src="image ?? logo" :alt="name" class="card__image" />
     </div>
@@ -37,11 +37,15 @@ import logo from "~/assets/images/logo trident.svg";
   position: relative;
   width: 100%;
   max-width: 230px;
-  border: 1px solid $color-primary;
+  border: 1px solid $color-yellow;
   border-radius: $border-radius;
   background-color: $color-white;
   padding-bottom: 82px;
-  filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.1));
+  box-shadow: 0 5px 5px $color-grey;
+
+  &--doctor {
+    border-color: $color-green;
+  }
 
   &__image-container {
     aspect-ratio: 1;
@@ -60,7 +64,7 @@ import logo from "~/assets/images/logo trident.svg";
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: $color-yellow;
+    background-color: $color-yellow-transparent;
     border-radius: $border-radius - 1;
     transition: all 0.3s ease-in-out;
 

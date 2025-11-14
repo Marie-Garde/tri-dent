@@ -69,9 +69,21 @@ import MedicalInformations from "~/components/containers/MedicalInformations.vue
       width: 100%;
       padding: $spacing-lg;
       background: linear-gradient(to left, #ffffff90 85%, transparent);
+      /*animation: slideFromLeft 1s ease-out;*/
     }
   }
 }
+
+/*@keyframes slideFromLeft {
+  from {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}*/
 
 .full-width-image {
   width: 100%;
