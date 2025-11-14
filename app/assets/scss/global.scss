@@ -2,9 +2,8 @@
 @use "typography";
 
 body {
-  font-family: "Inter", sans-serif;
   color: $color-text;
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: $color-white;
 }

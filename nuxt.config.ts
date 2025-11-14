@@ -3,8 +3,13 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   ssr: true,
-  css: ["@/assets/scss/global.scss"], // ton fichier global
+  css: ["@/assets/scss/global.scss"], // fichier global
   vite: {
+    server: {
+      fs: {
+        strict: false,
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {
@@ -15,7 +20,5 @@ export default defineNuxtConfig({
       },
     },
   },
+  modules: ["@nuxt/icon", "@nuxt/fonts"],
 });
-// Nuxt 4 permet d’utiliser le mode “app only” sans pages/ (idéal pour des SPA ou micro frontends).
-// Mais quand compatibilityDate est postérieure à juillet 2024, ce mode devient le comportement par défaut.
-// Donc, si on veut un site multipage (SSG), il faut forcer pages: true tant que ce mode est encore transitionnel.
