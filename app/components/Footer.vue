@@ -62,9 +62,8 @@
       <NuxtLink to="https://lenvoleenumerique.com/" target="_blank"
         >L’envolée numérique</NuxtLink
       >
-      - <NuxtLink to="/">mentions légales</NuxtLink> - numérique -
-      <NuxtLink to="/">mentions légales</NuxtLink> -
-      <NuxtLink to="/">Plan du site</NuxtLink>
+      - <NuxtLink to="/">mentions légales</NuxtLink> -
+      <NuxtLink to="/"> Plan du site</NuxtLink>
     </p>
   </footer>
 </template>
