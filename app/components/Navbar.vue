@@ -84,6 +84,17 @@ onUnmounted(() => {
 @use "@/assets/scss/variables" as *;
 @use "sass:color";
 
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .navbar {
   /** sticky en haut de l'écran */
   position: sticky;
@@ -95,13 +106,14 @@ onUnmounted(() => {
   /** cachée initialement (hors écran) puis apparition par transition */
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.35s ease, height 0.35s ease, opacity 0.35s ease,
-    box-shadow 0.2s ease;
+  /* remove transform transition: we use the keyframe animation instead */
+  transition: opacity 0.35s ease, box-shadow 0.2s ease;
 
   /** quand visible après scroll */
   &.navbar--visible {
     opacity: 1;
     pointer-events: auto;
+    animation: slideFromTop 0.5s ease forwards;
   }
 
   &__container {
