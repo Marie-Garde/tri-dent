@@ -72,6 +72,14 @@ yarn preview
 bun run preview
 ```
 
+## Deploy (using Github Pages)
+
+```bash
+NUXT_APP_BASE_URL=/tri-dent/ npx nuxt build --preset github_pages
+
+npx gh-pages --dotfiles -d .output/public
+```
+
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 # Nuxt 4 tips

@@ -8,7 +8,8 @@
     "clean": "npx nuxi cleanup",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy": "NUXT_APP_BASE_URL=/tri-dent/ npx nuxt build --preset github_pages && npx gh-pages --dotfiles -d .output/public"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.12.1",
