@@ -7,11 +7,11 @@
       </div>
     </div>
 
-    <Layout>
-      <Welcome />
-      <FindUs />
-      <Team />
-    </Layout>
+    <!-- <Layout> -->
+    <Welcome />
+    <FindUs />
+    <Team />
+    <!-- </Layout> -->
     <div class="full-width-image">
       <img :src="indoor" alt="Indoor Image" />
     </div>
@@ -26,6 +26,9 @@ import Welcome from "~/components/containers/Welcome.vue"; // import explicite
 import FindUs from "~/components/containers/FindUs.vue";
 import Team from "~/components/containers/Team.vue";
 import MedicalInformations from "~/components/containers/MedicalInformations.vue";
+definePageMeta({
+  layout: "home",
+});
 </script>
 
 <style lang="scss" scoped>

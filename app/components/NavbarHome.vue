@@ -1,5 +1,5 @@
 <template>
-  <header :class="['navbar', { 'navbar--scrolled': isScrolled }]">
+  <header :class="['navbar', { 'navbar--visible': isVisible }]">
     <nav class="navbar__container">
       <NuxtLink to="/" class="navbar__logo">
         <img :src="logo" alt="Logo Tri-Dent" />
@@ -60,7 +60,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import logo from "~/assets/images/logo trident light.svg";
+import logo from "~/assets/images/logo trident.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
 
 const isOpen = ref(false);
@@ -68,12 +68,12 @@ const toggleMenu = () => {
   isOpen.value = !isOpen.value;
 };
 
-// visible après scroll -> rename en isScrolled
-const isScrolled = ref(false);
+// visible après scroll
+const isVisible = ref(false);
 const SCROLL_THRESHOLD = 20;
 
 const onScroll = () => {
-  isScrolled.value = window.scrollY > SCROLL_THRESHOLD;
+  isVisible.value = window.scrollY > SCROLL_THRESHOLD;
 };
 
 onMounted(() => {
@@ -90,29 +90,42 @@ onUnmounted(() => {
 @use "@/assets/scss/variables" as *;
 @use "sass:color";
 
-/* Navbar : toujours visible, transition entre état transparent (texte blanc) et scrolled (fond blanc, texte noir) */
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .navbar {
+  /** sticky en haut de l'écran */
   position: sticky;
   top: 0;
   z-index: 1000;
+  height: 0;
   font-family: "Nunito";
 
-  /* Always visible: transparent background + white text by default */
-  background-color: transparent;
-  color: $color-white;
-  transition: background-color 0.25s ease, color 0.25s ease,
-    box-shadow 0.2s ease;
+  /** cachée initialement (hors écran) puis apparition par transition */
+  opacity: 0;
+  pointer-events: none;
+  /* remove transform transition: we use the keyframe animation instead */
+  transition: opacity 0.35s ease, box-shadow 0.2s ease;
 
-  /* Quand scroll -> background blanc et texte noir */
-  &.navbar--scrolled {
-    color: $color-text;
+  /** quand visible après scroll */
+  &.navbar--visible {
+    opacity: 1;
+    pointer-events: auto;
+    animation: slideFromTop 0.5s ease forwards;
   }
 
   &__container {
-    /* default: transparent / pas de bordure ni box-shadow */
-    border-bottom: none;
-    background-color: transparent;
-    box-shadow: none;
+    border-bottom: 1px solid color.adjust($color-dark, $lightness: 70%);
+    background-color: $color-white;
+    box-shadow: 0 2px 4px rgba($color-dark, 0.25);
     max-width: 100%;
     height: 134px;
     margin: 0 auto;
@@ -126,13 +139,6 @@ onUnmounted(() => {
       height: 70px;
       padding: 0 $spacing-lg;
     }
-  }
-
-  /* when scrolled, apply visible styling (white background + subtle shadow + border) */
-  &.navbar--scrolled .navbar__container {
-    border-bottom: 1px solid color.adjust($color-dark, $lightness: 70%);
-    background-color: $color-white;
-    box-shadow: 0 2px 4px rgba($color-dark, 0.12);
   }
 
   /* Logo principal (toujours visible) */
@@ -177,9 +183,8 @@ onUnmounted(() => {
     margin: 0;
     flex: 1;
 
-    /* links inherit navbar color (white by default, black when scrolled) */
     a {
-      color: inherit;
+      color: $color-text;
       text-decoration: none;
       font-size: $spacing-md;
       transition: color 0.2s ease;
@@ -229,7 +234,6 @@ onUnmounted(() => {
     margin-right: 6px;
   }
 
-  /* CTA reste visuellement distinct (reste en blanc sur son fond foncé) */
   &__cta {
     width: 180px;
     padding: 0.75rem;
@@ -237,7 +241,7 @@ onUnmounted(() => {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: $color-darkblue;
+    background-color: #144f72;
     color: #fff;
     border-radius: $border-radius;
     text-decoration: none;
@@ -245,7 +249,7 @@ onUnmounted(() => {
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: color.adjust($color-darkblue, $lightness: 5%);
+      background-color: color.adjust(#144f72, $lightness: 5%);
     }
 
     @media (max-width: 900px) {
@@ -261,7 +265,7 @@ onUnmounted(() => {
         display: block;
         width: 200px;
         padding: 16px 0;
-        background-color: $color-darkblue;
+        background-color: #144f72;
         color: white;
         text-align: center;
         border-radius: $border-radius;

@@ -50,7 +50,6 @@
 
 <script setup lang="ts">
 // todo: Mock data - à remplacer par l'appel API
-// todo: ajouter une présentation -> au hover, la présentation s'affiche
 const teamMembers = [
   {
     name: "Dr. Réda BOUNAB",
