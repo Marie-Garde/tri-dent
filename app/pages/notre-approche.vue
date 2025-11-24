@@ -40,6 +40,12 @@
       <!-- Carousel -->
       <CarouselApproche />
     </div>
+    <div class="approche__technos">
+      <h2>Nos technologies phares</h2>
+      <Divider />
+      <!-- Carousel -->
+      <CarouselSun />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -139,6 +145,17 @@ const values = [
       max-width: 950px;
       margin: $spacing-lg auto 0 auto;
       text-align: center;
+    }
+  }
+
+  &__technos {
+    padding: $spacing-xl;
+    background-color: $color-white;
+    h2 {
+      text-align: center;
+    }
+    .divider {
+      margin: $spacing-md auto;
     }
   }
 }
