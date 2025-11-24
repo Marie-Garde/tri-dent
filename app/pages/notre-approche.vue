@@ -25,6 +25,21 @@
         />
       </div>
     </div>
+    <div class="approche__cabinet">
+      <h2>Le cabinet</h2>
+      <Divider />
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint o
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+        id est laborum.
+      </p>
+      <!-- Carousel -->
+      <CarouselApproche />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -103,10 +118,27 @@ const values = [
     }
 
     &__cards {
+      margin-top: $spacing-xl;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: $spacing-lg;
+    }
+  }
+
+  &__cabinet {
+    padding: $spacing-xl;
+    background-color: $color-yellow;
+    h2 {
+      text-align: center;
+    }
+    .divider {
+      margin: $spacing-md auto;
+    }
+    p {
+      max-width: 950px;
+      margin: $spacing-lg auto 0 auto;
+      text-align: center;
     }
   }
 }
