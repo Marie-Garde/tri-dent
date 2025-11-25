@@ -8,9 +8,11 @@
     </div>
 
     <!-- <Layout> -->
-    <Welcome />
-    <FindUs />
-    <Team />
+    <div class="home__layout">
+      <Welcome />
+      <FindUs />
+      <Team />
+    </div>
     <!-- </Layout> -->
     <div class="full-width-image">
       <img :src="indoor" alt="Indoor Image" />
@@ -77,16 +79,10 @@ definePageMeta({
   }
 }
 
-/*@keyframes slideFromLeft {
-  from {
-    transform: translateX(100vw);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}*/
+.home__layout {
+  max-width: 1280px;
+  margin: 0 auto;
+}
 
 .full-width-image {
   width: 100%;
