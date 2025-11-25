@@ -31,7 +31,7 @@
         </NuxtLink>
 
         <li>
-          <NuxtLink @click="toggleMenu()" to="/notre-approche"
+          <NuxtLink @click="toggleMenu()" to="/contact"
             >Contactez-nous</NuxtLink
           >
         </li>
