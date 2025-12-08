@@ -68,34 +68,40 @@
 
 <script setup lang="ts">
 import { useIsMobile } from "@/reactives/isMobile";
+import PracticeImage from "@/assets/images/approche/icons/search.svg";
+import InformImage from "@/assets/images/approche/icons/inform.svg";
+import AttendanceImage from "@/assets/images/approche/icons/attendance.svg";
+import PersonalizationImage from "@/assets/images/approche/icons/personalization.svg";
+import CalendarImage from "@/assets/images/approche/icons/calendar.svg";
+import NetworkImage from "@/assets/images/approche/icons/network.svg";
 
 const isMobile = useIsMobile();
 const valuesLine1 = [
   {
-    imageSrc: "/images/approche/icons/search.svg",
+    imageSrc: PracticeImage,
     text: "Pratiquer dans les règles de l'art avec professionnalisme",
   },
   {
-    imageSrc: "/images/approche/icons/inform.svg",
+    imageSrc: InformImage,
     text: "Informer clairement et obtenir un consentement éclairé",
   },
   {
-    imageSrc: "/images/approche/icons/attendance.svg",
+    imageSrc: AttendanceImage,
     text: "Accueillir avec bienveillance et attention",
   },
 ];
 
 const valuesLine2 = [
   {
-    imageSrc: "/images/approche/icons/personalization.svg",
+    imageSrc: PersonalizationImage,
     text: "Personnaliser la relation de soin",
   },
   {
-    imageSrc: "/images/approche/icons/calendar.svg",
+    imageSrc: CalendarImage,
     text: "Assurer un suivi post-soin attentif",
   },
   {
-    imageSrc: "/images/approche/icons/network.svg",
+    imageSrc: NetworkImage,
     text: "Travailler en réseau avec ses collègues",
   },
 ];

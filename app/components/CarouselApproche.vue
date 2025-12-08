@@ -16,15 +16,17 @@
 
 <script setup>
 import { ref } from "vue";
+import Cabinet1Image from "@/assets/images/approche/banner.png";
+import Cabinet2Image from "@/assets/images/home/cabinet.png";
 
 const selected = ref(0);
 
 const items = [
-  { title: "Bunker", image: "/images/approche/cabinet1.png" },
-  { title: "Words Remain", image: "/images/approche/cabinet2.png" },
-  { title: "Falling Out", image: "/images/approche/cabinet3.png" },
-  { title: "Extra 1", image: "/images/home/cabinet.png" },
-  { title: "Extra 2", image: "/images/home/home team.png" },
+  { title: "Bunker", image: Cabinet1Image },
+  { title: "Words Remain", image: Cabinet2Image },
+  { title: "Falling Out", image: Cabinet1Image },
+  { title: "Extra 1", image: Cabinet2Image },
+  { title: "Extra 2", image: Cabinet1Image },
 ];
 
 function getPositionClass(idx) {
