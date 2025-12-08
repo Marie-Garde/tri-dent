@@ -88,4 +88,10 @@ const toggleAccordion = () => {
 .accordion-slide-leave-from {
   max-height: 500px; /* Adjust as needed, ensure it's larger than max possible content height */
 }
+
+@media (max-width: 768px) {
+  .accordion-header > h3 {
+    font-size: 1rem;
+  }
+}
 </style>

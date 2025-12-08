@@ -232,6 +232,9 @@ const rotateToIndex = (clickedIndex) => {
   padding: 20px;
   color: black;
   text-align: center;
+  p {
+    white-space: pre-line;
+  }
 }
 
 .line {

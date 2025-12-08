@@ -59,17 +59,21 @@
       <Divider />
       <!-- Carousel -->
       <div class="approche__technos-carousel">
-        <CarouselTechno />
+        <CarouselTechnoMobile v-if="isMobile" />
+        <CarouselTechno v-else />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useIsMobile } from "@/reactives/isMobile";
+
+const isMobile = useIsMobile();
 const valuesLine1 = [
   {
     imageSrc: "/images/approche/icons/search.svg",
-    text: "Pratiquer dans les règles de l’art avec professionnalisme",
+    text: "Pratiquer dans les règles de l'art avec professionnalisme",
   },
   {
     imageSrc: "/images/approche/icons/inform.svg",
@@ -100,6 +104,7 @@ const valuesLine2 = [
 <style lang="scss" scoped>
 @use "@/assets/scss/variables" as *;
 @use "sass:color";
+
 .approche {
   &__banner {
     padding: 0 $spacing-xl;
@@ -117,6 +122,7 @@ const valuesLine2 = [
       display: flex;
       max-width: 1280px;
       margin: 0 auto;
+
       &__title {
         flex: 2;
 
@@ -142,9 +148,11 @@ const valuesLine2 = [
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+
     h2 {
       text-align: center;
     }
+
     .divider {
       margin: $spacing-md auto;
     }
@@ -167,12 +175,15 @@ const valuesLine2 = [
   &__cabinet {
     padding: $spacing-xl;
     background-color: $color-yellow;
+
     h2 {
       text-align: center;
     }
+
     .divider {
       margin: $spacing-md auto;
     }
+
     p {
       max-width: 950px;
       margin: $spacing-lg auto 0 auto;
@@ -183,9 +194,11 @@ const valuesLine2 = [
   &__technos {
     padding: $spacing-xl;
     background-color: $color-white;
+
     h2 {
       text-align: center;
     }
+
     .divider {
       margin: $spacing-md auto;
     }
@@ -193,6 +206,87 @@ const valuesLine2 = [
     &-carousel {
       max-width: 1280px;
       margin: 0 auto;
+    }
+  }
+}
+
+// Media queries pour mobile
+@media (max-width: 768px) {
+  .approche {
+    &__banner {
+      padding: 0 $spacing-md;
+      height: 70vh;
+
+      &__text {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 90px;
+        gap: $spacing-md;
+        width: 100%;
+
+        &__title {
+          flex: 1;
+
+          h1 {
+            font-size: 28px;
+          }
+
+          .divider {
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+
+        &__description {
+          flex: 1;
+          text-align: center;
+
+          p {
+            font-size: 0.95rem;
+          }
+        }
+      }
+    }
+
+    &__valeurs {
+      padding: $spacing-lg $spacing-md;
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      &__cards {
+        margin-top: $spacing-lg;
+        gap: $spacing-md;
+
+        &__line {
+          flex-direction: column;
+          align-items: center;
+          gap: $spacing-md;
+        }
+      }
+    }
+
+    &__cabinet {
+      padding: $spacing-lg $spacing-md;
+      text-align: center;
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+
+    &__technos {
+      padding: $spacing-lg $spacing-md;
+
+      h2 {
+        font-size: 1.5rem;
+      }
     }
   }
 }

@@ -36,7 +36,7 @@
           >
         </li>
         <li class="navbar__urgent">
-          <NuxtLink @click="toggleMenu()" to="/notre-approche">
+          <NuxtLink @click="toggleMenu()" to="/urgence">
             <span class="navbar__icon">
               <img :src="notificationImportant" alt="Urgences" />
             </span>

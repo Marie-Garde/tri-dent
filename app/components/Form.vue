@@ -143,7 +143,7 @@ function submitForm() {
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: darken($color-yellow-transparent, 10%);
+    background-color: $color-yellow-transparent-hover;
   }
 }
 </style>
