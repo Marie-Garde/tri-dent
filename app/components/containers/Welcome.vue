@@ -10,7 +10,7 @@
           Nous réalisons les soins conservateurs, d’orthodontie, d’esthétique,
           d’implantologie, d’occlusodontie et de parodontie.
         </p>
-        <Button class="welcome__button" href="/about"
+        <Button class="welcome__button" href="/notre-approche"
           >En savoir plus sur notre approche</Button
         >
       </template>
