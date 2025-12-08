@@ -1,16 +1,7 @@
 <template>
-  <div>
-    <!-- Accessibility feature -->
-    <NuxtRouteAnnouncer />
-    <!-- Exemple de layout global -->
-    <Navbar />
-    <main>
-      <NuxtPage />
-    </main>
-
-    <Footer />
-  </div>
+  <!-- Accessibility feature -->
+  <NuxtRouteAnnouncer />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
-<script setup lang="ts">
-import Navbar from "~/components/Navbar.vue";
-</script>

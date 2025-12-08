@@ -7,11 +7,13 @@
       </div>
     </div>
 
-    <Layout>
+    <!-- <Layout> -->
+    <div class="home__layout">
       <Welcome />
       <FindUs />
       <Team />
-    </Layout>
+    </div>
+    <!-- </Layout> -->
     <div class="full-width-image">
       <img :src="indoor" alt="Indoor Image" />
     </div>
@@ -26,6 +28,9 @@ import Welcome from "~/components/containers/Welcome.vue"; // import explicite
 import FindUs from "~/components/containers/FindUs.vue";
 import Team from "~/components/containers/Team.vue";
 import MedicalInformations from "~/components/containers/MedicalInformations.vue";
+definePageMeta({
+  layout: "home",
+});
 </script>
 
 <style lang="scss" scoped>
@@ -74,16 +79,10 @@ import MedicalInformations from "~/components/containers/MedicalInformations.vue
   }
 }
 
-/*@keyframes slideFromLeft {
-  from {
-    transform: translateX(100vw);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}*/
+.home__layout {
+  max-width: 1280px;
+  margin: 0 auto;
+}
 
 .full-width-image {
   width: 100%;
