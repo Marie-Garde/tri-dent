@@ -1,11 +1,9 @@
 <template>
   <div class="contact">
     <div class="contact__banner">
-      <div class="contact__banner__image">
-        <div class="contact__banner__title">
-          <h1>Contactez-nous</h1>
-          <Divider />
-        </div>
+      <div class="contact__banner__content">
+        <h1>Contactez-nous</h1>
+        <Divider />
       </div>
     </div>
     <div class="contact__container">
@@ -41,10 +39,11 @@
           <Divider vertical />
           <div class="contact__find-us__map">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5773.338457237664!2d1.3208074124326892!3d43.655049752189676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aeae4c181ef355%3A0x9643e05d3d67be3e!2s1%20Rte%20d&#39;Aussonne%2C%2031700%20Cornebarrieu!5e0!3m2!1sfr!2sfr!4v1764072551783!5m2!1sfr!2sfr"
-              width="420"
-              height="300"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.629083805756!2d1.3201366768328324!3d43.655884871101954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aeae4c10c2b78b%3A0x4c30a0114cd4e4a1!2sTri-dent%20Scm!5e0!3m2!1sen!2sfr!4v1765287495959!5m2!1sen!2sfr"
+              width="600"
+              height="450"
               style="border: 0"
+              allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
@@ -142,34 +141,28 @@ const openAccordionId = ref(null);
   }
 
   &__banner {
-    position: relative;
-    background-color: $color-green;
-    height: 80vh;
+    width: 100%;
+    height: 60vh;
+    background-image: url("~/assets/images/contact/banner.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
 
-    &__image {
-      position: absolute;
-      top: 30%;
-      width: 80%;
-      height: 80%;
-      background: url("/images/contact/contact.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+    &__content {
+      max-width: 800px;
       display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      box-shadow: 0 2px 4px rgba($color-dark, 0.25);
-    }
+      flex-direction: column;
+      align-items: center;
+      color: $color-primary;
 
-    &__title {
-      background-color: $color-white;
-      padding: 0 $spacing-xl $spacing-lg $spacing-xl;
-
-      .divider {
-        margin: 0 auto;
+      h1 {
+        font-size: 36px;
+        font-weight: 700;
+        margin: 0;
+        color: $color-primary;
       }
     }
   }
