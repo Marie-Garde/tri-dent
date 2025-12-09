@@ -1,5 +1,10 @@
 <template>
-  <header :class="['navbar', { 'navbar--scrolled': isScrolled }]">
+  <header
+    :class="[
+      'navbar',
+      { 'navbar--scrolled': isScrolled, 'navbar--rdv-page': isOnRdvPage },
+    ]"
+  >
     <nav class="navbar__container">
       <NuxtLink to="/" class="navbar__logo">
         <img :src="logo" alt="Logo Tri-Dent" />
@@ -15,12 +20,18 @@
       <!-- Menu principal -->
       <ul class="navbar__menu" :class="{ open: isOpen }">
         <li>
-          <NuxtLink @click="toggleMenu()" to="/notre-approche"
+          <NuxtLink
+            @click="toggleMenu()"
+            to="/notre-approche"
+            :class="{ 'rdv-link': isOnRdvPage }"
             >Notre approche</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink @click="toggleMenu()" to="/notre-approche"
+          <NuxtLink
+            @click="toggleMenu()"
+            to="/informations-medicales"
+            :class="{ 'rdv-link': isOnRdvPage }"
             >Informations médicales</NuxtLink
           >
         </li>
@@ -31,12 +42,19 @@
         </NuxtLink>
 
         <li>
-          <NuxtLink @click="toggleMenu()" to="/contact"
+          <NuxtLink
+            @click="toggleMenu()"
+            to="/contact"
+            :class="{ 'rdv-link': isOnRdvPage }"
             >Contactez-nous</NuxtLink
           >
         </li>
         <li class="navbar__urgent">
-          <NuxtLink @click="toggleMenu()" to="/urgence">
+          <NuxtLink
+            @click="toggleMenu()"
+            to="/urgence"
+            :class="{ 'rdv-link': isOnRdvPage }"
+          >
             <span class="navbar__icon">
               <img :src="notificationImportant" alt="Urgences" />
             </span>
@@ -44,14 +62,18 @@
           </NuxtLink>
         </li>
         <li class="navbar__cta-mobile">
-          <NuxtLink @click="toggleMenu()" to="/notre-approche"
+          <NuxtLink @click="toggleMenu()" to="/prendre-rendez-vous"
             >Prendre rendez-vous</NuxtLink
           >
         </li>
       </ul>
 
       <!-- CTA desktop -->
-      <NuxtLink to="/notre-approche" class="navbar__cta">
+      <NuxtLink
+        to="/prendre-rendez-vous"
+        class="navbar__cta"
+        :class="{ 'rdv-link': isOnRdvPage }"
+      >
         Prendre rendez-vous
       </NuxtLink>
     </nav>
@@ -59,16 +81,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useRoute } from "vue-router";
 import logo from "~/assets/images/logo trident light.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
 
+const route = useRoute();
 const isOpen = ref(false);
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
 };
 
-// visible après scroll -> rename en isScrolled
 const isScrolled = ref(false);
 const SCROLL_THRESHOLD = 20;
 
@@ -83,6 +106,10 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener("scroll", onScroll);
+});
+
+const isOnRdvPage = computed(() => {
+  return route.path === "/prendre-rendez-vous" || route.path === "/contact";
 });
 </script>
 
@@ -187,6 +214,21 @@ onUnmounted(() => {
       &:hover {
         color: $color-primary;
       }
+
+      &.router-link-exact-active {
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -5px; // Adjust as needed for desired spacing
+          left: 50%;
+          transform: translateX(-50%);
+          width: 20px;
+          height: 2px; // Line thickness
+          background-color: currentColor; // Matches the link's text color
+          transition: width 0.3s ease;
+        }
+      }
     }
 
     /* Mobile : menu masqué puis déroulant */
@@ -248,6 +290,10 @@ onUnmounted(() => {
       background-color: color.adjust($color-darkblue, $lightness: 5%);
     }
 
+    &.router-link-exact-active {
+      font-weight: normal; /* Override bold for active CTA */
+    }
+
     @media (max-width: 900px) {
       display: none;
     }
@@ -301,6 +347,25 @@ onUnmounted(() => {
 
     @media (max-width: 900px) {
       display: flex;
+    }
+  }
+
+  &.navbar--rdv-page {
+    @media (min-width: 901px) {
+      &:not(.navbar--scrolled) {
+        color: $color-text; // Make navbar text color $color-text when on rdv page and not scrolled
+      }
+      .navbar__menu a.rdv-link {
+        color: $color-text; // Ensure all desktop rdv links are $color-text
+      }
+      .navbar__cta.rdv-link {
+        // Overwrite background and color for the specific CTA button
+        background-color: $color-green;
+        color: $color-white;
+        &:hover {
+          background-color: $color-green-transparent;
+        }
+      }
     }
   }
 }
