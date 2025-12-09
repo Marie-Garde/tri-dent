@@ -10,19 +10,13 @@
       <div class="info__sidebar">
         <ul>
           <li>
-            <NuxtLink to="/informations-medicales/thematique-1"
-              >Thématique 1</NuxtLink
-            >
+            <NuxtLink to="/informations-medicales">Thématique 1</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/informations-medicales/thematique-2"
-              >Thématique 2</NuxtLink
-            >
+            <NuxtLink to="/informations-medicales">Thématique 2</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/informations-medicales/thematique-3"
-              >Thématique 3</NuxtLink
-            >
+            <NuxtLink to="/informations-medicales">Thématique 3</NuxtLink>
           </li>
         </ul>
       </div>

@@ -333,28 +333,6 @@ const selectDoctor = (doctor) => {
         object-fit: cover;
       }
 
-      .doctolib-button {
-        margin-top: auto; // Pushes the button to the bottom
-        .button {
-          background-color: #1a8dff;
-          color: $color-white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: $spacing-sm;
-          width: 100%;
-
-          img {
-            width: 20px;
-            height: 20px;
-          }
-
-          &:hover {
-            background-color: darken(#1a8dff, 10%);
-          }
-        }
-      }
-
       .contact-buttons {
         display: flex;
         flex-direction: column;

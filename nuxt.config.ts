@@ -3,7 +3,13 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   ssr: true,
-  css: ["@/assets/scss/global.scss"], // fichier global
+
+  app: {
+    baseURL: "/tri-dent/",
+    buildAssetsDir: "assets",
+  },
+
+  css: ["@/assets/scss/global.scss"],
   vite: {
     server: {
       fs: {
