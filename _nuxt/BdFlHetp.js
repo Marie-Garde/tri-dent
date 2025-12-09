@@ -1,1 +1,0 @@
-import{y as o,z as s,A as r,l as i}from"./CX6LWHkY.js";const a=i(!1);function u(){let e;const n=t=>{a.value=t.matches};return o(()=>{e=window.matchMedia("(max-width: 768px)"),n(e),e.addEventListener("change",n)}),s(()=>{e?.removeEventListener("change",n)}),r(a)}export{u};
