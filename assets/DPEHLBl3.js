@@ -1,0 +1,1 @@
+import{_ as l,c as r,o as c,n,f as e}from"./CpOOP2eM.js";const i={__name:"Divider",props:{light:{type:Boolean,default:!1},vertical:{type:Boolean,default:!1}},setup(t){const a=t,{light:o,vertical:s}=a;return(_,p)=>(c(),r("div",{class:n(["divider",{"divider--light":e(o),"divider--vertical":e(s)}])},null,2))}},f=l(i,[["__scopeId","data-v-a75b92b3"]]);export{f as _};
