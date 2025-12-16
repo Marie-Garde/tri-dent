@@ -3,10 +3,11 @@
     <h2>Nos informations médicales</h2>
     <Divider />
     <p>
-      em ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.
+      Nous croyons que l’information claire et accessible est essentielle pour
+      prendre soin de votre santé bucco-dentaire. Retrouvez ici des conseils,
+      explications et recommandations validés par notre équipe de
+      chirurgiens-dentistes, pour mieux comprendre les soins, les pathologies
+      courantes et les bonnes pratiques d’hygiène.
     </p>
     <Carousel :item-count="cards.length">
       <article

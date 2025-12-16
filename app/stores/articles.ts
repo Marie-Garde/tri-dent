@@ -5,6 +5,7 @@ import type { Article, Tag, Thematique } from "~/types/article";
 export const useArticlesStore = defineStore("articles", {
   state: () => ({
     articles: [] as Article[],
+    recentArticles: [] as Article[],
     tags: [] as Tag[],
     thematiques: [] as Thematique[],
     loading: false,
@@ -102,6 +103,25 @@ export const useArticlesStore = defineStore("articles", {
         this.thematiques = await sanityClient.fetch(query);
       } catch (err: any) {
         console.error("Erreur lors du chargement des thématiques:", err);
+      }
+    },
+
+    async fetchRecentArticles() {
+      if (this.recentArticles.length > 0) {
+        return;
+      }
+
+      try {
+        const query = `*[_type == "article"] | order(publishedAt desc) [0...6] {
+          _id,
+          titre,
+          slug,
+          icone
+        }`;
+
+        this.recentArticles = await sanityClient.fetch(query);
+      } catch (err: any) {
+        console.error("Erreur lors du chargement des articles récents:", err);
       }
     },
   },

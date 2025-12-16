@@ -83,12 +83,11 @@
 
 <script setup lang="ts">
 import Divider from "~/components/Divider.vue";
-import Banner from "~/components/Banner.vue";
 import { useArticlesStore } from "~/stores/articles";
 import { urlFor } from "~/lib/sanity";
 
 const articlesStore = useArticlesStore();
-const bannerImageUrl = '/_nuxt/assets/images/informations-medicales/banner.png'; 
+const bannerImageUrl = "/_nuxt/assets/images/informations-medicales/banner.png";
 
 // Charger les données au montage
 onMounted(async () => {
