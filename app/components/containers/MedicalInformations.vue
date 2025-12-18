@@ -9,17 +9,23 @@
       chirurgiens-dentistes, pour mieux comprendre les soins, les pathologies
       courantes et les bonnes pratiques d’hygiène.
     </p>
-    <Carousel :item-count="cards.length">
+    <Carousel :item-count="recentArticles.length">
       <article
-        v-for="(item, i) in cards"
+        v-for="(item, i) in recentArticles"
         :key="i"
         :style="`--i:${i}`"
         :item="item"
         class="mi-card"
       >
-        <img :src="item.icon" :alt="item.title" />
-        <h3>{{ item.title }}</h3>
-        <NuxtLink :to="item.link">En savoir plus</NuxtLink>
+        <img
+          v-if="item.icone"
+          :src="urlFor(item.icone).url()"
+          :alt="item.icone.alt || item.titre"
+        />
+        <h3>{{ item.titre }}</h3>
+        <a :href="`/informations-medicales/${item.slug.current}`"
+          >En savoir plus</a
+        >
       </article>
     </Carousel>
     <Button class="button" variant="secondary" href="/">
@@ -31,46 +37,18 @@
 <script setup>
 import { ref } from "vue";
 import Carousel from "../Carousel.vue";
+import { useArticlesStore } from "~/stores/articles";
+import { urlFor } from "~/lib/sanity";
 
-// données JSON : chaque objet peut contenir icon, title, link
-const cards = ref([
-  {
-    id: "c1",
-    icon: "/images/tooth-brush.svg",
-    title: "Brossage de dents",
-    link: "/",
-  },
-  {
-    id: "c2",
-    icon: "/images/implant.svg",
-    title: "L'implantologie",
-    link: "/",
-  },
-  {
-    id: "c3",
-    icon: "/images/post-op.svg",
-    title: "Soins post opératoires",
-    link: "/",
-  },
-  {
-    id: "c4",
-    icon: "/images/tooth-brush.svg",
-    title: "Brossage de dents",
-    link: "/",
-  },
-  {
-    id: "c5",
-    icon: "/images/implant.svg",
-    title: "L'implantologie",
-    link: "/",
-  },
-  {
-    id: "c6",
-    icon: "/images/post-op.svg",
-    title: "Soins post opératoires",
-    link: "/",
-  },
-]);
+const articlesStore = useArticlesStore();
+
+// ✅ Utiliser computed pour que ça se mette à jour automatiquement
+const recentArticles = computed(() => articlesStore.recentArticles);
+
+onMounted(async () => {
+  await articlesStore.fetchRecentArticles();
+  console.log("recent articles", articlesStore.recentArticles);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -110,11 +88,12 @@ const cards = ref([
     justify-content: space-between;
     img {
       margin-top: $spacing-md;
-      height: 110px;
+      height: 120px;
     }
     h3 {
       margin-top: 1.5rem;
       font-weight: 500;
+      font-size: 1.2rem;
     }
     a {
       margin-bottom: $spacing-md;
