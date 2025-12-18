@@ -40,6 +40,7 @@ import ConeBeamImage from "@/assets/images/approche/techno/ConeBeam.png";
 import MicroscopeImage from "@/assets/images/approche/techno/microscope.jpg";
 import SmillersImage from "@/assets/images/approche/techno/smillers.jpg";
 import TriosImage from "@/assets/images/approche/techno/Trios.png";
+import radio from "@/assets/images/approche/techno/radio.png";
 
 const swapping = ref([]);
 const items = ref([
@@ -77,12 +78,13 @@ const items = ref([
     image: SmillersImage,
     title: "Aligneurs",
     description:
-      "Gouttieres transparentes préconisées  pour  réduire l espace  de vos dents ( diasteme) et l alignements des dents. Les aligneurs sont des gouttieres invisibles , amovible portées entre 22 et 24h , et,  retirées seulement pour manger et brossage des dents  La durée du traitement  varie entre 6 et 24 mois, pour pré adultes et adultes. Les étapes du traitement: consultation, empreinte, traitement aligneurs et contention  en fin de traitement.",
+      "Gouttières transparentes préconisées  pour  réduire l'espace  de vos dents (diasteme) et l'alignements des dents. Les aligneurs sont des gouttieres invisibles, amovible portées entre 22 et 24h, et  retirées seulement pour manger et brossage des dents. La durée du traitement varie entre 6 et 24 mois, pour pré adultes et adultes. Les étapes du traitement: consultation, empreinte, traitement aligneurs et contention en fin de traitement.",
   },
   {
-    image: "https://picsum.photos/200/200?random=7",
-    title: "Title 7",
-    description: "Description for item 7.",
+    image: radio,
+    title: "Analyse radio assistée par IA",
+    description:
+      "Grâce à la visualisation instantanée générée par l'Intelligence Artificielle des éléments en couleur sur la radiographie panoramique, le praticien peut s'appuyer sur un outil visuel pour expliquer de manière simple, ludique et pédagogique les éléments présents sur la radiographie. Il va pouvoir mettre en évidence des éléments difficiles à voir pour le patient, tels que la ligne osseuse pour expliquer une éventuelle perte osseuse, ou encore les caries. Le patient, quant à lui, peut pour la première fois voir clairement ce que le praticien lui explique.",
   },
 ]);
 
