@@ -75,8 +75,9 @@ const items = ref([
   },
   {
     image: SmillersImage,
-    title: "Smilers",
-    description: "Description for Smilers",
+    title: "Aligneurs",
+    description:
+      "Gouttieres transparentes préconisées  pour  réduire l espace  de vos dents ( diasteme) et l alignements des dents. Les aligneurs sont des gouttieres invisibles , amovible portées entre 22 et 24h , et,  retirées seulement pour manger et brossage des dents  La durée du traitement  varie entre 6 et 24 mois, pour pré adultes et adultes. Les étapes du traitement: consultation, empreinte, traitement aligneurs et contention  en fin de traitement.",
   },
   {
     image: "https://picsum.photos/200/200?random=7",

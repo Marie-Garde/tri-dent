@@ -123,7 +123,7 @@ const useEmergencyImageType = () => {
     justify-content: center;
 
     &__content {
-      max-width: 800px;
+      max-width: 1280px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -140,6 +140,8 @@ const useEmergencyImageType = () => {
 
   &__container {
     max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;

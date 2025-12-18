@@ -10,14 +10,12 @@
         <img :src="logo" alt="Logo Tri-Dent" />
       </NuxtLink>
 
-      <!-- Bouton burger (mobile uniquement) -->
       <button class="navbar__toggle" @click="toggleMenu" aria-label="Menu">
         <span :class="{ open: isOpen }"></span>
         <span :class="{ open: isOpen }"></span>
         <span :class="{ open: isOpen }"></span>
       </button>
 
-      <!-- Menu principal -->
       <ul class="navbar__menu" :class="{ open: isOpen }">
         <li>
           <NuxtLink
@@ -36,7 +34,6 @@
           >
         </li>
 
-        <!-- Logo centré uniquement sur desktop -->
         <NuxtLink to="/" class="navbar__logo--center">
           <img :src="logo" alt="Logo Tri-Dent" />
         </NuxtLink>
@@ -68,7 +65,6 @@
         </li>
       </ul>
 
-      <!-- CTA desktop -->
       <NuxtLink
         to="/prendre-rendez-vous"
         class="navbar__cta"
@@ -117,26 +113,22 @@ const isOnRdvPage = computed(() => {
 @use "@/assets/scss/variables" as *;
 @use "sass:color";
 
-/* Navbar : toujours visible, transition entre état transparent (texte blanc) et scrolled (fond blanc, texte noir) */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
   font-family: "Nunito";
 
-  /* Always visible: transparent background + white text by default */
   background-color: transparent;
   color: $color-white;
   transition: background-color 0.25s ease, color 0.25s ease,
     box-shadow 0.2s ease;
 
-  /* Quand scroll -> background blanc et texte noir */
   &.navbar--scrolled {
     color: $color-text;
   }
 
   &__container {
-    /* default: transparent / pas de bordure ni box-shadow */
     border-bottom: none;
     background-color: transparent;
     box-shadow: none;
@@ -155,14 +147,12 @@ const isOnRdvPage = computed(() => {
     }
   }
 
-  /* when scrolled, apply visible styling (white background + subtle shadow + border) */
   &.navbar--scrolled .navbar__container {
     border-bottom: 1px solid color.adjust($color-dark, $lightness: 70%);
     background-color: $color-white;
     box-shadow: 0 2px 4px rgba($color-dark, 0.12);
   }
 
-  /* Logo principal (toujours visible) */
   &__logo {
     img {
       display: none;
@@ -179,7 +169,6 @@ const isOnRdvPage = computed(() => {
     }
   }
 
-  /* Logo centré uniquement sur desktop */
   &__logo--center {
     display: flex;
     align-items: center;
@@ -204,7 +193,6 @@ const isOnRdvPage = computed(() => {
     margin: 0;
     flex: 1;
 
-    /* links inherit navbar color (white by default, black when scrolled) */
     a {
       color: inherit;
       text-decoration: none;
@@ -215,23 +203,22 @@ const isOnRdvPage = computed(() => {
         color: $color-primary;
       }
 
-      &.router-link-exact-active {
+      &.router-link-active {
         position: relative;
         &::after {
-          content: '';
+          content: "";
           position: absolute;
-          bottom: -5px; // Adjust as needed for desired spacing
+          bottom: -5px;
           left: 50%;
           transform: translateX(-50%);
           width: 20px;
-          height: 2px; // Line thickness
-          background-color: currentColor; // Matches the link's text color
+          height: 2px;
+          background-color: currentColor;
           transition: width 0.3s ease;
         }
       }
     }
 
-    /* Mobile : menu masqué puis déroulant */
     @media (max-width: 900px) {
       position: absolute;
       top: 70px;
@@ -271,7 +258,6 @@ const isOnRdvPage = computed(() => {
     margin-right: 6px;
   }
 
-  /* CTA reste visuellement distinct (reste en blanc sur son fond foncé) */
   &__cta {
     width: 180px;
     padding: 0.75rem;
@@ -290,8 +276,8 @@ const isOnRdvPage = computed(() => {
       background-color: color.adjust($color-darkblue, $lightness: 5%);
     }
 
-    &.router-link-exact-active {
-      font-weight: normal; /* Override bold for active CTA */
+    &.router-link-active {
+      font-weight: normal;
     }
 
     @media (max-width: 900px) {
@@ -353,13 +339,12 @@ const isOnRdvPage = computed(() => {
   &.navbar--rdv-page {
     @media (min-width: 901px) {
       &:not(.navbar--scrolled) {
-        color: $color-text; // Make navbar text color $color-text when on rdv page and not scrolled
+        color: $color-text;
       }
       .navbar__menu a.rdv-link {
-        color: $color-text; // Ensure all desktop rdv links are $color-text
+        color: $color-text;
       }
       .navbar__cta.rdv-link {
-        // Overwrite background and color for the specific CTA button
         background-color: $color-green;
         color: $color-white;
         &:hover {
