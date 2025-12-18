@@ -22,29 +22,34 @@
       </div>
     </div>
 
-    <div class="approche__valeurs">
+    <div class="approche__valeurs" ref="valeursSection">
       <h2>Les valeurs qui nous guident</h2>
       <Divider />
       <div class="approche__valeurs__cards">
         <div class="approche__valeurs__cards__line">
           <ValuesCard
-            v-for="value in valuesLine1"
+            v-for="(value, index) in valuesLine1"
             :key="value.text"
             :imageSrc="value.imageSrc"
             :text="value.text"
+            class="value-card"
+            :style="{ '--card-index': index }"
           />
         </div>
 
         <div class="approche__valeurs__cards__line">
           <ValuesCard
-            v-for="value in valuesLine2"
+            v-for="(value, index) in valuesLine2"
             :key="value.text"
             :imageSrc="value.imageSrc"
             :text="value.text"
+            class="value-card"
+            :style="{ '--card-index': index + 3 }"
           />
         </div>
       </div>
     </div>
+
     <div class="approche__cabinet">
       <h2>Le cabinet</h2>
       <Divider />
@@ -66,7 +71,8 @@
       <!-- Carousel -->
       <CarouselApproche />
     </div>
-    <div class="approche__technos">
+
+    <div class="approche__technos" ref="technosSection">
       <h2>Nos technologies phares</h2>
       <Divider />
       <!-- Carousel -->
@@ -88,6 +94,7 @@ import CalendarImage from "@/assets/images/approche/icons/calendar.svg";
 import NetworkImage from "@/assets/images/approche/icons/network.svg";
 
 const isMobile = useIsMobile();
+
 const valuesLine1 = [
   {
     imageSrc: PracticeImage,
@@ -117,6 +124,31 @@ const valuesLine2 = [
     text: "Travailler en réseau avec ses collègues",
   },
 ];
+
+// Refs uniquement pour les sections avec animations
+const valeursSection = ref(null);
+const technosSection = ref(null);
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px",
+    }
+  );
+
+  [valeursSection.value, technosSection.value].forEach((section) => {
+    if (section) observer.observe(section);
+  });
+});
 </script>
 
 <style lang="scss" scoped>
@@ -188,6 +220,16 @@ const valuesLine2 = [
         gap: $spacing-lg;
       }
     }
+
+    .value-card {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    &.is-visible .value-card {
+      animation: fadeInUp 0.5s ease-out forwards;
+      animation-delay: calc(var(--card-index) * 0.08s);
+    }
   }
 
   &__cabinet {
@@ -224,7 +266,21 @@ const valuesLine2 = [
     &-carousel {
       max-width: 1280px;
       margin: 0 auto;
+      opacity: 0;
+      transform: translateY(15px);
     }
+
+    &.is-visible &-carousel {
+      animation: fadeInUp 0.6s ease-out 0.2s forwards;
+    }
+  }
+}
+
+// Animation unique, plus subtile
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

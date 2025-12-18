@@ -7,13 +7,13 @@
       </div>
     </div>
     <div class="contact__container">
-      <div class="contact__find-us">
+      <div class="contact__find-us" ref="findUsSection">
         <div class="contact__find-us__title">
           <h2>Nous trouver ?</h2>
           <Divider />
         </div>
         <div class="contact__find-us__description">
-          <div>
+          <div class="contact__find-us__info-wrapper">
             <p class="contact__find-us__text">
               <span class="contact__find-us__info">
                 <Icon name="mdi:map-marker" size="24" />
@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-      <div class="contact__faq">
+      <div class="contact__faq" ref="faqSection">
         <div class="contact__faq__accordion">
           <h2>Questions fréquentes</h2>
           <Divider />
@@ -130,6 +130,31 @@ import Form from "@/components/Form.vue";
 import { ref } from "vue";
 
 const openAccordionId = ref(null);
+
+// Refs pour les sections
+const findUsSection = ref(null);
+const faqSection = ref(null);
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px",
+    }
+  );
+
+  [findUsSection.value, faqSection.value].forEach((section) => {
+    if (section) observer.observe(section);
+  });
+});
 </script>
 
 <style scoped lang="scss">
@@ -189,11 +214,27 @@ const openAccordionId = ref(null);
       }
     }
 
+    &__info-wrapper {
+      opacity: 0;
+      transform: translateX(-15px);
+    }
+
+    &.is-visible &__info-wrapper {
+      animation: fadeInLeft 0.6s ease-out 0.2s forwards;
+    }
+
     &__map {
+      opacity: 0;
+      transform: translateX(15px);
+
       iframe {
         width: 420px;
         height: 300px;
       }
+    }
+
+    &.is-visible &__map {
+      animation: fadeInRight 0.6s ease-out 0.2s forwards;
     }
 
     &__text {
@@ -233,6 +274,12 @@ const openAccordionId = ref(null);
       flex-direction: column;
       align-items: center;
       margin: 40px auto;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    &.is-visible &__accordion {
+      animation: fadeInUp 0.6s ease-out forwards;
     }
 
     .divider {
@@ -245,6 +292,28 @@ const openAccordionId = ref(null);
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -290,6 +359,14 @@ const openAccordionId = ref(null);
         }
       }
 
+      &__info-wrapper {
+        transform: translateY(15px);
+      }
+
+      &.is-visible &__info-wrapper {
+        animation: fadeInUp 0.6s ease-out 0.2s forwards;
+      }
+
       &__text {
         width: 100%;
         padding-top: $spacing-sm;
@@ -297,11 +374,16 @@ const openAccordionId = ref(null);
 
       &__map {
         width: 100%;
+        transform: translateY(15px);
 
         iframe {
           width: 100%;
           height: 250px;
         }
+      }
+
+      &.is-visible &__map {
+        animation: fadeInUp 0.6s ease-out 0.3s forwards;
       }
 
       &__info {

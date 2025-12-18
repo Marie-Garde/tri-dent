@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import indoor from "~/assets/images/home/cabinet-indoor.png";
 import logo from "~/assets/images/logo trident.svg";
-import Welcome from "~/components/containers/Welcome.vue"; // import explicite
+import Welcome from "~/components/containers/Welcome.vue";
 import FindUs from "~/components/containers/FindUs.vue";
 import Team from "~/components/containers/Team.vue";
 import MedicalInformations from "~/components/containers/MedicalInformations.vue";
@@ -64,8 +64,11 @@ definePageMeta({
       align-items: flex-end;
       background-color: $color-white;
       clip-path: polygon(0 10%, 0% 100%, 100% 100%);
+      animation: logoSlideIn 1s ease-out;
+
       img {
         width: 60%;
+        animation: logoFadeIn 1s ease-out 0.3s backwards;
       }
     }
 
@@ -74,8 +77,40 @@ definePageMeta({
       width: 100%;
       padding: $spacing-lg;
       background: linear-gradient(to left, #ffffff90 85%, transparent);
-      /*animation: slideFromLeft 1s ease-out;*/
+      animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards;
     }
+  }
+}
+
+// Animation principale : révélation avec clip-path
+@keyframes textReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes logoSlideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
