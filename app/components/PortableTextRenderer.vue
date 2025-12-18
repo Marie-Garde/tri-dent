@@ -1,9 +1,59 @@
 <template>
   <div class="portable-text">
-    <template v-for="(block, index) in blocks" :key="index">
+    <template v-for="(block, index) in processedBlocks" :key="index">
+      <!-- Liste à puces -->
+      <ul v-if="block.type === 'bullet-list'" class="bullet-list">
+        <li v-for="(item, itemIndex) in block.items" :key="itemIndex">
+          <span v-for="(child, childIndex) in item.children" :key="childIndex">
+            <strong v-if="child.marks?.includes('strong')">{{
+              child.text
+            }}</strong>
+            <em v-else-if="child.marks?.includes('em')">{{ child.text }}</em>
+            <u v-else-if="child.marks?.includes('underline')">{{
+              child.text
+            }}</u>
+
+            <a
+              v-else-if="hasLinkMark(child.marks, item.markDefs)"
+              :href="getLinkHref(child.marks, item.markDefs)"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ child.text }}
+            </a>
+            <span v-else>{{ child.text }}</span>
+          </span>
+        </li>
+      </ul>
+
+      <!-- Liste numérotée -->
+      <ol v-else-if="block.type === 'number-list'" class="number-list">
+        <li v-for="(item, itemIndex) in block.items" :key="itemIndex">
+          <span v-for="(child, childIndex) in item.children" :key="childIndex">
+            <strong v-if="child.marks?.includes('strong')">{{
+              child.text
+            }}</strong>
+            <em v-else-if="child.marks?.includes('em')">{{ child.text }}</em>
+            <u v-else-if="child.marks?.includes('underline')">{{
+              child.text
+            }}</u>
+
+            <a
+              v-else-if="hasLinkMark(child.marks, item.markDefs)"
+              :href="getLinkHref(child.marks, item.markDefs)"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ child.text }}
+            </a>
+            <span v-else>{{ child.text }}</span>
+          </span>
+        </li>
+      </ol>
+
       <!-- Bloc de texte standard -->
       <component
-        v-if="block._type === 'block'"
+        v-else-if="block._type === 'block'"
         :is="getBlockComponent(block.style)"
         :class="`block-${block.style || 'normal'}`"
       >
@@ -42,7 +92,6 @@
         <figcaption v-if="block.caption">{{ block.caption }}</figcaption>
       </figure>
 
-      <!-- Bloc vidéo -->
       <figure v-else-if="block._type === 'videoBlock'" class="video-block">
         <video controls>
           <source :src="getFileUrl(block.asset._ref)" />
@@ -51,7 +100,6 @@
         <figcaption v-if="block.caption">{{ block.caption }}</figcaption>
       </figure>
 
-      <!-- Bloc encadré -->
       <div
         v-else-if="block._type === 'callout'"
         :class="['callout', `callout--${block.type || 'info'}`]"
@@ -68,6 +116,51 @@ import { urlFor } from "~/lib/sanity";
 const props = defineProps<{
   blocks: any[];
 }>();
+
+// Grouper les items de liste consécutifs
+const processedBlocks = computed(() => {
+  const result: any[] = [];
+  let currentList: any = null;
+
+  for (let i = 0; i < props.blocks.length; i++) {
+    const block = props.blocks[i];
+
+    // Si c'est un item de liste
+    if (block.listItem === "bullet" || block.listItem === "number") {
+      const listType =
+        block.listItem === "bullet" ? "bullet-list" : "number-list";
+
+      // Si on est déjà dans une liste du même type, ajouter l'item
+      if (currentList && currentList.type === listType) {
+        currentList.items.push(block);
+      } else {
+        // Sinon, créer une nouvelle liste
+        if (currentList) {
+          result.push(currentList);
+        }
+        currentList = {
+          type: listType,
+          items: [block],
+        };
+      }
+    } else {
+      // Si on était dans une liste, la fermer
+      if (currentList) {
+        result.push(currentList);
+        currentList = null;
+      }
+      // Ajouter le bloc normal
+      result.push(block);
+    }
+  }
+
+  // Ne pas oublier la dernière liste
+  if (currentList) {
+    result.push(currentList);
+  }
+
+  return result;
+});
 
 function getBlockComponent(style?: string) {
   const componentMap: Record<string, string> = {
@@ -105,9 +198,10 @@ function getFileUrl(ref: string) {
 
 // Déterminer si l'image est suivie d'une autre image
 function getImageClass(index: number) {
-  const currentBlock = props.blocks[index];
-  const nextBlock = props.blocks[index + 1];
-  const prevBlock = props.blocks[index - 1];
+  const blocks = processedBlocks.value;
+  const currentBlock = blocks[index];
+  const nextBlock = blocks[index + 1];
+  const prevBlock = blocks[index - 1];
 
   const isImageBlock = (block: any) => block?._type === "imageBlock";
 
@@ -130,12 +224,66 @@ function getImageClass(index: number) {
 @use "@/assets/scss/variables" as *;
 
 .portable-text {
+  line-height: 1.8;
+
+  // Listes
+  .bullet-list,
+  .number-list {
+    margin: $spacing-md 0;
+    padding-left: $spacing-lg;
+
+    li {
+      margin-bottom: $spacing-sm;
+      line-height: 1.6;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .bullet-list {
+    list-style-type: disc;
+  }
+
+  .number-list {
+    list-style-type: decimal;
+  }
+
   blockquote {
     border-left: 4px solid $color-primary;
     padding-left: $spacing-md;
     font-style: italic;
     background-color: $color-bg-blue;
     padding: $spacing-md;
+    margin: $spacing-md 0;
+  }
+
+  p {
+    margin-bottom: $spacing-md;
+  }
+
+  h2,
+  h3,
+  h4 {
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-md;
+    color: $color-darkblue;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: 600;
   }
 
   a {
@@ -246,6 +394,18 @@ function getImageClass(index: number) {
 
 @media (max-width: 768px) {
   .portable-text {
+    h2 {
+      font-size: 24px;
+    }
+
+    h3 {
+      font-size: 20px;
+    }
+
+    h4 {
+      font-size: 18px;
+    }
+
     // Sur mobile, toutes les images prennent 100% de largeur
     .image-single,
     .image-paired {

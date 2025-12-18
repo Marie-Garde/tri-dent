@@ -35,13 +35,14 @@ defineProps<{
 }
 
 .search-input {
-  width: 80%;
+  width: 100%;
   padding: $spacing-sm $spacing-md;
   padding-right: 40px;
   border: 2px solid $color-grey-light;
   border-radius: $border-radius;
   font-size: 16px;
   transition: border-color 0.2s;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
@@ -65,5 +66,11 @@ defineProps<{
 .search-results {
   margin-top: $spacing-sm;
   color: $color-darkblue;
+}
+
+@media (max-width: 768px) {
+  .search-box {
+    width: 60%;
+  }
 }
 </style>
