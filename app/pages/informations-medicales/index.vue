@@ -26,6 +26,12 @@
       </div>
 
       <div class="info__content">
+        <!-- ✅ Composant de recherche -->
+        <ArticlesSearch
+          v-model="searchQuery"
+          :filtered-count="filteredArticles.length"
+        />
+
         <div v-if="articlesStore.loading" class="loading">
           <p>Chargement des articles...</p>
         </div>
@@ -83,11 +89,11 @@
 
 <script setup lang="ts">
 import Divider from "~/components/Divider.vue";
+import ArticlesSearch from "~/components/ArticlesSearch.vue";
 import { useArticlesStore } from "~/stores/articles";
 import { urlFor } from "~/lib/sanity";
 
 const articlesStore = useArticlesStore();
-const bannerImageUrl = "/_nuxt/assets/images/informations-medicales/banner.png";
 
 // Charger les données au montage
 onMounted(async () => {
@@ -99,6 +105,7 @@ onMounted(async () => {
 
 // State pour les filtres
 const selectedThematique = ref<string | null>(null);
+const searchQuery = ref<string>("");
 
 // Computed
 const thematiques = computed(() => articlesStore.thematiques);
@@ -111,6 +118,22 @@ const filteredArticles = computed(() => {
     articles = articles.filter((article) =>
       article.thematique?.some((t) => t._id === selectedThematique.value)
     );
+  }
+
+  // ✅ Filtrer par recherche (titre ou tags)
+  if (searchQuery.value.trim()) {
+    const query = searchQuery.value.toLowerCase().trim();
+    articles = articles.filter((article) => {
+      // Recherche dans le titre
+      const titleMatch = article.titre.toLowerCase().includes(query);
+
+      // Recherche dans les tags
+      const tagMatch = article.tags?.some((tag) =>
+        tag.titre.toLowerCase().includes(query)
+      );
+
+      return titleMatch || tagMatch;
+    });
   }
 
   return articles;
@@ -137,7 +160,7 @@ function getExcerpt(contenu: any[]): string {
     }
   }
 
-  // Prendre les 30 premiers mots
+  // Prendre les 20 premiers mots
   const words = fullText.trim().split(/\s+/);
   if (words.length <= 20) {
     return fullText.trim();
