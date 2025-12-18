@@ -8,14 +8,20 @@
         </div>
         <div class="approche__banner__text__description">
           <p>
-            iam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint o
+            Vous accompagner avec attention, clarté et personnalisation à chaque
+            étape de votre parcours de soin est notre mission. Nous vous
+            expliquons clairement la nature des soins, les étapes et la durée
+            pour obtenir votre consentement éclairé, en adaptant notre
+            communication à vos attentes. Dès votre arrivée, nous vous
+            accueillons avec le sourire et veillons à votre confort. Nous
+            personnalisons notre relation en fonction de vos besoins et
+            émotions, et mettons en œuvre des solutions pour apaiser votre
+            stress si nécessaire.
           </p>
         </div>
       </div>
     </div>
+
     <div class="approche__valeurs">
       <h2>Les valeurs qui nous guident</h2>
       <Divider />
@@ -43,13 +49,19 @@
       <h2>Le cabinet</h2>
       <Divider />
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint o
-        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-        id est laborum.
+        Notre nouveau cabinet dentaire a été conçu pour vous offrir une
+        expérience de soin sereine, moderne et confortable.
+      </p>
+      <p>
+        Un cadre apaisant et lumineux: nos espaces ont été pensés pour votre
+        bien-être : lignes épurées, couleurs douces, éclairage naturel et
+        ambiance chaleureuse. Dès votre arrivée, vous serez accueilli dans un
+        environnement spacieux et rassurant.
+      </p>
+      <p>
+        Des équipements à la pointe de la technologie: nous avons équipé notre
+        cabinet des dernières innovations dentaires. Votre confort et votre
+        sécurité sont au cœur de notre pratique.
       </p>
       <!-- Carousel -->
       <CarouselApproche />
@@ -115,7 +127,7 @@ const valuesLine2 = [
   &__banner {
     padding: 0 $spacing-xl;
     height: 580px;
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
       url("~/assets/images/approche/banner.png");
     background-size: cover;
     background-position: center;
@@ -142,7 +154,7 @@ const valuesLine2 = [
       }
 
       &__description {
-        flex: 1;
+        flex: 3;
         color: $color-white-soft;
       }
     }
@@ -191,8 +203,8 @@ const valuesLine2 = [
     }
 
     p {
-      max-width: 950px;
-      margin: $spacing-lg auto 0 auto;
+      max-width: 1280px;
+      margin: 0 auto 20px auto;
       text-align: center;
     }
   }
@@ -216,7 +228,6 @@ const valuesLine2 = [
   }
 }
 
-// Media queries pour mobile
 @media (max-width: 768px) {
   .approche {
     &__banner {

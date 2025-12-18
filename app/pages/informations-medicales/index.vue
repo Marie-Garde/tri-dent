@@ -26,6 +26,12 @@
       </div>
 
       <div class="info__content">
+        <!-- ✅ Composant de recherche -->
+        <ArticlesSearch
+          v-model="searchQuery"
+          :filtered-count="filteredArticles.length"
+        />
+
         <div v-if="articlesStore.loading" class="loading">
           <p>Chargement des articles...</p>
         </div>
@@ -38,43 +44,52 @@
           <p>Aucun article trouvé.</p>
         </div>
 
-        <div v-else class="articles-list">
-          <article
-            v-for="article in filteredArticles"
-            :key="article._id"
-            class="article-card"
-          >
-            <NuxtLink :to="`/informations-medicales/${article.slug.current}`">
-              <div class="article-card__image">
-                <img
-                  v-if="article.icone"
-                  :src="urlFor(article.icone).url()"
-                  :alt="article.icone.alt || article.titre"
-                />
-                <div v-else class="article-card__placeholder">
-                  <span>📄</span>
-                </div>
-              </div>
-
-              <div class="article-card__content">
-                <h2>{{ article.titre }}</h2>
-
-                <div v-if="article.tags?.length" class="article-card__tags">
-                  <span
-                    v-for="tag in article.tags"
-                    :key="tag._id"
-                    class="tag-badge"
-                  >
-                    {{ tag.titre }}
-                  </span>
+        <div v-else>
+          <div class="articles-list">
+            <article
+              v-for="article in paginatedArticles"
+              :key="article._id"
+              class="article-card"
+            >
+              <NuxtLink :to="`/informations-medicales/${article.slug.current}`">
+                <div class="article-card__image">
+                  <img
+                    v-if="article.icone"
+                    :src="urlFor(article.icone).url()"
+                    :alt="article.icone.alt || article.titre"
+                  />
+                  <div v-else class="article-card__placeholder">
+                    <span>📄</span>
+                  </div>
                 </div>
 
-                <p v-if="article.contenu" class="article-card__excerpt">
-                  {{ getExcerpt(article.contenu) }}
-                </p>
-              </div>
-            </NuxtLink>
-          </article>
+                <div class="article-card__content">
+                  <h2>{{ article.titre }}</h2>
+
+                  <div v-if="article.tags?.length" class="article-card__tags">
+                    <span
+                      v-for="tag in article.tags"
+                      :key="tag._id"
+                      class="tag-badge"
+                    >
+                      {{ tag.titre }}
+                    </span>
+                  </div>
+
+                  <p v-if="article.contenu" class="article-card__excerpt">
+                    {{ getExcerpt(article.contenu) }}
+                  </p>
+                </div>
+              </NuxtLink>
+            </article>
+          </div>
+
+          <!-- ✅ Pagination -->
+          <Pagination
+            v-if="totalPages > 1"
+            v-model:current-page="currentPage"
+            :total-pages="totalPages"
+          />
         </div>
       </div>
     </div>
@@ -83,12 +98,12 @@
 
 <script setup lang="ts">
 import Divider from "~/components/Divider.vue";
-import Banner from "~/components/Banner.vue";
+import ArticlesSearch from "~/components/ArticlesSearch.vue";
+import Pagination from "~/components/Pagination.vue";
 import { useArticlesStore } from "~/stores/articles";
 import { urlFor } from "~/lib/sanity";
 
 const articlesStore = useArticlesStore();
-const bannerImageUrl = '/_nuxt/assets/images/informations-medicales/banner.png'; 
 
 // Charger les données au montage
 onMounted(async () => {
@@ -98,8 +113,11 @@ onMounted(async () => {
   ]);
 });
 
-// State pour les filtres
+// State pour les filtres et pagination
 const selectedThematique = ref<string | null>(null);
+const searchQuery = ref<string>("");
+const currentPage = ref<number>(1);
+const articlesPerPage = 5;
 
 // Computed
 const thematiques = computed(() => articlesStore.thematiques);
@@ -114,7 +132,39 @@ const filteredArticles = computed(() => {
     );
   }
 
+  // Filtrer par recherche (titre ou tags)
+  if (searchQuery.value.trim()) {
+    const query = searchQuery.value.toLowerCase().trim();
+    articles = articles.filter((article) => {
+      // Recherche dans le titre
+      const titleMatch = article.titre.toLowerCase().includes(query);
+
+      // Recherche dans les tags
+      const tagMatch = article.tags?.some((tag) =>
+        tag.titre.toLowerCase().includes(query)
+      );
+
+      return titleMatch || tagMatch;
+    });
+  }
+
   return articles;
+});
+
+// Pagination
+const totalPages = computed(() =>
+  Math.ceil(filteredArticles.value.length / articlesPerPage)
+);
+
+const paginatedArticles = computed(() => {
+  const start = (currentPage.value - 1) * articlesPerPage;
+  const end = start + articlesPerPage;
+  return filteredArticles.value.slice(start, end);
+});
+
+// Watch pour réinitialiser la page quand les filtres changent
+watch([searchQuery, selectedThematique], () => {
+  currentPage.value = 1;
 });
 
 // Methods
@@ -138,7 +188,7 @@ function getExcerpt(contenu: any[]): string {
     }
   }
 
-  // Prendre les 30 premiers mots
+  // Prendre les 20 premiers mots
   const words = fullText.trim().split(/\s+/);
   if (words.length <= 20) {
     return fullText.trim();
@@ -170,12 +220,14 @@ function getExcerpt(contenu: any[]): string {
       flex-direction: column;
       align-items: center;
       color: $color-white-soft;
+      padding: 0 $spacing-md;
 
       h1 {
         font-size: 36px;
         font-weight: 700;
         margin: 0;
         color: $color-white-soft;
+        text-align: center;
       }
     }
   }
@@ -185,6 +237,7 @@ function getExcerpt(contenu: any[]): string {
     max-width: 1280px;
     margin: $spacing-lg auto;
     gap: $spacing-lg;
+    padding: 0 $spacing-md;
   }
 
   &__sidebar {
@@ -290,7 +343,7 @@ function getExcerpt(contenu: any[]): string {
         justify-content: center;
 
         img {
-          width: 100%;
+          width: 70%;
           height: auto;
           object-fit: cover;
         }
@@ -348,26 +401,99 @@ function getExcerpt(contenu: any[]): string {
 
 @media (max-width: 768px) {
   .info {
-    &__banner__content h1 {
-      font-size: 24px;
+    &__banner {
+      height: 40vh;
+
+      &__content h1 {
+        font-size: 24px;
+      }
     }
 
     &__container {
       flex-direction: column;
-      margin: $spacing-md;
+      margin: $spacing-md auto;
+      padding: 0 $spacing-sm;
+      gap: $spacing-md;
     }
 
     &__sidebar {
       flex: 1;
+      width: 90%;
+
+      h3 {
+        font-size: 16px;
+      }
     }
 
-    &__content .article-card {
-      flex-direction: column;
+    &__content {
+      padding: $spacing-sm;
 
-      &__image {
-        flex: none;
-        width: 100%;
-        height: 200px;
+      .article-card {
+        flex-direction: column;
+
+        &:hover {
+          transform: translateY(-4px);
+        }
+
+        a {
+          flex-direction: column;
+        }
+
+        &__image {
+          height: 200px;
+          width: 100%;
+
+          img {
+            width: auto;
+            height: 80%;
+          }
+        }
+
+        &__content {
+          padding: $spacing-md;
+          text-align: center;
+
+          h2 {
+            font-size: 18px;
+          }
+
+          p {
+            font-size: 14px;
+            text-align: left;
+          }
+        }
+
+        &__tags {
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+// ✅ RESPONSIVE TABLETTE
+@media (max-width: 1024px) and (min-width: 769px) {
+  .info {
+    &__container {
+      padding: 0 $spacing-md;
+    }
+
+    &__sidebar {
+      flex: 0 0 25%;
+    }
+
+    &__content {
+      .article-card {
+        &__image {
+          width: 180px;
+          height: 180px;
+        }
+
+        &__content {
+          h2 {
+            font-size: 18px;
+          }
+        }
       }
     }
   }
