@@ -1,7 +1,7 @@
 <template>
   <div class="card" :class="{ 'card--doctor': status !== 'Assistante' }">
     <div class="card__image-container">
-      <img :src="image ?? logo" :alt="name" class="card__image" />
+      <img :src="image" :alt="name" class="card__image" />
     </div>
     <div
       class="card__name-container"
@@ -25,7 +25,7 @@ withDefaults(
     status: string;
     presentation?: string;
   }>(),
-  {}
+  {},
 );
 import logo from "~/assets/images/logo trident.svg";
 </script>
@@ -50,7 +50,7 @@ import logo from "~/assets/images/logo trident.svg";
   &__image-container {
     aspect-ratio: 1;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
   }
 
   &__image {
@@ -65,7 +65,7 @@ import logo from "~/assets/images/logo trident.svg";
     left: 0;
     width: 100%;
     background-color: $color-yellow-transparent;
-    border-radius: $border-radius - 1;
+    border-radius: 0 0 4px 4px;
     transition: all 0.3s ease-in-out;
 
     &--doctor {
@@ -79,7 +79,7 @@ import logo from "~/assets/images/logo trident.svg";
     justify-content: center;
     align-items: center;
     height: 82px;
-    padding: $spacing-sm $spacing-md;
+    padding: 0 $spacing-md;
     text-align: center;
     font-size: 20px;
   }
@@ -90,7 +90,9 @@ import logo from "~/assets/images/logo trident.svg";
     opacity: 0;
     text-align: center;
     font-size: 14px;
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out,
+    transition:
+      max-height 0.3s ease-in-out,
+      opacity 0.3s ease-in-out,
       padding 0.3s ease-in-out;
     padding: 0 $spacing-md;
   }

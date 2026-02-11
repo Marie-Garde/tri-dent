@@ -21,7 +21,7 @@
       </div>
       <div v-if="index === 3" class="item-content">
         <h3>{{ item.title }}</h3>
-        <p>{{ item.description }}</p>
+        <div class="description-content" v-html="item.description"></div>
       </div>
     </div>
     <div
@@ -34,57 +34,121 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from "vue";
+import { ref } from "vue";
 import CFAOImage from "@/assets/images/approche/techno/CFAO.png";
 import ConeBeamImage from "@/assets/images/approche/techno/ConeBeam.png";
 import MicroscopeImage from "@/assets/images/approche/techno/microscope.jpg";
 import SmillersImage from "@/assets/images/approche/techno/smillers.jpg";
 import TriosImage from "@/assets/images/approche/techno/Trios.png";
 import radio from "@/assets/images/approche/techno/radio.png";
+import solarPannel from "@/assets/images/approche/techno/solarPannel.jpg";
 
 const swapping = ref([]);
 const items = ref([
   {
     image: ConeBeamImage,
     title: "CBCT",
-    description:
-      "Le Cone Beam également dénommé CBCT est une imagerie volumétrique par faisceau conique . Il permet un examen performant des tissus minéralisés (dents, cartilages, os), mettant en évidence avec une bonne précision (de l’ordre du millimètre) des lésions ou autres affections osseuses. Cet examen est plus précis que le panoramique dentaire et offre une résolution similaire, voire supérieure à celle du scanner, avec en plus la possibilité d’une reconstitution numérique en 3D. A  l’inverse du scanner, il permet de balayer en un seul passage l’ensemble du volume à radiographier, en étant  moins irradiant. Il offre par ailleurs la possibilité de localiser le champ d’examen sur la zone à étudier (quelques dents, une mâchoire).  Du fait de la précision qu’il apporte, le cone beam reste un examen de choix en implantologie. Il permet alors d’évaluer au plus juste le volume osseux et la position des structures anatomiques délicates comme les nerfs en vue de la pose d’implants. La modélisation en 3D permet en outre de choisir la taille et la forme des implants proportionnellement à la morphologie du patient et de simuler leurs emplacements virtuellement. Ainsi, le cone beam est préconisé en dentisterie dans les cas suivants : les pathologies infectieuses ou tumorales au niveau du parodonte, de l’os alvéolaire, des sinus maxillaires, les kystes, les dents incluses, les implants dentaires ou encore les pathologies dégénératives de l’articulation temporo-mandibulaire.",
+    description: `
+      <p>Le Cone Beam, également appelé CBCT, est une imagerie volumétrique par faisceau conique. Il permet un examen performant des tissus minéralisés (dents, cartilages, os) et met en évidence avec une bonne précision (de l'ordre du millimètre) les lésions ou affections osseuses.</p>
+      
+      <p>Cet examen est plus précis que le panoramique dentaire et offre une résolution similaire, voire supérieure au scanner, avec la possibilité d'une reconstitution numérique en 3D. Contrairement au scanner, il balaye l'ensemble du volume à radiographier en un seul passage tout en étant moins irradiant. Il permet également de cibler précisément la zone à examiner (quelques dents, une mâchoire).</p>
+      
+      <p>Le cone beam est particulièrement utile en <strong>implantologie</strong> : il évalue le volume osseux et localise les structures anatomiques délicates comme les nerfs avant la pose d'implants. La modélisation 3D permet de choisir la taille et la forme des implants adaptées à la morphologie du patient et de simuler leur placement.</p>
+      
+      <p>En dentisterie, le cone beam est préconisé pour :</p>
+      <ul>
+        <li>Les pathologies infectieuses ou tumorales (parodonte, os alvéolaire, sinus maxillaires)</li>
+        <li>Les kystes</li>
+        <li>Les dents incluses</li>
+        <li>Les implants dentaires</li>
+        <li>Les pathologies dégénératives de l'articulation temporo-mandibulaire</li>
+      </ul>
+    `,
   },
   {
     image: TriosImage,
     title: "TRIOS® 6",
-    description:
-      "La Caméra intra-orale numérique Trios 6  est le nouveau scanner intra-oral de la société danoise 3Shape. La caméra d'empreinte numérique transforme la façon dont sont créées les empreintes dentaires. Son utilisation réduit les désagréments pour les patients et améliore la précision des résultats. Cet outil remplace les empreintes traditionnelles à base de pâte, souvent inconfortables. Ainsi en combinant des innovations matérielles et logicielles, la caméra numérique redéfinit les standards de la dentisterie numérique. Elle offre une restitution exceptionnelle des détails, aussi bien pour les praticiens que pour les laboratoires. Numérisées, les empreintes sont plus fiables, les ajustements des prothèses plus précis et la communication avec le patient et le prothésiste est facilitée.",
+    description: `
+      <p>La Caméra intra-orale numérique Trios 6 est le nouveau scanner intra-oral de la société danoise 3Shape. La caméra d'empreinte numérique transforme la façon dont sont créées les empreintes dentaires. Son utilisation réduit les désagréments pour les patients et améliore la précision des résultats.</p>
+      
+      <p>Cet outil remplace les empreintes traditionnelles à base de pâte, souvent inconfortables. Ainsi en combinant des innovations matérielles et logicielles, la caméra numérique redéfinit les standards de la dentisterie numérique.</p>
+      
+      <p><strong>Avantages :</strong></p>
+      <ul>
+        <li>Restitution exceptionnelle des détails</li>
+        <li>Empreintes numérisées plus fiables</li>
+        <li>Ajustements des prothèses plus précis</li>
+        <li>Communication facilitée avec le patient et le prothésiste</li>
+      </ul>
+    `,
   },
   {
-    image: "https://picsum.photos/200/200?random=3",
+    image: solarPannel,
     title: "Energie solaire",
-    description:
-      "Peu de temps après l’ouverture du cabinet, de nombreux panneaux photovoltaïques  ont été installés sur le toit plat du cabinet. Dans ce projet, l’accent a été mis sur l’efficacité et l’optimisation de l’espace afin d’allier performance énergétique et réduction de l’empreinte carbone. Ce système permet de produire une grande quantité d’électricité verte, tout en s’intégrant parfaitement dans l’environnement du cabinet. Ce projet montre que l’énergie solaire peut aisément être intégrée dans des lieux professionnels tels que les cabinets dentaires qui fonctionnent la journée. En choisissant l’énergie solaire, nous réduisons notre empreinte carbone et tentons de produire de l’électricité locale.",
+    description: `
+      <p>Peu de temps après l'ouverture du cabinet, de nombreux panneaux photovoltaïques ont été installés sur le toit plat du cabinet. Dans ce projet, l'accent a été mis sur l'efficacité et l'optimisation de l'espace afin d'allier performance énergétique et réduction de l'empreinte carbone.</p>
+      
+      <p>Ce système permet de produire une grande quantité d'électricité verte, tout en s'intégrant parfaitement dans l'environnement du cabinet. Ce projet montre que l'énergie solaire peut aisément être intégrée dans des lieux professionnels tels que les cabinets dentaires qui fonctionnent la journée.</p>
+      
+      <p>En choisissant l'énergie solaire, nous réduisons notre empreinte carbone et tentons de produire de l'électricité locale.</p>
+    `,
   },
   {
     image: CFAOImage,
     title: "CFAO Cerec",
-    description:
-      "Des restaurations dentaires en céramique en 1 temps. La technologie CFAO (Conception et Fabrication Assisté par Ordinateur) CEREC permet de réaliser vos inlays en céramique directement au cabinet, en une seule séance. Grâce à une caméra 3D, le dentiste prend une empreinte numérique de votre dent, conçoit la restauration sur écran, puis la fabrique sur place à l’aide d’une machine de fraisage. Résultat : une restauration dentaire précise, esthétique et durable, posée le jour même, sans attente.",
+    description: `
+      <p>Des restaurations dentaires en céramique en 1 temps. La technologie CFAO (Conception et Fabrication Assisté par Ordinateur) CEREC permet de réaliser vos inlays en céramique directement au cabinet, en une seule séance.</p>
+      
+      <p><strong>Le processus :</strong></p>
+      <ul>
+        <li>Empreinte numérique de votre dent avec une caméra 3D</li>
+        <li>Conception de la restauration sur écran</li>
+        <li>Fabrication sur place à l'aide d'une machine de fraisage</li>
+      </ul>
+      
+      <p><strong>Résultat :</strong> une restauration dentaire précise, esthétique et durable, posée le jour même, sans attente.</p>
+    `,
   },
   {
     image: MicroscopeImage,
     title: "Microscope optique CJ-Optik",
-    description:
-      "Un équipement fait pour certaines interventions chirurgicales, en particulier pour retirer les parties de racines infectées. Dans une démarche de conservation, cet équipement permet de réaliser des interventions en toute sécurité et ainsi de préserver les prothèses dentaires existantes.",
+    description: `
+      <p>Un équipement fait pour certaines interventions chirurgicales, en particulier pour retirer les parties de racines infectées.</p>
+      
+      <p>Dans une démarche de conservation, cet équipement permet de réaliser des interventions en toute sécurité et ainsi de préserver les prothèses dentaires existantes.</p>
+    `,
   },
   {
     image: SmillersImage,
     title: "Aligneurs",
-    description:
-      "Gouttières transparentes préconisées  pour  réduire l'espace  de vos dents (diasteme) et l'alignements des dents. Les aligneurs sont des gouttieres invisibles, amovible portées entre 22 et 24h, et  retirées seulement pour manger et brossage des dents. La durée du traitement varie entre 6 et 24 mois, pour pré adultes et adultes. Les étapes du traitement: consultation, empreinte, traitement aligneurs et contention en fin de traitement.",
+    description: `
+      <p>Gouttières transparentes préconisées pour réduire l'espace de vos dents (diasteme) et l'alignements des dents.</p>
+      
+      <p>Les aligneurs sont des gouttieres <strong>invisibles et amovibles</strong> portées entre 22 et 24h, et retirées seulement pour manger et brossage des dents. La durée du traitement varie entre 6 et 24 mois, pour pré adultes et adultes.</p>
+      
+      <p><strong>Les étapes du traitement :</strong></p>
+      <ul>
+        <li>Consultation</li>
+        <li>Empreinte</li>
+        <li>Traitement aligneurs</li>
+        <li>Contention en fin de traitement</li>
+      </ul>
+    `,
   },
   {
     image: radio,
     title: "Analyse radio assistée par IA",
-    description:
-      "Grâce à la visualisation instantanée générée par l'Intelligence Artificielle des éléments en couleur sur la radiographie panoramique, le praticien peut s'appuyer sur un outil visuel pour expliquer de manière simple, ludique et pédagogique les éléments présents sur la radiographie. Il va pouvoir mettre en évidence des éléments difficiles à voir pour le patient, tels que la ligne osseuse pour expliquer une éventuelle perte osseuse, ou encore les caries. Le patient, quant à lui, peut pour la première fois voir clairement ce que le praticien lui explique.",
+    description: `
+      <p>Grâce à la visualisation instantanée générée par l'Intelligence Artificielle des éléments en couleur sur la radiographie panoramique, le praticien peut s'appuyer sur un outil visuel pour expliquer de manière simple, ludique et pédagogique les éléments présents sur la radiographie.</p>
+      
+      <p>Il va pouvoir mettre en évidence des éléments difficiles à voir pour le patient, tels que :</p>
+      <ul>
+        <li>La ligne osseuse pour expliquer une éventuelle perte osseuse</li>
+        <li>Les caries</li>
+      </ul>
+      
+      <p>Le patient, quant à lui, peut pour la première fois voir clairement ce que le praticien lui explique.</p>
+    `,
   },
 ]);
 
@@ -176,7 +240,9 @@ const rotateToIndex = (clickedIndex) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
 }
 
 .wheel-item img {
@@ -195,8 +261,8 @@ const rotateToIndex = (clickedIndex) => {
 }
 
 .wheel-center-logo {
-  width: 80%; /* Adjust as needed to fill the circle nicely */
-  height: 80%; /* Adjust as needed */
+  width: 80%;
+  height: 80%;
   object-fit: contain;
 }
 
@@ -218,7 +284,7 @@ const rotateToIndex = (clickedIndex) => {
   align-items: center;
   width: fit-content;
   max-width: 800px;
-  height: 100vh;
+  height: 80vh;
   background-color: $color-bg-blue;
   border-radius: $border-radius;
   overflow: hidden;
@@ -227,16 +293,47 @@ const rotateToIndex = (clickedIndex) => {
 
 .wheel-item.active-item img {
   width: 100%;
-  height: 50%; /* Adjust as needed */
+  height: 40%;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .item-content {
-  padding: 20px;
+  padding: 30px 40px;
   color: black;
-  text-align: center;
+  overflow-y: auto;
+  flex: 1;
+  width: 100%;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+.description-content {
+  text-align: left;
+  padding: 0 20px;
+
   p {
-    white-space: pre-line;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+  }
+
+  ul {
+    margin: 1.2rem 0;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.6rem;
+      line-height: 1.5;
+    }
+  }
+
+  strong {
+    font-weight: 600;
+    color: $color-green;
   }
 }
 

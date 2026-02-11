@@ -26,61 +26,38 @@
         <div class="rdv__content__right">
           <h2>Déjà patient ?</h2>
           <p>Renseignez votre praticien :</p>
-          <div class="doctor-selector">
-            <div
-              class="doctor-toggle"
-              @click="isDoctorListVisible = !isDoctorListVisible"
-            >
-              <div v-if="selectedDoctor" class="selected-doctor">
-                <img
-                  :src="selectedDoctor.image"
-                  :alt="selectedDoctor.name"
-                  class="doctor-image"
-                />
-                <span class="doctor-name">{{ selectedDoctor.name }}</span>
-              </div>
-              <div v-else class="doctor-placeholder">
-                <span>Praticien</span>
-              </div>
-              <Icon
-                name="mdi:chevron-down"
-                class="chevron-icon"
-                :class="{ 'chevron-icon--rotated': isDoctorListVisible }"
-              />
-            </div>
-            <div v-if="isDoctorListVisible" class="doctor-list">
-              <div
-                v-for="doctor in doctors"
-                :key="doctor.name"
-                class="doctor-item"
-                @click="selectDoctor(doctor)"
-              >
-                <img
-                  :src="doctor.image"
-                  :alt="doctor.name"
-                  class="doctor-image"
-                />
-                <span class="doctor-name">{{ doctor.name }}</span>
-              </div>
-            </div>
-          </div>
+          <DoctorDropdown
+            v-model="selectedDoctorName"
+            :doctors="doctors"
+            placeholder="Praticien"
+          />
           <div v-if="selectedDoctor" class="contact-buttons">
             <p>Votre prise de rendez-vous :</p>
             <div>
               <Button
                 v-for="contact in selectedDoctor.contact"
                 :key="contact.type"
-                :href="contact.url"
+                :href="
+                  contact.type === 'phone'
+                    ? `tel:${contact.url}`
+                    : contact.type === 'email'
+                      ? `mailto:${contact.url}`
+                      : contact.url
+                "
+                target="_blank"
                 class="contact-button"
               >
-                <template v-if="contact.type === 'phone'">
+                <template v-if="contact.type === 'phone'" variant="secondary">
                   <Icon name="mdi:phone" /> 05 61 06 91 92
                 </template>
+
+                <template v-if="contact.type === 'email'" variant="secondary">
+                  <Icon name="mdi:email" size="24" />
+                  secretariat@scmtrident.fr
+                </template>
+
                 <template v-else-if="contact.type === 'doctolib'">
-                  <img
-                    src="https://www.doctolib.fr/favicon.ico"
-                    alt="Doctolib"
-                  />
+                  <img alt="Doctolib" />
                   Doctolib
                 </template>
               </Button>
@@ -93,68 +70,18 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import Divider from "~/components/Divider.vue";
 import Button from "~/components/Button.vue";
+import DoctorDropdown from "~/components/DoctorDropdown.vue";
+import { doctors } from "~/data/dentists";
 
-const isDoctorListVisible = ref(false);
+const selectedDoctorName = ref("");
 const selectedDoctor = ref(null);
 
-const doctors = ref([
-  {
-    name: "Dr. Reda BOUNAB",
-    image: "https://picsum.photos/id/237/100/100",
-    contact: [
-      { type: "doctolib", url: "" },
-      { type: "phone", url: "tel:0561069192" },
-    ],
-  },
-  {
-    name: "Dr. Sandrine DE CARVALHO",
-    image: "https://picsum.photos/id/238/100/100",
-    contact: [
-      { type: "doctolib", url: "" },
-      { type: "phone", url: "tel:0561069192" },
-    ],
-  },
-  {
-    name: "Dr. Laure RISPAL",
-    image: "https://picsum.photos/id/239/100/100",
-    contact: [
-      { type: "doctolib", url: "" },
-      { type: "phone", url: "tel:0561069192" },
-    ],
-  },
-  {
-    name: "Dr. Patrick SALINAS",
-    image: "https://picsum.photos/id/239/100/100",
-    contact: [
-      { type: "doctolib", url: "" },
-      { type: "phone", url: "tel:0561069192" },
-    ],
-  },
-  {
-    name: "Dr. Mathilde HOURSET",
-    image: "https://picsum.photos/id/239/100/100",
-    contact: [
-      { type: "doctolib", url: "" },
-      { type: "phone", url: "tel:0561069192" },
-    ],
-  },
-  {
-    name: "Dr. Hugo SENTILLES",
-    image: "https://picsum.photos/id/239/100/100",
-    contact: [
-      { type: "doctolib", url: "" },
-      { type: "phone", url: "tel:0561069192" },
-    ],
-  },
-]);
-
-const selectDoctor = (doctor) => {
-  selectedDoctor.value = doctor;
-  isDoctorListVisible.value = false;
-};
+watch(selectedDoctorName, (newName) => {
+  selectedDoctor.value = doctors.find((d) => d.name === newName) || null;
+});
 </script>
 
 <style scoped lang="scss">
@@ -253,87 +180,15 @@ const selectDoctor = (doctor) => {
       h2 {
         font-size: 24px;
         font-weight: 700;
-        margin-bottom: $spacing-sm; // Reduced margin
+        margin-bottom: $spacing-sm;
       }
 
       p {
         margin-bottom: $spacing-md;
       }
 
-      .doctor-selector {
-        position: relative;
-        width: 100%;
-        margin-bottom: $spacing-md;
-      }
-
-      .doctor-toggle {
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: $spacing-sm 0; /* Adjusted padding to remove side borders visually */
-        border: none; /* Remove all borders initially */
-        border-bottom: 1px solid $color-grey; /* Only bottom border visible */
-        background-color: transparent; /* Make background transparent */
-
-        .chevron-icon {
-          transition: transform 0.3s ease;
-          font-size: 24px; /* Make icon larger */
-          color: $color-green; /* Change icon color to green */
-
-          &--rotated {
-            transform: rotate(180deg);
-          }
-        }
-      }
-
-      .selected-doctor {
-        display: flex;
-        align-items: center;
-        gap: $spacing-md;
-      }
-
-      .doctor-placeholder {
-        color: $color-grey;
-      }
-
-      .doctor-list {
-        position: absolute;
-        top: calc(100% + 5px);
-        left: 0;
-        width: 100%;
-        background-color: $color-white;
-        border: 1px solid $color-grey-light;
-        border-radius: $border-radius;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        max-height: 300px;
-        overflow-y: auto;
-      }
-
-      .doctor-item {
-        display: flex;
-        align-items: center;
-        gap: $spacing-md;
-        padding: $spacing-sm $spacing-md;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-
-        &:hover {
-          background-color: $color-bg-blue;
-        }
-      }
-
-      .doctor-image {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-
       .contact-buttons {
+        margin-top: $spacing-lg;
         display: flex;
         flex-direction: column;
         gap: $spacing-md;
@@ -351,8 +206,8 @@ const selectDoctor = (doctor) => {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: $spacing-sm; // Adjust padding for icon-only buttons
-        font-size: 24px; // Make icons larger
+        padding: $spacing-sm;
+        font-size: 24px;
 
         img {
           width: 24px;
@@ -380,11 +235,11 @@ const selectDoctor = (doctor) => {
 
     &__content {
       flex-direction: column;
-      gap: $spacing-lg; // Adjust gap for vertical stacking
+      gap: $spacing-lg;
     }
 
     &__content__left .buttons {
-      flex-direction: column; // Stack buttons vertically on mobile
+      flex-direction: column;
       gap: $spacing-sm;
     }
 

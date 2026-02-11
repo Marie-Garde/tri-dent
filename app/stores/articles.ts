@@ -36,8 +36,6 @@ export const useArticlesStore = defineStore("articles", {
   actions: {
     async fetchArticles() {
       if (this.articles.length > 0) {
-        // Articles déjà chargés
-        console.log(this.articles);
         return;
       }
 
@@ -63,7 +61,6 @@ export const useArticlesStore = defineStore("articles", {
         }`;
 
         this.articles = await sanityClient.fetch(query);
-        console.log(this.articles);
       } catch (err: any) {
         this.error = err.message || "Erreur lors du chargement des articles";
         console.error("Erreur Sanity:", err);

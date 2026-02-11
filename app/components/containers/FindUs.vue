@@ -24,19 +24,12 @@
           </span>
         </p>
       </template>
-      <template #image>
-        <img
-          src="/images/home/cabinet.png"
-          alt="Cabinet Tri-Dent"
-          class="find-us__image"
-        />
-      </template>
     </SideTextImage>
   </div>
 </template>
 
 <script setup lang="ts">
-import cabinet from "~/assets/images/home/cabinet.png";
+import cabinet from "~/assets/images/home/cabinet.jpg";
 import Divider from "~/components/Divider.vue";
 </script>
 

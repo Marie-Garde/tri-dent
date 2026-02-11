@@ -12,6 +12,7 @@
     "deploy": "NUXT_APP_BASE_URL=/tri-dent/ npx nuxt build --preset github_pages && npx gh-pages --dotfiles -d .output/public"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@nuxt/fonts": "^0.12.1",
     "@pinia/nuxt": "^0.11.3",
     "@sanity/client": "^7.13.2",

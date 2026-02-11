@@ -82,7 +82,6 @@ definePageMeta({
   }
 }
 
-// Animation principale : révélation avec clip-path
 @keyframes textReveal {
   from {
     clip-path: inset(0 100% 0 0);

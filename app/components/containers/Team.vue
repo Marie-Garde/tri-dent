@@ -55,80 +55,80 @@
 </template>
 
 <script setup lang="ts">
-// todo: Mock data - à remplacer par l'appel API
+import avatarImg from "~/assets/images/avatar.png";
+
 const teamMembers = [
   {
     name: "Dr. Réda BOUNAB",
     status: "Associate",
-    img: "/images/logo trident.svg",
+    img: avatarImg,
     presentation: "Omnipratique, Implantologie",
   },
   {
     name: "Dr. Sandrine DE CARVALHO",
     status: "Associate",
-    img: "/images/logo trident.svg",
+    img: avatarImg,
     presentation: "Omnipratique, Implantologie",
   },
   {
     name: "Dr. Laure RISPAL",
     status: "Associate",
-    img: "/images/logo trident.svg",
+    img: avatarImg,
     presentation: "Omnipratique",
   },
   {
     name: "Dr. Patrick SALINAS",
     status: "Associate",
-    img: "/images/logo trident.svg",
+    img: avatarImg,
     presentation: "Omnipratique, Orthodontie adulte, Implantologie",
   },
   {
     name: "Dr. Mathilde HOURSET",
     status: "Dr",
-    img: "/images/logo trident.svg",
+    img: avatarImg,
     presentation:
       "Omnipratique, Pédodontie, Orthodontie interceptive, Occlusodontie",
   },
   {
     name: "Dr. Hugo SENTILLES",
     status: "Dr",
-    img: "/images/logo trident.svg",
+    img: avatarImg,
     presentation: "Omnipratique",
   },
   {
     name: "Céline CHAUVERON",
     status: "Assistante",
-    img: "/images/logo trident.svg",
+    img: avatarImg,
     presentation: "Assistante dentaire",
   },
   {
     name: "Maylis GOURBAL",
     status: "Assistante",
-    img: "/images/logo trident.svg",
+    img: avatarImg,
     presentation: "Assistante dentaire",
   },
   {
     name: "Séverine PUPILLI",
     status: "Assistante",
-    img: "/images/logo trident.svg",
+    img: avatarImg,
     presentation: "Assistante dentaire",
   },
   {
     name: "Julie SETSOUA",
     status: "Assistante",
-    img: "/images/logo trident.svg",
+    img: avatarImg,
     presentation: "Assistante dentaire",
   },
 ];
 
-// Séparation des docteurs et du reste de l'équipe
 const associates = computed(() =>
-  teamMembers.filter((member) => member.status === "Associate")
+  teamMembers.filter((member) => member.status === "Associate"),
 );
 const doctors = computed(() =>
-  teamMembers.filter((member) => member.status === "Dr")
+  teamMembers.filter((member) => member.status === "Dr"),
 );
 const assistants = computed(() =>
-  teamMembers.filter((member) => member.status === "Assistante")
+  teamMembers.filter((member) => member.status === "Assistante"),
 );
 
 // Refs pour les grilles
@@ -150,14 +150,14 @@ onMounted(() => {
     {
       threshold: 0.1, // Se déclenche quand 10% de l'élément est visible
       rootMargin: "0px 0px -50px 0px", // Déclenche un peu avant que l'élément soit complètement visible
-    }
+    },
   );
 
   // Observer toutes les grilles
   [associatesGrid.value, doctorsGrid.value, assistantsGrid.value].forEach(
     (grid) => {
       if (grid) observer.observe(grid);
-    }
+    },
   );
 });
 </script>

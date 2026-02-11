@@ -16,19 +16,12 @@
           >
         </div>
       </template>
-      <template #image>
-        <img
-          src="/images/home/home team.png"
-          alt="team"
-          class="welcome__image"
-        />
-      </template>
     </SideTextImage>
   </div>
 </template>
 
 <script setup lang="ts">
-import team from "~/assets/images/home/home team.png";
+import team from "~/assets/images/home/home-team.jpg";
 import Divider from "~/components/Divider.vue";
 import Button from "~/components/Button.vue";
 
@@ -47,7 +40,7 @@ onMounted(() => {
     {
       threshold: 0.2,
       rootMargin: "0px",
-    }
+    },
   );
 
   if (welcomeSection.value) {
@@ -68,22 +61,6 @@ onMounted(() => {
 
     .is-visible & {
       animation: fadeInContent 0.8s ease-out forwards;
-    }
-  }
-
-  &__image {
-    object-fit: cover;
-    opacity: 0;
-    transform: translateX(20px);
-
-    .is-visible & {
-      animation: fadeInImage 0.8s ease-out 0.2s forwards;
-    }
-
-    @media (max-width: 767px) {
-      width: 100%;
-      height: auto;
-      transform: translateY(20px);
     }
   }
 
