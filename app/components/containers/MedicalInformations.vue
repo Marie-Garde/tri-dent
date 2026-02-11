@@ -47,7 +47,6 @@ const recentArticles = computed(() => articlesStore.recentArticles);
 
 onMounted(async () => {
   await articlesStore.fetchRecentArticles();
-  console.log("recent articles", articlesStore.recentArticles);
 });
 </script>
 

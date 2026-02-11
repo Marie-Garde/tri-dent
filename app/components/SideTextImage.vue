@@ -13,7 +13,9 @@
     </div>
 
     <div class="side-text-image__image">
-      <slot name="image"></slot>
+      <slot name="image">
+        <img :src="img" :alt="imgAlt" />
+      </slot>
     </div>
   </div>
 </template>
@@ -24,17 +26,18 @@ import elipse from "~/assets/images/SideTextImage/elipse.png";
 withDefaults(
   defineProps<{
     rtl?: boolean;
+    img?: string;
+    imgAlt?: string;
   }>(),
   {
     rtl: false,
-  }
+  },
 );
 </script>
 
 <style lang="scss" scoped>
 .side-text-image {
   display: flex;
-  gap: $spacing-lg;
   align-items: center;
 
   @media (max-width: 767px) {
@@ -66,11 +69,18 @@ withDefaults(
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    height: 430px;
+
+    img {
+      height: 100%;
+      object-fit: contain;
+    }
   }
 }
 
 .side-text-image__content,
 .side-text-image__image {
-  flex: 1;
+  flex: 0 0 50%;
+  width: 50%;
 }
 </style>
