@@ -56,6 +56,7 @@ const toggleAccordion = () => {
   h3 {
     margin: 0;
     color: $color-white;
+    font-size: 1.3rem;
   }
 
   span {

@@ -79,7 +79,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { useRoute } from "vue-router";
-import logo from "~/assets/images/logo trident light.svg";
+import logoLight from "~/assets/images/logo-trident-light.svg";
+import logoDark from "~/assets/images/logo trident.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
 
 const route = useRoute();
@@ -107,6 +108,13 @@ onUnmounted(() => {
 const isOnRdvPage = computed(() => {
   return route.path === "/prendre-rendez-vous" || route.path === "/contact";
 });
+
+const logo = computed(() => {
+  const darkLogoRoutes = ["/contact", "/prendre-rendez-vous"];
+  return darkLogoRoutes.includes(route.path) || isScrolled.value
+    ? logoDark
+    : logoLight;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -121,7 +129,9 @@ const isOnRdvPage = computed(() => {
 
   background-color: transparent;
   color: $color-white;
-  transition: background-color 0.25s ease, color 0.25s ease,
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
     box-shadow 0.2s ease;
 
   &.navbar--scrolled {

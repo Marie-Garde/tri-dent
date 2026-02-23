@@ -28,7 +28,7 @@
         >
       </article>
     </Carousel>
-    <Button class="button" variant="secondary" href="/">
+    <Button class="button" variant="secondary" href="/informations-medicales">
       Plus de ressources
     </Button>
   </div>
@@ -67,6 +67,7 @@ onMounted(async () => {
   p {
     text-align: center;
     margin-top: $spacing-lg;
+    max-width: 1280px;
   }
 
   .medical-informations {

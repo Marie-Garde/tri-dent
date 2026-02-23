@@ -60,7 +60,7 @@ await articlesStore.fetchArticles();
 
 // Récupérer l'article par son slug
 const article = computed(() =>
-  articlesStore.articleBySlug(route.params.slug as string)
+  articlesStore.articleBySlug(route.params.slug as string),
 );
 
 // Si l'article n'existe pas, rediriger vers la liste
@@ -145,7 +145,7 @@ function formatDate(dateString: string) {
       display: inline-block;
       padding: $spacing-sm $spacing-md;
       background-color: $color-bg-blue;
-      color: $color-white;
+      color: $color-text;
       text-decoration: none;
       border-radius: $border-radius;
       font-weight: 500;

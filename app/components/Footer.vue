@@ -2,11 +2,7 @@
   <footer class="footer">
     <div class="footer__container">
       <div class="footer__logo">
-        <img
-          src="/images/logo trident light.svg"
-          alt="Logo Trident"
-          width="344"
-        />
+        <img :src="logo" alt="Logo Trident" width="344" />
       </div>
       <div class="footer__container__find-us">
         <h3>Nous contacter</h3>
@@ -58,18 +54,18 @@
       </div>
     </div>
     <p class="footer__copyright">
-      &copy; Copyright - Tous droits réservés - site créé par
-      <NuxtLink to="https://lenvoleenumerique.com/" target="_blank"
+      &copy; Copyright - Tous droits réservés - 2026 - site créé par
+      <NuxtLink to="https://www.lenvoleenumerique.com/" target="_blank"
         >L’envolée numérique</NuxtLink
       >
-      - <NuxtLink to="/">mentions légales</NuxtLink> -
-      <NuxtLink to="/"> Plan du site</NuxtLink>
+      - <NuxtLink to="/mentions-legales">mentions légales</NuxtLink> -
+      <NuxtLink to="/plan-du-site"> Plan du site</NuxtLink>
     </p>
   </footer>
 </template>
 
 <script setup>
-// ...existing code...
+import logo from "~/assets/images/logo-trident-light.svg";
 </script>
 
 <style lang="scss" scoped>

@@ -56,63 +56,115 @@
           <Divider />
           <Accordion
             id="accordion1"
-            title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
+            title="A quelle fréquence dois-je consulter mon dentiste ? "
             :modelValue="openAccordionId === 'accordion1'"
             @update:modelValue="
               openAccordionId = $event === openAccordionId ? null : $event
             "
           >
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-            aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-            eos qui ratione voluptatem sequi nesciunt.
+            Les dentistes recommandent un contrôle des dents 1 fois par an, si
+            vous n'avez pas de problème de santé particulier.<br />
+            Néanmoins, si lors du contrôle des soins sont nécessaires, une
+            période de 6 mois est en effet la durée moyenne de l'évolution de
+            pathologie carieuse ou parodontale. Cette précaution permet de
+            conserver la dent vivante ou d’éviter des complications.
           </Accordion>
           <Accordion
             id="accordion2"
-            title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
+            title="Quel type de brosse à dent est à privilégier ? Et quel dentifrice dois-je utiliser ?"
             :modelValue="openAccordionId === 'accordion2'"
             @update:modelValue="
               openAccordionId = $event === openAccordionId ? null : $event
             "
           >
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-            aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-            eos qui ratione voluptatem sequi nesciunt.
+            On distingue trois types de brosses à dents : celles munies de poils
+            souples, de poils médium (les plus répandues sur le marché) et
+            enfin, de poils durs. Ce sont les brosses à dents dites « souples »
+            qui sont les plus recommandées pour les gencives et les dents.<br />
+            Certaines brosses à dent plus dures peuvent être proposées par le
+            praticien en fonction du port d’un appareil ou de conditions
+            particulières. Pour le dentifrice, il est conseillé de le prendre le
+            moins abrasif possible et avec une teneur en fluor adapté à
+            l’âge.<br />
+            Certains dentifrices sont plus thérapeutiques et sont préconisés en
+            fonction de vos pathologies bucco-dentaires.
           </Accordion>
           <Accordion
             id="accordion3"
-            title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
+            title="A quel âge faut-il commencer à amener son enfant chez le dentiste ?"
             :modelValue="openAccordionId === 'accordion3'"
             @update:modelValue="
               openAccordionId = $event === openAccordionId ? null : $event
             "
           >
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-            aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-            eos qui ratione voluptatem sequi nesciunt.
+            Afin de les familiariser avec le praticien et l’environnement du
+            cabinet dentaire, il est important de commencer par une visite
+            annuelle dès 3 ans. Les pathologies sont censées être assez rares à
+            cet âge-là mais un dépistage précoce de certaines dysfonctions ou de
+            mauvaises habitudes peut éviter de plus graves troubles par la
+            suite. Le praticien pourra accompagner l’enfant vers de bonnes
+            habitudes et une bonne hygiène bucco-dentaire.
           </Accordion>
           <Accordion
             id="accordion4"
-            title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
+            title="Le jet dentaire est-il efficace ? Peut-il remplacer le fil dentaire ou la brossette inter-dentaire ? Quel système choisir ?"
             :modelValue="openAccordionId === 'accordion4'"
             @update:modelValue="
               openAccordionId = $event === openAccordionId ? null : $event
             "
           >
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-            aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-            eos qui ratione voluptatem sequi nesciunt.
+            Nettoyer les espaces entre les dents est primordial pour une bonne
+            hygiène dentaire. Néanmoins plusieurs systèmes sont possibles avec
+            des avantages différents : <br /><br />- les jets dentaires ou
+            hydropulseurs envoient à forte pression un mélange air-eau. Leur
+            maniabilité et leur facilité d’utilisation leur confèrent une très
+            bonne observance au long cours. Bien que moins efficaces que les
+            brossettes et le fil dentaire, ils restent intéressants pour les
+            personnes ayant une faible dextérité manuelle (âgées ou avec un
+            handicap) mais ne suffisent pas souvent à nettoyer les zones
+            molaires. <br /><br />- les brossettes inter-dentaires existent sous
+            différentes tailles et formats. Votre dentiste peut vous aiguiller.
+            La bonne taille permet de frotter entre les dents sans forcer.
+            Plusieurs tailles sont souvent nécessaires. Elles sont réutilisables
+            et à changer, comme la brosse à dent, quand les poils sont usés.
+            <br /><br />- Le fil dentaire est à préférer ciré et un peu épais.
+            Il nécessite un certain apprentissage et une certaine dextérité
+            manuelle. Son utilisation permet de nettoyer tous les espaces
+            inter-dentaires de manière efficace à moindre coût.
+          </Accordion>
+          <Accordion
+            id="accordion5"
+            title="Comment faire pour utiliser le fil dentaire ?"
+            :modelValue="openAccordionId === 'accordion5'"
+            @update:modelValue="
+              openAccordionId = $event === openAccordionId ? null : $event
+            "
+          >
+            1. Prenez environ 30 cm de fil dentaire et enroulez les extrémités
+            autour des majeurs (ou des index) pour que le fil soit bien
+            tendu.<br />
+            2. Descendez délicatement le fil avec un va-et-vient latéral pour ne
+            pas blesser la gencive.<br />
+            3. Remontez le fil de la gencive vers l’extérieur, en nettoyant
+            l’une puis l’autre des faces interdentaires. N’oubliez pas le collet
+            (base de la dent au contact avec la gencive). Déroulez un peu de fil
+            propre et recommencez entre les deux dents suivantes.
+          </Accordion>
+          <Accordion
+            id="accordion6"
+            title="Quelle est la durée de vie d’une couronne ou d’un bridge ?"
+            :modelValue="openAccordionId === 'accordion6'"
+            @update:modelValue="
+              openAccordionId = $event === openAccordionId ? null : $event
+            "
+          >
+            En moyenne, une couronne a une durée de vie comprise entre 5 et 10
+            ans, mais elle peut parfois atteindre 20 ans ou plus avec un bon
+            entretien. Sa longévité dépend de nombreux facteurs : les habitudes
+            d'hygiène bucco-dentaire, les habitudes de consommation alimentaire,
+            les forces de mastication, l’acidité buccale ainsi que l’état de
+            santé buccal et général. Mais aussi la qualité des matériaux
+            utilisés et la technique de pose effectuée par le dentiste.
           </Accordion>
         </div>
       </div>
@@ -148,7 +200,7 @@ onMounted(() => {
     {
       threshold: 0.15,
       rootMargin: "0px 0px -50px 0px",
-    }
+    },
   );
 
   [findUsSection.value, faqSection.value].forEach((section) => {

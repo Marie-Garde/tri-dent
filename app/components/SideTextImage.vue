@@ -52,8 +52,9 @@ withDefaults(
   }
 
   &__elipse {
-    height: 430px;
+    height: 410px;
     margin-right: 3rem;
+    margin-left: 5px;
     @media (max-width: 767px) {
       margin-right: $spacing-md;
     }

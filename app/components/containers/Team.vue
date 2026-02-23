@@ -16,6 +16,7 @@
           :presentation="doctor.presentation"
           class="team__card"
           :style="{ '--card-index': index }"
+          expandable
         />
       </div>
     </div>
@@ -32,6 +33,7 @@
           :presentation="doctor.presentation"
           class="team__card"
           :style="{ '--card-index': index }"
+          expandable
         />
       </div>
     </div>
@@ -48,6 +50,7 @@
           :presentation="member.presentation"
           class="team__card"
           :style="{ '--card-index': index }"
+          expandable
         />
       </div>
     </div>
@@ -180,6 +183,7 @@ onMounted(() => {
     text-align: center;
     margin-bottom: $spacing-lg;
     font-size: $spacing-lg;
+    margin-top: 40px;
   }
 
   &__grid {
