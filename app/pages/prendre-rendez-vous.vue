@@ -75,22 +75,13 @@ import Divider from "~/components/Divider.vue";
 import Button from "~/components/Button.vue";
 import DoctorDropdown from "~/components/DoctorDropdown.vue";
 import { doctors } from "~/data/dentists";
-import doctolibIcon from "~/assets/images/contact/doctolib-icon.png";
+import { usePrendreRendezVousSeo } from "~/composables/usePrendreRendezVousSeo";
 
 definePageMeta({
   layout: "default",
 });
 
-useHead({
-  title: "Prendre Rendez-vous - Cabinet Dentaire Tri-Dent",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Prenez rendez-vous facilement avec le Cabinet Dentaire Tri-Dent à Cornebarrieu. Instructions pour les nouveaux patients et accès direct à la prise de rendez-vous pour les patients existants.",
-    },
-  ],
-});
+usePrendreRendezVousSeo();
 
 const selectedDoctorName = ref("");
 const selectedDoctor = ref(null);
@@ -231,7 +222,7 @@ watch(selectedDoctorName, (newName) => {
         }
 
         p {
-          margin-left: $spacing-sm;
+          margin: 0 0 0 $spacing-sm;
         }
 
         &:hover {

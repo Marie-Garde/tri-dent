@@ -102,21 +102,13 @@ import ArticlesSearch from "~/components/ArticlesSearch.vue";
 import Pagination from "~/components/Pagination.vue";
 import { useArticlesStore } from "~/stores/articles";
 import { urlFor } from "~/lib/sanity";
+import { useInformationsMedicalesIndexSeo } from "~/composables/useInformationsMedicalesIndexSeo";
 
 definePageMeta({
   layout: "default",
 });
 
-useHead({
-  title: "Informations Médicales - Articles et Conseils | Cabinet Dentaire Tri-Dent",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Retrouvez toutes les informations médicales et conseils pratiques de votre Cabinet Dentaire Tri-Dent. Articles sur la santé dentaire, les traitements, la prévention et l'hygiène bucco-dentaire.",
-    },
-  ],
-});
+useInformationsMedicalesIndexSeo();
 
 const articlesStore = useArticlesStore();
 
