@@ -27,7 +27,20 @@
 </template>
 
 <script setup lang="ts">
-// Pas de script spécifique nécessaire pour cette page statique
+definePageMeta({
+  layout: "default",
+});
+
+useHead({
+  title: "Plan du Site - Cabinet Dentaire Tri-Dent",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Découvrez l'organisation complète du site du Cabinet Dentaire Tri-Dent grâce à notre plan du site. Accédez facilement à toutes les pages et informations importantes.",
+    },
+  ],
+});
 </script>
 
 <style lang="scss" scoped>

@@ -93,6 +93,21 @@ import PersonalizationImage from "@/assets/images/approche/icons/personalization
 import CalendarImage from "@/assets/images/approche/icons/calendar.svg";
 import NetworkImage from "@/assets/images/approche/icons/network.svg";
 
+definePageMeta({
+  layout: "default",
+});
+
+useHead({
+  title: "Notre Approche - Cabinet Dentaire Tri-Dent",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Découvrez l'approche unique du Cabinet Dentaire Tri-Dent : attention, clarté et personnalisation à chaque étape de votre parcours de soin. Nos valeurs et technologies au service de votre sourire.",
+    },
+  ],
+});
+
 const isMobile = useIsMobile();
 
 const valuesLine1 = [

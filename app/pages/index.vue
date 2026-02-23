@@ -28,8 +28,20 @@ import Welcome from "~/components/containers/Welcome.vue";
 import FindUs from "~/components/containers/FindUs.vue";
 import Team from "~/components/containers/Team.vue";
 import MedicalInformations from "~/components/containers/MedicalInformations.vue";
+
 definePageMeta({
   layout: "home",
+});
+
+useHead({
+  title: "Cabinet Dentaire Tri-Dent - Votre Santé Bucco-Dentaire à Cornebarrieu",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Découvrez le Cabinet Dentaire Tri-Dent à Cornebarrieu. Une équipe complète de professionnels dévoués à votre santé bucco-dentaire, offrant des soins modernes et personnalisés.",
+    },
+  ],
 });
 </script>
 

@@ -115,7 +115,20 @@
 </template>
 
 <script setup lang="ts">
-// Pas de script spécifique nécessaire pour cette page statique
+definePageMeta({
+  layout: "default",
+});
+
+useHead({
+  title: "Mentions Légales - Cabinet Dentaire Tri-Dent",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Consultez les mentions légales du Cabinet Dentaire Tri-Dent. Informations sur le propriétaire du site, la protection des données personnelles, la propriété intellectuelle et l'utilisation des cookies.",
+    },
+  ],
+});
 </script>
 
 <style lang="scss" scoped>

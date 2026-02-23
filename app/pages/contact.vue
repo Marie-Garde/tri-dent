@@ -181,6 +181,21 @@
 import Form from "@/components/Form.vue";
 import { ref } from "vue";
 
+definePageMeta({
+  layout: "default",
+});
+
+useHead({
+  title: "Contactez-nous - Cabinet Dentaire Tri-Dent à Cornebarrieu",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Contactez le Cabinet Dentaire Tri-Dent à Cornebarrieu. Retrouvez nos coordonnées, plan d'accès et posez toutes vos questions via notre formulaire de contact ou par téléphone.",
+    },
+  ],
+});
+
 const openAccordionId = ref(null);
 
 // Refs pour les sections
