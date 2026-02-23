@@ -1,2 +1,4 @@
 User-Agent: *
 Disallow:
+
+Sitemap: https://www.your-domain.com/sitemap.xml # TODO: Update with your actual domain
