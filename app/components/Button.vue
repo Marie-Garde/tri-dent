@@ -53,6 +53,7 @@ withDefaults(defineProps<Props>(), {
 
     &:hover {
       background-color: color.adjust($color-secondary, $lightness: 90%);
+      color: $color-text;
     }
   }
 }

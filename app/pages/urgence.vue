@@ -65,6 +65,13 @@ import EmergencyImageWeekMob from "~/assets/images/emergency/emergencyImageWeekM
 import EmergencyImageSaturdayMob from "~/assets/images/emergency/emergencyImageSaturdayMob.vue";
 import EmergencyImageSundayMob from "~/assets/images/emergency/emergencyImageSundayMob.vue";
 import { useIsMobile } from "@/reactives/isMobile";
+import { useUrgenceSeo } from "~/composables/useUrgenceSeo";
+
+definePageMeta({
+  layout: "default",
+});
+
+useUrgenceSeo();
 
 const isMobile = useIsMobile();
 

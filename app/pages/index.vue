@@ -28,9 +28,13 @@ import Welcome from "~/components/containers/Welcome.vue";
 import FindUs from "~/components/containers/FindUs.vue";
 import Team from "~/components/containers/Team.vue";
 import MedicalInformations from "~/components/containers/MedicalInformations.vue";
+import { useIndexSeo } from "~/composables/useIndexSeo";
+
 definePageMeta({
   layout: "home",
 });
+
+useIndexSeo();
 </script>
 
 <style lang="scss" scoped>

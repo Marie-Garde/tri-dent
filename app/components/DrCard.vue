@@ -1,5 +1,11 @@
 <template>
-  <div class="card" :class="{ 'card--doctor': status !== 'Assistante' }">
+  <div
+    class="card"
+    :class="{
+      'card--doctor': status !== 'Assistante',
+      'card--expandable': expandable,
+    }"
+  >
     <div class="card__image-container">
       <img :src="image" :alt="name" class="card__image" />
     </div>
@@ -24,8 +30,11 @@ withDefaults(
     name: string;
     status: string;
     presentation?: string;
+    expandable?: boolean;
   }>(),
-  {},
+  {
+    expandable: false,
+  },
 );
 import logo from "~/assets/images/logo trident.svg";
 </script>
@@ -42,6 +51,12 @@ import logo from "~/assets/images/logo trident.svg";
   background-color: $color-white;
   padding-bottom: 82px;
   box-shadow: 0 5px 5px $color-grey;
+
+  &--expandable {
+    flex: 1 1 200px; // ou la valeur de base que tu as déjà
+    max-width: 296px;
+    min-width: 250px;
+  }
 
   &--doctor {
     border-color: $color-green;

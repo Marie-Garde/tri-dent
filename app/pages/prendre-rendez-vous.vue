@@ -57,8 +57,8 @@
                 </template>
 
                 <template v-else-if="contact.type === 'doctolib'">
-                  <img alt="Doctolib" />
-                  Doctolib
+                  <img :src="doctolibIcon" alt="Icône Doctolib" />
+                  <p>Doctolib</p>
                 </template>
               </Button>
             </div>
@@ -75,6 +75,13 @@ import Divider from "~/components/Divider.vue";
 import Button from "~/components/Button.vue";
 import DoctorDropdown from "~/components/DoctorDropdown.vue";
 import { doctors } from "~/data/dentists";
+import { usePrendreRendezVousSeo } from "~/composables/usePrendreRendezVousSeo";
+
+definePageMeta({
+  layout: "default",
+});
+
+usePrendreRendezVousSeo();
 
 const selectedDoctorName = ref("");
 const selectedDoctor = ref(null);
@@ -212,6 +219,10 @@ watch(selectedDoctorName, (newName) => {
         img {
           width: 24px;
           height: 24px;
+        }
+
+        p {
+          margin: 0 0 0 $spacing-sm;
         }
 
         &:hover {

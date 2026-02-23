@@ -81,7 +81,7 @@ async function submitForm() {
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID,
       templateParams,
-      EMAILJS_PUBLIC_KEY
+      EMAILJS_PUBLIC_KEY,
     );
 
     console.log("Email envoyé avec succès:", response);
@@ -180,9 +180,7 @@ async function submitForm() {
           <span>
             J'accepte que mes données soient collectées et traitées pour
             répondre à ma demande.
-            <a href="/politique-confidentialite" target="_blank"
-              >En savoir plus</a
-            >
+            <a href="/mentions-legales" target="_blank">En savoir plus</a>
             *
           </span>
         </label>

@@ -102,6 +102,13 @@ import ArticlesSearch from "~/components/ArticlesSearch.vue";
 import Pagination from "~/components/Pagination.vue";
 import { useArticlesStore } from "~/stores/articles";
 import { urlFor } from "~/lib/sanity";
+import { useInformationsMedicalesIndexSeo } from "~/composables/useInformationsMedicalesIndexSeo";
+
+definePageMeta({
+  layout: "default",
+});
+
+useInformationsMedicalesIndexSeo();
 
 const articlesStore = useArticlesStore();
 

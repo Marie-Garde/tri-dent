@@ -34,5 +34,10 @@ export default defineNuxtConfig({
       emailjsPublicKey: process.env.NUXT_PUBLIC_EMAILJS_PUBLIC_KEY,
     },
   },
-  modules: ["@nuxt/icon", "@nuxt/fonts", "@pinia/nuxt"],
+  modules: ["@nuxt/icon", "@nuxt/fonts", "@pinia/nuxt", "@nuxtjs/sitemap"],
+
+  site: {
+    url: "https://marie-garde.github.io/tri-dent/", // TODO: Update with your actual domain
+    // Other sitemap options can be added here if needed
+  },
 });

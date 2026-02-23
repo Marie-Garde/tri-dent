@@ -51,6 +51,11 @@ import PageBanner from "~/components/Banner.vue";
 import PortableTextRenderer from "~/components/PortableTextRenderer.vue";
 import bannerImage from "~/assets/images/informations-medicales/banner-article.png";
 import { useArticlesStore } from "~/stores/articles";
+import { useArticleSeo } from "~/composables/useArticleSeo";
+
+definePageMeta({
+  layout: "default",
+});
 
 const route = useRoute();
 const articlesStore = useArticlesStore();
@@ -60,13 +65,16 @@ await articlesStore.fetchArticles();
 
 // Récupérer l'article par son slug
 const article = computed(() =>
-  articlesStore.articleBySlug(route.params.slug as string)
+  articlesStore.articleBySlug(route.params.slug as string),
 );
 
 // Si l'article n'existe pas, rediriger vers la liste
 if (!article.value) {
   navigateTo("/informations-medicales");
 }
+
+// Gérer le SEO avec le composable
+useArticleSeo(article);
 
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString("fr-FR", {
@@ -145,7 +153,7 @@ function formatDate(dateString: string) {
       display: inline-block;
       padding: $spacing-sm $spacing-md;
       background-color: $color-bg-blue;
-      color: $color-white;
+      color: $color-text;
       text-decoration: none;
       border-radius: $border-radius;
       font-weight: 500;

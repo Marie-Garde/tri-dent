@@ -92,6 +92,13 @@ import AttendanceImage from "@/assets/images/approche/icons/attendance.svg";
 import PersonalizationImage from "@/assets/images/approche/icons/personalization.svg";
 import CalendarImage from "@/assets/images/approche/icons/calendar.svg";
 import NetworkImage from "@/assets/images/approche/icons/network.svg";
+import { useNotreApprocheSeo } from "~/composables/useNotreApprocheSeo";
+
+definePageMeta({
+  layout: "default",
+});
+
+useNotreApprocheSeo();
 
 const isMobile = useIsMobile();
 
