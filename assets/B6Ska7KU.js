@@ -1,1 +1,0 @@
-import{g as o,B as s,C as r,h as i}from"./Cbv11sA1.js";const a=i(!1);function u(){let e;const n=t=>{a.value=t.matches};return o(()=>{e=window.matchMedia("(max-width: 768px)"),n(e),e.addEventListener("change",n)}),s(()=>{e?.removeEventListener("change",n)}),r(a)}export{u};

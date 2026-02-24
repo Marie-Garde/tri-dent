@@ -1,0 +1,1 @@
+import{g as o,O as s,P as r,h as i}from"./mGaVOIPS.js";const a=i(!1);function u(){let e;const n=t=>{a.value=t.matches};return o(()=>{e=window.matchMedia("(max-width: 768px)"),n(e),e.addEventListener("change",n)}),s(()=>{e?.removeEventListener("change",n)}),r(a)}export{u};
