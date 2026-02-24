@@ -149,7 +149,7 @@ onMounted(() => {
     {
       threshold: 0.15,
       rootMargin: "0px 0px -50px 0px",
-    }
+    },
   );
 
   [valeursSection.value, technosSection.value].forEach((section) => {
@@ -166,7 +166,8 @@ onMounted(() => {
   &__banner {
     padding: 0 $spacing-xl;
     height: 580px;
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
       url("~/assets/images/approche/banner.png");
     background-size: cover;
     background-position: center;
@@ -294,16 +295,16 @@ onMounted(() => {
 @media (max-width: 768px) {
   .approche {
     &__banner {
-      padding: 0 $spacing-md;
-      height: 70vh;
+      height: 60vh;
+      margin-top: 130px;
+      padding: 0;
 
       &__text {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-top: 90px;
         gap: $spacing-md;
-        width: 100%;
+        width: 90%;
 
         &__title {
           flex: 1;
@@ -362,7 +363,7 @@ onMounted(() => {
     }
 
     &__technos {
-      padding: $spacing-lg $spacing-md;
+      padding: $spacing-lg 0;
 
       h2 {
         font-size: 1.5rem;

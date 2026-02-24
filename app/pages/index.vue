@@ -15,7 +15,7 @@
     </div>
     <!-- </Layout> -->
     <div class="full-width-image">
-      <img :src="indoor" alt="Indoor Image" />
+      <img :src="indoor" alt="Indoor Image" loading="lazy" decoding="async" />
     </div>
     <MedicalInformations />
   </div>
@@ -58,6 +58,13 @@ useIndexSeo();
     align-items: flex-end;
     position: relative;
 
+    @media (max-width: 767px) {
+      height: 200px;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
     .logo {
       position: absolute;
       bottom: 0;
@@ -70,9 +77,17 @@ useIndexSeo();
       clip-path: polygon(0 10%, 0% 100%, 100% 100%);
       animation: logoSlideIn 1s ease-out;
 
+      @media (max-width: 767px) {
+        clip-path: polygon(0 50%, 0% 100%, 50% 100%);
+      }
+
       img {
         width: 60%;
         animation: logoFadeIn 1s ease-out 0.3s backwards;
+
+        @media (max-width: 767px) {
+          width: 30%;
+        }
       }
     }
 
@@ -82,6 +97,14 @@ useIndexSeo();
       padding: $spacing-lg;
       background: linear-gradient(to left, #ffffff90 85%, transparent);
       animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards;
+
+      @media (max-width: 767px) {
+        font-size: 4.5rem;
+        line-height: 1.3;
+        padding: $spacing-sm $spacing-md;
+        padding-left: 160px;
+        background: linear-gradient(to left, #ffffff90 40%, transparent);
+      }
     }
   }
 }

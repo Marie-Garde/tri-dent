@@ -3,7 +3,7 @@
     <SideTextImage rtl :img="cabinet" imgAlt="Cabinet Tri-Dent">
       <template #content>
         <h2>Nous trouver ?</h2>
-        <Divider />
+        <Divider class="divider" />
         <p class="find-us__text">
           <span class="find-us__info">
             <Icon name="mdi:map-marker" size="24" />
@@ -38,6 +38,22 @@ import Divider from "~/components/Divider.vue";
 
 .find-us {
   background-color: $color-bg-blue;
+  width: 100%;
+
+  h2 {
+    @media (max-width: 767px) {
+      text-align: center;
+      font-size: 1.6rem;
+      line-height: 1.3;
+    }
+  }
+
+  .divider {
+    margin: 0;
+    @media (max-width: 767px) {
+      margin: 0 auto;
+    }
+  }
 
   &__text {
     padding-top: $spacing-md;

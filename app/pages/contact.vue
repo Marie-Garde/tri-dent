@@ -246,7 +246,6 @@ onMounted(() => {
         font-size: 36px;
         font-weight: 700;
         margin: 0;
-        color: $color-primary;
       }
     }
   }
@@ -380,20 +379,11 @@ onMounted(() => {
 @media (max-width: 768px) {
   .contact {
     &__banner {
-      height: 60vh;
+      height: 30vh;
+      margin-top: 130px;
 
-      &__image {
-        top: 40%;
-        width: 90%;
-        height: 70%;
-      }
-
-      &__title {
-        padding: 0 $spacing-md $spacing-md $spacing-md;
-
-        h1 {
-          font-size: 1.5rem;
-        }
+      &__content {
+        margin: auto 0;
       }
     }
 
@@ -402,11 +392,7 @@ onMounted(() => {
       padding: 0 $spacing-md;
 
       &__title {
-        padding-top: 40px;
-
-        h2 {
-          font-size: 1.3rem;
-        }
+        padding-top: 0;
       }
 
       &__description {
@@ -456,94 +442,22 @@ onMounted(() => {
 
       &__accordion {
         margin: 20px auto;
-        padding: 0 $spacing-sm;
+        padding: 0;
 
         h2 {
-          font-size: 1.3rem;
           text-align: center;
-        }
-
-        h3 {
-          font-size: 1rem;
         }
       }
     }
 
     &__form {
-      padding: 0 $spacing-md;
+      padding: $spacing-lg $spacing-md;
       width: 90%;
       margin: 0 auto;
 
       h2 {
         font-size: 1.3rem;
         text-align: center;
-      }
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .contact {
-    &__banner {
-      height: 50vh;
-
-      &__image {
-        width: 95%;
-        height: 65%;
-      }
-
-      &__title {
-        padding: 0 $spacing-sm $spacing-sm $spacing-sm;
-
-        h1 {
-          font-size: 1.2rem;
-        }
-      }
-    }
-
-    &__find-us {
-      margin: 15px $spacing-sm;
-
-      &__title {
-        padding-top: 30px;
-
-        h2 {
-          font-size: 1.1rem;
-        }
-      }
-
-      &__text {
-        gap: $spacing-md;
-      }
-
-      &__map {
-        iframe {
-          height: 200px;
-        }
-      }
-
-      &__info {
-        font-size: 0.85rem;
-      }
-    }
-
-    &__faq {
-      padding: 15px $spacing-sm;
-
-      &__accordion {
-        margin: 15px auto;
-
-        h2 {
-          font-size: 1.1rem;
-        }
-      }
-    }
-
-    &__form {
-      padding: 0 $spacing-sm;
-
-      h2 {
-        font-size: 1.1rem;
       }
     }
   }

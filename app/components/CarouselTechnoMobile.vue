@@ -6,7 +6,7 @@
         @click="previousSlide"
         :disabled="currentIndex === 0"
       >
-        <Icon name="mdi:chevron-left" size="32" />
+        <Icon name="mdi:chevron-left" size="24" />
       </button>
 
       <div class="carousel-wrapper">
@@ -39,7 +39,7 @@
         @click="nextSlide"
         :disabled="currentIndex === items.length - 1"
       >
-        <Icon name="mdi:chevron-right" size="32" />
+        <Icon name="mdi:chevron-right" size="24" />
       </button>
     </div>
 
@@ -175,7 +175,6 @@ const handleSwipe = () => {
   display: flex;
   align-items: center;
   gap: $spacing-sm;
-  padding: 0 $spacing-sm;
 }
 
 .carousel-wrapper {
@@ -194,10 +193,10 @@ const handleSwipe = () => {
 }
 
 .slide-card {
-  background: $color-white;
+  background: $color-bg-blue;
   border-radius: $border-radius;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   height: 80vh;
@@ -257,11 +256,11 @@ const handleSwipe = () => {
 }
 
 .nav-button {
-  background: $color-white;
-  border: 2px solid $color-green;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -271,8 +270,8 @@ const handleSwipe = () => {
   color: $color-green;
 
   &:hover:not(:disabled) {
-    background: $color-green;
-    color: $color-white;
+    background: transparent;
+    color: $color-primary;
     transform: scale(1.1);
   }
 

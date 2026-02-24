@@ -184,7 +184,8 @@ useHead({
 @media (max-width: 768px) {
   .legal-notice {
     &__banner {
-      height: 250px;
+      height: 30vh;
+      margin-top: 130px;
     }
     &__content {
       margin: $spacing-lg auto;

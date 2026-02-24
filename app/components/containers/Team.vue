@@ -4,7 +4,6 @@
       <h2>Une équipe complète pour vous aider</h2>
       <Divider />
     </div>
-    <!-- Section Associates -->
     <div v-if="associates.length" class="team__section">
       <div class="team__grid" ref="associatesGrid">
         <DrCard
@@ -21,7 +20,6 @@
       </div>
     </div>
 
-    <!-- Section Docteurs -->
     <div v-if="doctors.length" class="team__section">
       <div class="team__grid" ref="doctorsGrid">
         <DrCard
@@ -38,7 +36,6 @@
       </div>
     </div>
 
-    <!-- Section Équipe -->
     <div v-if="assistants.length" class="team__section">
       <div class="team__grid" ref="assistantsGrid">
         <DrCard
@@ -134,25 +131,23 @@ const assistants = computed(() =>
   teamMembers.filter((member) => member.status === "Assistante"),
 );
 
-// Refs pour les grilles
 const associatesGrid = ref(null);
 const doctorsGrid = ref(null);
 const assistantsGrid = ref(null);
 
-// Intersection Observer au montage
 onMounted(() => {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target); // Arrête d'observer une fois visible
+          observer.unobserve(entry.target);
         }
       });
     },
     {
-      threshold: 0.1, // Se déclenche quand 10% de l'élément est visible
-      rootMargin: "0px 0px -50px 0px", // Déclenche un peu avant que l'élément soit complètement visible
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
     },
   );
 
@@ -173,6 +168,9 @@ onMounted(() => {
     margin-bottom: $spacing-xl;
     display: flex;
     justify-content: center;
+    @media (max-width: 767px) {
+      margin-bottom: $spacing-lg;
+    }
   }
 
   &__title {
@@ -198,9 +196,8 @@ onMounted(() => {
   &__card {
     opacity: 0;
     transform: translateY(20px);
-    transition: none; // Désactive la transition par défaut
+    transition: none;
 
-    // L'animation ne se déclenche que quand la grille devient visible
     .is-visible & {
       animation: cardFadeIn 0.6s ease-out forwards;
       animation-delay: calc(var(--card-index) * 0.1s);

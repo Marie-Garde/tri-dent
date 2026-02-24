@@ -82,8 +82,10 @@ import { useRoute } from "vue-router";
 import logoLight from "~/assets/images/logo-trident-light.svg";
 import logoDark from "~/assets/images/logo trident.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
+import { useIsMobile } from "@/reactives/isMobile";
 
 const route = useRoute();
+const isMobile = useIsMobile();
 const isOpen = ref(false);
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
@@ -111,6 +113,9 @@ const isOnRdvPage = computed(() => {
 
 const logo = computed(() => {
   const darkLogoRoutes = ["/contact", "/prendre-rendez-vous"];
+
+  if (isMobile.value) return logoDark;
+
   return darkLogoRoutes.includes(route.path) || isScrolled.value
     ? logoDark
     : logoLight;
@@ -133,6 +138,12 @@ const logo = computed(() => {
     background-color 0.25s ease,
     color 0.25s ease,
     box-shadow 0.2s ease;
+
+  @media (max-width: 900px) {
+    color: $color-text;
+    background-color: $color-white;
+    color: $color-text;
+  }
 
   &.navbar--scrolled {
     color: $color-text;
@@ -249,6 +260,7 @@ const logo = computed(() => {
         max-height: 500px;
         opacity: 1;
         pointer-events: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
     }
   }

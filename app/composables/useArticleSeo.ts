@@ -1,5 +1,5 @@
-import { ComputedRef } from "vue";
-import { Article } from "~/types/article";
+import type { ComputedRef } from "vue";
+import type { Article } from "~/types/article";
 
 // Fonction pour générer un extrait du contenu
 function getExcerpt(contenu: any[]): string {
@@ -25,7 +25,7 @@ function getExcerpt(contenu: any[]): string {
 }
 
 export const useArticleSeo = (
-  article: ComputedRef<Article | null | undefined>
+  article: ComputedRef<Article | null | undefined>,
 ) => {
   useHead({
     title: () =>

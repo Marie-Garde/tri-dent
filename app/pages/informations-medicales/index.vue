@@ -135,7 +135,7 @@ const filteredArticles = computed(() => {
   // Filtrer par thématique
   if (selectedThematique.value) {
     articles = articles.filter((article) =>
-      article.thematique?.some((t) => t._id === selectedThematique.value)
+      article.thematique?.some((t) => t._id === selectedThematique.value),
     );
   }
 
@@ -148,7 +148,7 @@ const filteredArticles = computed(() => {
 
       // Recherche dans les tags
       const tagMatch = article.tags?.some((tag) =>
-        tag.titre.toLowerCase().includes(query)
+        tag.titre.toLowerCase().includes(query),
       );
 
       return titleMatch || tagMatch;
@@ -160,12 +160,17 @@ const filteredArticles = computed(() => {
 
 // Pagination
 const totalPages = computed(() =>
-  Math.ceil(filteredArticles.value.length / articlesPerPage)
+  Math.ceil(filteredArticles.value.length / articlesPerPage),
 );
 
 const paginatedArticles = computed(() => {
   const start = (currentPage.value - 1) * articlesPerPage;
   const end = start + articlesPerPage;
+  const result = filteredArticles.value.slice(start, end);
+  console.log(
+    "articles:",
+    result.map((a) => a.slug),
+  );
   return filteredArticles.value.slice(start, end);
 });
 
@@ -212,7 +217,8 @@ function getExcerpt(contenu: any[]): string {
   &__banner {
     width: 100%;
     height: 60vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url("~/assets/images/informations-medicales/banner.png");
     background-size: cover;
     background-position: center;
@@ -326,7 +332,9 @@ function getExcerpt(contenu: any[]): string {
       border: 1px solid $color-grey-light;
       border-radius: $border-radius;
       overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s;
       display: flex;
 
       &:hover {
@@ -409,10 +417,11 @@ function getExcerpt(contenu: any[]): string {
 @media (max-width: 768px) {
   .info {
     &__banner {
-      height: 40vh;
+      height: 30vh;
+      margin-top: 130px;
 
-      &__content h1 {
-        font-size: 24px;
+      &__content {
+        margin: auto 0;
       }
     }
 

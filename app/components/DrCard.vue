@@ -7,7 +7,13 @@
     }"
   >
     <div class="card__image-container">
-      <img :src="image" :alt="name" class="card__image" />
+      <img
+        :src="image"
+        :alt="name"
+        class="card__image"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
     <div
       class="card__name-container"

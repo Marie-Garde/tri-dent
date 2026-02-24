@@ -4,7 +4,7 @@
       <template #content>
         <div class="welcome__content">
           <h2>Bienvenue au cabinet dentaire Tri-Dent Cornebarrieu</h2>
-          <Divider />
+          <Divider class="divider" />
           <p class="welcome__text">
             Toute l'équipe du cabinet Tri-dent est heureuse de vous accueillir
             dans notre nouveau cabinet situé au 3 route d'Aussonne à
@@ -55,7 +55,14 @@ onMounted(() => {
 .welcome {
   margin-top: $spacing-md;
 
+  .divider {
+    margin: 0;
+  }
+
   &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     opacity: 0;
     transform: translateY(15px);
 
@@ -70,6 +77,33 @@ onMounted(() => {
 
   &__button {
     margin-top: 2.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .welcome {
+    margin-top: $spacing-lg;
+
+    &__content {
+      align-items: center;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      line-height: 1.3;
+    }
+
+    &__text {
+      padding-top: $spacing-md;
+      font-size: 1rem;
+    }
+
+    &__button {
+      width: 90%;
+      display: inline-flex;
+      justify-content: center;
+    }
   }
 }
 

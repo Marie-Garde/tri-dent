@@ -120,7 +120,8 @@ const useEmergencyImageType = () => {
   &__banner {
     width: 100%;
     height: 60vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url("~/assets/images/urgence/banner.png");
     background-size: cover;
     background-position: center;
@@ -174,6 +175,14 @@ const useEmergencyImageType = () => {
 // Media queries pour mobile
 @media (max-width: 768px) {
   .urgence {
+    &__banner {
+      height: 30vh;
+      margin-top: 130px;
+
+      &__content {
+        margin: auto 0;
+      }
+    }
     &__container {
       width: 90%;
       padding: $spacing-md;

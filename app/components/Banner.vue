@@ -18,7 +18,7 @@ const props = withDefaults(
   }>(),
   {
     light: false,
-  }
+  },
 );
 
 const bannerStyle = computed(() => ({
@@ -57,8 +57,14 @@ const bannerStyle = computed(() => ({
 }
 
 @media (max-width: 768px) {
-  .page-banner__content h1 {
-    font-size: 24px;
+  .page-banner {
+    height: 30vh;
+    margin-top: 130px;
+
+    &__content {
+      margin: auto 0;
+      width: 90%;
+    }
   }
 }
 </style>

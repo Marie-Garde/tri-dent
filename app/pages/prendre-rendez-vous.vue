@@ -11,6 +11,7 @@
       <div class="rdv__content">
         <div class="rdv__content__left">
           <h2>Nouveau patient ?</h2>
+          <Divider class="divider" />
           <p>Bienvenue au cabinet !</p>
           <p>Pour votre première visite :</p>
           <div class="buttons">
@@ -25,6 +26,7 @@
         </div>
         <div class="rdv__content__right">
           <h2>Déjà patient ?</h2>
+          <Divider class="divider" />
           <p>Renseignez votre praticien :</p>
           <DoctorDropdown
             v-model="selectedDoctorName"
@@ -119,7 +121,6 @@ watch(selectedDoctorName, (newName) => {
         font-size: 36px;
         font-weight: 700;
         margin: 0;
-        color: $color-primary;
       }
     }
   }
@@ -133,6 +134,10 @@ watch(selectedDoctorName, (newName) => {
   &__content {
     display: flex;
     gap: $spacing-xl;
+
+    .divider {
+      margin: 0;
+    }
 
     &__left,
     &__right {
@@ -148,7 +153,6 @@ watch(selectedDoctorName, (newName) => {
       h2 {
         font-size: 24px;
         font-weight: 700;
-        margin-bottom: $spacing-md;
       }
 
       p {
@@ -236,8 +240,13 @@ watch(selectedDoctorName, (newName) => {
 
 @media (max-width: 768px) {
   .rdv {
-    &__banner__content h1 {
-      font-size: 24px;
+    &__banner {
+      height: 30vh;
+      margin-top: 130px;
+
+      &__content {
+        margin: auto 0;
+      }
     }
 
     &__container {
@@ -249,9 +258,40 @@ watch(selectedDoctorName, (newName) => {
       gap: $spacing-lg;
     }
 
-    &__content__left .buttons {
-      flex-direction: column;
-      gap: $spacing-sm;
+    &__content__left {
+      text-align: center;
+      h2 {
+        margin-top: 0;
+      }
+      .divider {
+        margin: 0 auto;
+      }
+      p {
+        margin-bottom: 0;
+      }
+      .buttons {
+        margin-top: 16px;
+        flex-direction: column;
+        gap: $spacing-sm;
+      }
+    }
+
+    &__content__right {
+      text-align: center;
+      h2 {
+        margin-top: 0;
+      }
+      .divider {
+        margin: 0 auto 16px auto;
+      }
+      p {
+        margin: 0;
+      }
+      .buttons {
+        margin-top: 16px;
+        flex-direction: column;
+        gap: $spacing-sm;
+      }
     }
 
     .contact-buttons > div {
