@@ -151,6 +151,10 @@ useIndexSeo();
     width: 100%;
     height: auto;
     display: block;
+    @media (max-width: 767px) {
+      height: 20vh;
+      width: auto;
+    }
   }
 }
 </style>

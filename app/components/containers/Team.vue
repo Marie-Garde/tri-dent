@@ -96,28 +96,28 @@ const teamMembers = [
     presentation: "Omnipratique",
   },
   {
-    name: "Céline CHAUVERON",
+    name: "Céline",
     status: "Assistante",
     img: avatarImg,
-    presentation: "Assistante dentaire",
+    presentation: "Assistante dentaire qualifiée",
   },
   {
-    name: "Maylis GOURBAL",
+    name: "Maylis",
     status: "Assistante",
     img: avatarImg,
-    presentation: "Assistante dentaire",
+    presentation: "Assistante dentaire qualifiée",
   },
   {
-    name: "Séverine PUPILLI",
+    name: "Séverine",
     status: "Assistante",
     img: avatarImg,
-    presentation: "Assistante dentaire",
+    presentation: "Assistante dentaire qualifiée",
   },
   {
-    name: "Julie SETSOUA",
+    name: "Julie",
     status: "Assistante",
     img: avatarImg,
-    presentation: "Assistante dentaire",
+    presentation: "Assistante dentaire qualifiée",
   },
 ];
 

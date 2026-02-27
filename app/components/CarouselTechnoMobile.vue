@@ -68,6 +68,7 @@ import MicroscopeImage from "@/assets/images/approche/techno/microscope.jpg";
 import SmillersImage from "@/assets/images/approche/techno/smillers.jpg";
 import TriosImage from "@/assets/images/approche/techno/Trios.png";
 import radio from "@/assets/images/approche/techno/radio.png";
+import solarPannel from "@/assets/images/approche/techno/solarPannel.jpg";
 
 const currentIndex = ref(0);
 
@@ -85,7 +86,7 @@ const items = ref([
       "La Caméra intra-orale numérique Trios 6  est le nouveau scanner intra-oral de la société danoise 3Shape. La caméra d'empreinte numérique transforme la façon dont sont créées les empreintes dentaires. Son utilisation réduit les désagréments pour les patients et améliore la précision des résultats. Cet outil remplace les empreintes traditionnelles à base de pâte, souvent inconfortables. Ainsi en combinant des innovations matérielles et logicielles, la caméra numérique redéfinit les standards de la dentisterie numérique. Elle offre une restitution exceptionnelle des détails, aussi bien pour les praticiens que pour les laboratoires. Numérisées, les empreintes sont plus fiables, les ajustements des prothèses plus précis et la communication avec le patient et le prothésiste est facilitée.",
   },
   {
-    image: "https://picsum.photos/200/200?random=3",
+    image: solarPannel,
     title: "Energie solaire",
     description:
       "Peu de temps après l’ouverture du cabinet, de nombreux panneaux photovoltaïques  ont été installés sur le toit plat du cabinet. Dans ce projet, l’accent a été mis sur l’efficacité et l’optimisation de l’espace afin d’allier performance énergétique et réduction de l’empreinte carbone. Ce système permet de produire une grande quantité d’électricité verte, tout en s’intégrant parfaitement dans l’environnement du cabinet. Ce projet montre que l’énergie solaire peut aisément être intégrée dans des lieux professionnels tels que les cabinets dentaires qui fonctionnent la journée. En choisissant l’énergie solaire, nous réduisons notre empreinte carbone et tentons de produire de l’électricité locale.",

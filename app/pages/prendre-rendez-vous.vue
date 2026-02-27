@@ -78,6 +78,7 @@ import Button from "~/components/Button.vue";
 import DoctorDropdown from "~/components/DoctorDropdown.vue";
 import { doctors } from "~/data/dentists";
 import { usePrendreRendezVousSeo } from "~/composables/usePrendreRendezVousSeo";
+import doctolibIcon from "~/assets/images/appointment/doctolib-icon.png";
 
 definePageMeta({
   layout: "default",

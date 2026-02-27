@@ -37,12 +37,14 @@
           </span>
           <span class="footer__container__useful-links__info">
             <NuxtLink to="https://dentistes31.com/" target="_blank"
-              >Conseil de l'ordre des dentistes</NuxtLink
+              >Conseil de l'ordre des chirurgiens dentistes</NuxtLink
             >
           </span>
           <span class="footer__container__useful-links__info">
-            <NuxtLink to="https://dentistes31.com/" target="_blank"
-              >Dentiste de garde</NuxtLink
+            <NuxtLink
+              to="https://dentistes31.com/apps/uploads/2025/07/praticien_garde-FINALE.pdf"
+              target="_blank"
+              >Chirurgien dentiste de garde</NuxtLink
             >
           </span>
           <span class="footer__container__useful-links__info">
