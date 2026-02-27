@@ -6,14 +6,18 @@
         alt="Elipse décorative"
         class="side-text-image__elipse"
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
       />
-      <div>
+      <div class="side-text-image__slot">
         <slot name="content"></slot>
       </div>
     </div>
 
     <div class="side-text-image__image">
-      <slot name="image"></slot>
+      <slot name="image">
+        <img :src="img" :alt="imgAlt" loading="lazy" decoding="async" />
+      </slot>
     </div>
   </div>
 </template>
@@ -24,21 +28,31 @@ import elipse from "~/assets/images/SideTextImage/elipse.png";
 withDefaults(
   defineProps<{
     rtl?: boolean;
+    img?: string;
+    imgAlt?: string;
   }>(),
   {
     rtl: false,
-  }
+  },
 );
 </script>
 
 <style lang="scss" scoped>
+@use "@/assets/scss/variables" as *;
+
 .side-text-image {
   display: flex;
-  gap: $spacing-lg;
   align-items: center;
 
   @media (max-width: 767px) {
     flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  &__slot {
+    flex: 1;
+    min-width: 0;
   }
 
   &--rtl {
@@ -49,16 +63,20 @@ withDefaults(
   }
 
   &__elipse {
-    height: 430px;
+    height: 410px;
     margin-right: 3rem;
+    margin-left: 5px;
     @media (max-width: 767px) {
-      margin-right: $spacing-md;
+      display: none;
     }
   }
 
   &__content {
     display: flex;
     flex-direction: row;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
   }
 
   &__image {
@@ -66,11 +84,29 @@ withDefaults(
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    height: 430px;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+
+    img {
+      height: 100%;
+      object-fit: contain;
+      @media (max-width: 767px) {
+        width: 100%;
+        margin: 20px 0;
+      }
+    }
   }
 }
 
 .side-text-image__content,
 .side-text-image__image {
-  flex: 1;
+  flex: 0 0 50%;
+  width: 50%;
+  @media (max-width: 767px) {
+    flex: 0 0 100%; // This is now relative to the 90% parent.
+    width: 100%;
+  }
 }
 </style>

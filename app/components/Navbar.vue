@@ -1,42 +1,57 @@
 <template>
-  <header :class="['navbar', { 'navbar--scrolled': isScrolled }]">
+  <header
+    :class="[
+      'navbar',
+      { 'navbar--scrolled': isScrolled, 'navbar--rdv-page': isOnRdvPage },
+    ]"
+  >
     <nav class="navbar__container">
       <NuxtLink to="/" class="navbar__logo">
         <img :src="logo" alt="Logo Tri-Dent" />
       </NuxtLink>
 
-      <!-- Bouton burger (mobile uniquement) -->
       <button class="navbar__toggle" @click="toggleMenu" aria-label="Menu">
         <span :class="{ open: isOpen }"></span>
         <span :class="{ open: isOpen }"></span>
         <span :class="{ open: isOpen }"></span>
       </button>
 
-      <!-- Menu principal -->
       <ul class="navbar__menu" :class="{ open: isOpen }">
         <li>
-          <NuxtLink @click="toggleMenu()" to="/notre-approche"
+          <NuxtLink
+            @click="toggleMenu()"
+            to="/notre-approche"
+            :class="{ 'rdv-link': isOnRdvPage }"
             >Notre approche</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink @click="toggleMenu()" to="/notre-approche"
+          <NuxtLink
+            @click="toggleMenu()"
+            to="/informations-medicales"
+            :class="{ 'rdv-link': isOnRdvPage }"
             >Informations médicales</NuxtLink
           >
         </li>
 
-        <!-- Logo centré uniquement sur desktop -->
         <NuxtLink to="/" class="navbar__logo--center">
           <img :src="logo" alt="Logo Tri-Dent" />
         </NuxtLink>
 
         <li>
-          <NuxtLink @click="toggleMenu()" to="/contact"
+          <NuxtLink
+            @click="toggleMenu()"
+            to="/contact"
+            :class="{ 'rdv-link': isOnRdvPage }"
             >Contactez-nous</NuxtLink
           >
         </li>
         <li class="navbar__urgent">
-          <NuxtLink @click="toggleMenu()" to="/urgence">
+          <NuxtLink
+            @click="toggleMenu()"
+            to="/urgence"
+            :class="{ 'rdv-link': isOnRdvPage }"
+          >
             <span class="navbar__icon">
               <img :src="notificationImportant" alt="Urgences" />
             </span>
@@ -44,14 +59,17 @@
           </NuxtLink>
         </li>
         <li class="navbar__cta-mobile">
-          <NuxtLink @click="toggleMenu()" to="/notre-approche"
+          <NuxtLink @click="toggleMenu()" to="/prendre-rendez-vous"
             >Prendre rendez-vous</NuxtLink
           >
         </li>
       </ul>
 
-      <!-- CTA desktop -->
-      <NuxtLink to="/notre-approche" class="navbar__cta">
+      <NuxtLink
+        to="/prendre-rendez-vous"
+        class="navbar__cta"
+        :class="{ 'rdv-link': isOnRdvPage }"
+      >
         Prendre rendez-vous
       </NuxtLink>
     </nav>
@@ -59,16 +77,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
-import logo from "~/assets/images/logo trident light.svg";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useRoute } from "vue-router";
+import logoLight from "~/assets/images/logo-trident-light.svg";
+import logoDark from "~/assets/images/logo trident.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
+import { useIsMobile } from "@/reactives/isMobile";
 
+const route = useRoute();
+const isMobile = useIsMobile();
 const isOpen = ref(false);
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
 };
 
-// visible après scroll -> rename en isScrolled
 const isScrolled = ref(false);
 const SCROLL_THRESHOLD = 20;
 
@@ -84,32 +106,50 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("scroll", onScroll);
 });
+
+const isOnRdvPage = computed(() => {
+  return route.path === "/prendre-rendez-vous" || route.path === "/contact";
+});
+
+const logo = computed(() => {
+  const darkLogoRoutes = ["/contact", "/prendre-rendez-vous"];
+
+  if (isMobile.value) return logoDark;
+
+  return darkLogoRoutes.includes(route.path) || isScrolled.value
+    ? logoDark
+    : logoLight;
+});
 </script>
 
 <style lang="scss" scoped>
 @use "@/assets/scss/variables" as *;
 @use "sass:color";
 
-/* Navbar : toujours visible, transition entre état transparent (texte blanc) et scrolled (fond blanc, texte noir) */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
   font-family: "Nunito";
 
-  /* Always visible: transparent background + white text by default */
   background-color: transparent;
   color: $color-white;
-  transition: background-color 0.25s ease, color 0.25s ease,
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
     box-shadow 0.2s ease;
 
-  /* Quand scroll -> background blanc et texte noir */
+  @media (max-width: 900px) {
+    color: $color-text;
+    background-color: $color-white;
+    color: $color-text;
+  }
+
   &.navbar--scrolled {
     color: $color-text;
   }
 
   &__container {
-    /* default: transparent / pas de bordure ni box-shadow */
     border-bottom: none;
     background-color: transparent;
     box-shadow: none;
@@ -128,14 +168,12 @@ onUnmounted(() => {
     }
   }
 
-  /* when scrolled, apply visible styling (white background + subtle shadow + border) */
   &.navbar--scrolled .navbar__container {
     border-bottom: 1px solid color.adjust($color-dark, $lightness: 70%);
     background-color: $color-white;
     box-shadow: 0 2px 4px rgba($color-dark, 0.12);
   }
 
-  /* Logo principal (toujours visible) */
   &__logo {
     img {
       display: none;
@@ -152,7 +190,6 @@ onUnmounted(() => {
     }
   }
 
-  /* Logo centré uniquement sur desktop */
   &__logo--center {
     display: flex;
     align-items: center;
@@ -177,7 +214,6 @@ onUnmounted(() => {
     margin: 0;
     flex: 1;
 
-    /* links inherit navbar color (white by default, black when scrolled) */
     a {
       color: inherit;
       text-decoration: none;
@@ -187,9 +223,23 @@ onUnmounted(() => {
       &:hover {
         color: $color-primary;
       }
+
+      &.router-link-active {
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 20px;
+          height: 2px;
+          background-color: currentColor;
+          transition: width 0.3s ease;
+        }
+      }
     }
 
-    /* Mobile : menu masqué puis déroulant */
     @media (max-width: 900px) {
       position: absolute;
       top: 70px;
@@ -210,6 +260,7 @@ onUnmounted(() => {
         max-height: 500px;
         opacity: 1;
         pointer-events: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
     }
   }
@@ -229,7 +280,6 @@ onUnmounted(() => {
     margin-right: 6px;
   }
 
-  /* CTA reste visuellement distinct (reste en blanc sur son fond foncé) */
   &__cta {
     width: 180px;
     padding: 0.75rem;
@@ -246,6 +296,10 @@ onUnmounted(() => {
 
     &:hover {
       background-color: color.adjust($color-darkblue, $lightness: 5%);
+    }
+
+    &.router-link-active {
+      font-weight: normal;
     }
 
     @media (max-width: 900px) {
@@ -301,6 +355,24 @@ onUnmounted(() => {
 
     @media (max-width: 900px) {
       display: flex;
+    }
+  }
+
+  &.navbar--rdv-page {
+    @media (min-width: 901px) {
+      &:not(.navbar--scrolled) {
+        color: $color-text;
+      }
+      .navbar__menu a.rdv-link {
+        color: $color-text;
+      }
+      .navbar__cta.rdv-link {
+        background-color: $color-green;
+        color: $color-white;
+        &:hover {
+          background-color: $color-green-transparent;
+        }
+      }
     }
   }
 }

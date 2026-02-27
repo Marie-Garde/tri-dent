@@ -20,7 +20,7 @@
           >
         </li>
         <li>
-          <NuxtLink @click="toggleMenu()" to="/notre-approche"
+          <NuxtLink @click="toggleMenu()" to="/informations-medicales"
             >Informations médicales</NuxtLink
           >
         </li>
@@ -36,7 +36,7 @@
           >
         </li>
         <li class="navbar__urgent">
-          <NuxtLink @click="toggleMenu()" to="/notre-approche">
+          <NuxtLink @click="toggleMenu()" to="/urgence">
             <span class="navbar__icon">
               <img :src="notificationImportant" alt="Urgences" />
             </span>
@@ -44,14 +44,14 @@
           </NuxtLink>
         </li>
         <li class="navbar__cta-mobile">
-          <NuxtLink @click="toggleMenu()" to="/notre-approche"
+          <NuxtLink @click="toggleMenu()" to="/prendre-rendez-vous"
             >Prendre rendez-vous</NuxtLink
           >
         </li>
       </ul>
 
       <!-- CTA desktop -->
-      <NuxtLink to="/notre-approche" class="navbar__cta">
+      <NuxtLink to="/prendre-rendez-vous" class="navbar__cta">
         Prendre rendez-vous
       </NuxtLink>
     </nav>
@@ -192,6 +192,10 @@ onUnmounted(() => {
       &:hover {
         color: $color-primary;
       }
+
+      &.router-link-exact-active {
+        font-weight: bold;
+      }
     }
 
     /* Mobile : menu masqué puis déroulant */
@@ -250,6 +254,10 @@ onUnmounted(() => {
 
     &:hover {
       background-color: color.adjust(#144f72, $lightness: 5%);
+    }
+
+    &.router-link-exact-active {
+      font-weight: normal; /* Override bold for active CTA */
     }
 
     @media (max-width: 900px) {

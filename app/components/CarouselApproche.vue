@@ -8,27 +8,46 @@
         :class="getPositionClass(idx)"
         @click="selected = idx"
       >
-        <img :src="item.image" :alt="item.title" />
+        <img :src="item.imageUrl" :alt="item.title" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
+import { sanityClient, urlFor } from "~/lib/sanity";
 
 const selected = ref(0);
+const items = ref([]);
+let carouselInterval = null;
 
-const items = [
-  { title: "Bunker", image: "/images/approche/cabinet1.png" },
-  { title: "Words Remain", image: "/images/approche/cabinet2.png" },
-  { title: "Falling Out", image: "/images/approche/cabinet3.png" },
-  { title: "Extra 1", image: "/images/home/cabinet.png" },
-  { title: "Extra 2", image: "/images/home/home team.png" },
-];
+const nextSlide = () => {
+  if (items.value.length > 0) {
+    selected.value = (selected.value + 1) % items.value.length;
+  }
+};
+
+onMounted(async () => {
+  const query = `*[_type == "carouselImage"] {
+  _id,
+  alt,
+  "imageUrl": image.asset->url
+}`;
+  items.value = await sanityClient.fetch(query);
+  console.log("Sanity data:", items.value);
+
+  carouselInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+});
+
+onUnmounted(() => {
+  if (carouselInterval) {
+    clearInterval(carouselInterval);
+  }
+});
 
 function getPositionClass(idx) {
-  const n = items.length;
+  const n = items.value.length;
 
   if (idx === selected.value) return "is-active";
 
@@ -67,7 +86,9 @@ function getPositionClass(idx) {
       left: 0;
       right: 0;
       margin: auto;
-      transition: transform 0.4s ease, opacity 0.3s ease;
+      transition:
+        transform 0.4s ease,
+        opacity 0.3s ease;
       cursor: pointer;
       opacity: 0;
       z-index: 0;

@@ -1,7 +1,19 @@
 <template>
-  <div class="card" :class="{ 'card--doctor': status !== 'Assistante' }">
+  <div
+    class="card"
+    :class="{
+      'card--doctor': status !== 'Assistante',
+      'card--expandable': expandable,
+    }"
+  >
     <div class="card__image-container">
-      <img :src="image ?? logo" :alt="name" class="card__image" />
+      <img
+        :src="image"
+        :alt="name"
+        class="card__image"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
     <div
       class="card__name-container"
@@ -24,8 +36,11 @@ withDefaults(
     name: string;
     status: string;
     presentation?: string;
+    expandable?: boolean;
   }>(),
-  {}
+  {
+    expandable: false,
+  },
 );
 import logo from "~/assets/images/logo trident.svg";
 </script>
@@ -43,6 +58,12 @@ import logo from "~/assets/images/logo trident.svg";
   padding-bottom: 82px;
   box-shadow: 0 5px 5px $color-grey;
 
+  &--expandable {
+    flex: 1 1 200px; // ou la valeur de base que tu as déjà
+    max-width: 296px;
+    min-width: 250px;
+  }
+
   &--doctor {
     border-color: $color-green;
   }
@@ -50,7 +71,7 @@ import logo from "~/assets/images/logo trident.svg";
   &__image-container {
     aspect-ratio: 1;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
   }
 
   &__image {
@@ -65,7 +86,7 @@ import logo from "~/assets/images/logo trident.svg";
     left: 0;
     width: 100%;
     background-color: $color-yellow-transparent;
-    border-radius: $border-radius - 1;
+    border-radius: 0 0 4px 4px;
     transition: all 0.3s ease-in-out;
 
     &--doctor {
@@ -79,7 +100,7 @@ import logo from "~/assets/images/logo trident.svg";
     justify-content: center;
     align-items: center;
     height: 82px;
-    padding: $spacing-sm $spacing-md;
+    padding: 0 $spacing-md;
     text-align: center;
     font-size: 20px;
   }
@@ -90,7 +111,9 @@ import logo from "~/assets/images/logo trident.svg";
     opacity: 0;
     text-align: center;
     font-size: 14px;
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out,
+    transition:
+      max-height 0.3s ease-in-out,
+      opacity 0.3s ease-in-out,
       padding 0.3s ease-in-out;
     padding: 0 $spacing-md;
   }

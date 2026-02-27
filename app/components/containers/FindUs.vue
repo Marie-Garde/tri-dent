@@ -3,12 +3,18 @@
     <SideTextImage rtl :img="cabinet" imgAlt="Cabinet Tri-Dent">
       <template #content>
         <h2>Nous trouver ?</h2>
-        <Divider />
+        <Divider class="divider" />
         <p class="find-us__text">
-          <span class="find-us__info">
+          <a
+            class="find-us__info find-us__info--address"
+            href="https://maps.app.goo.gl/MecESc1aiz4CRRKd7"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Icon name="mdi:map-marker" size="24" />
             3 Rte d'Aussonne, 31700 Cornebarrieu
-          </span>
+            <Icon name="mdi:open-in-new" size="16" class="external-icon" />
+          </a>
           <span class="find-us__info">
             <Icon name="mdi:email" size="24" />
             secretariat@scmtrident.fr
@@ -24,19 +30,12 @@
           </span>
         </p>
       </template>
-      <template #image>
-        <img
-          src="/images/home/cabinet.png"
-          alt="Cabinet Tri-Dent"
-          class="find-us__image"
-        />
-      </template>
     </SideTextImage>
   </div>
 </template>
 
 <script setup lang="ts">
-import cabinet from "~/assets/images/home/cabinet.png";
+import cabinet from "~/assets/images/home/cabinet.jpg";
 import Divider from "~/components/Divider.vue";
 </script>
 
@@ -45,6 +44,22 @@ import Divider from "~/components/Divider.vue";
 
 .find-us {
   background-color: $color-bg-blue;
+  width: 100%;
+
+  h2 {
+    @media (max-width: 767px) {
+      text-align: center;
+      line-height: 1.3;
+      margin-top: 16px;
+    }
+  }
+
+  .divider {
+    margin: 0;
+    @media (max-width: 767px) {
+      margin: 0 auto;
+    }
+  }
 
   &__text {
     padding-top: $spacing-md;
@@ -59,6 +74,9 @@ import Divider from "~/components/Divider.vue";
     gap: $spacing-sm;
     &--hours {
       align-items: flex-start;
+    }
+    &--address {
+      color: $color-text;
     }
   }
 
