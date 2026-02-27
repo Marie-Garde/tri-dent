@@ -44,6 +44,10 @@ withDefaults(
   display: flex;
   align-items: center;
 
+  @media (max-width: 1024px) {
+    gap: $spacing-md;
+  }
+
   @media (max-width: 767px) {
     flex-direction: column;
     width: 90%;
@@ -66,6 +70,12 @@ withDefaults(
     height: 410px;
     margin-right: 3rem;
     margin-left: 5px;
+
+    @media (max-width: 1024px) {
+      height: 300px;
+      margin-right: $spacing-lg;
+    }
+
     @media (max-width: 767px) {
       display: none;
     }
@@ -85,6 +95,11 @@ withDefaults(
     justify-content: center;
     overflow: hidden;
     height: 430px;
+
+    @media (max-width: 1024px) {
+      height: 320px;
+    }
+
     @media (max-width: 767px) {
       width: 100%;
     }
@@ -92,6 +107,12 @@ withDefaults(
     img {
       height: 100%;
       object-fit: contain;
+
+      @media (max-width: 1024px) {
+        object-fit: cover;
+        border-radius: $border-radius-lg;
+      }
+
       @media (max-width: 767px) {
         width: 100%;
         margin: 20px 0;
@@ -105,7 +126,7 @@ withDefaults(
   flex: 0 0 50%;
   width: 50%;
   @media (max-width: 767px) {
-    flex: 0 0 100%; // This is now relative to the 90% parent.
+    flex: 0 0 100%;
     width: 100%;
   }
 }

@@ -82,10 +82,15 @@ import { useRoute } from "vue-router";
 import logoLight from "~/assets/images/logo-trident-light.svg";
 import logoDark from "~/assets/images/logo trident.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
-import { useIsMobile } from "@/reactives/isMobile";
 
 const route = useRoute();
-const isMobile = useIsMobile();
+
+const isCompact = ref(false);
+let compactQuery: MediaQueryList;
+const updateCompact = (e: MediaQueryList | MediaQueryListEvent) => {
+  isCompact.value = e.matches;
+};
+
 const isOpen = ref(false);
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
@@ -101,10 +106,15 @@ const onScroll = () => {
 onMounted(() => {
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  compactQuery = window.matchMedia("(max-width: 1024px)");
+  updateCompact(compactQuery);
+  compactQuery.addEventListener("change", updateCompact);
 });
 
 onUnmounted(() => {
   window.removeEventListener("scroll", onScroll);
+  compactQuery?.removeEventListener("change", updateCompact);
 });
 
 const isOnRdvPage = computed(() => {
@@ -114,7 +124,7 @@ const isOnRdvPage = computed(() => {
 const logo = computed(() => {
   const darkLogoRoutes = ["/contact", "/prendre-rendez-vous"];
 
-  if (isMobile.value) return logoDark;
+  if (isCompact.value) return logoDark;
 
   return darkLogoRoutes.includes(route.path) || isScrolled.value
     ? logoDark
@@ -139,7 +149,7 @@ const logo = computed(() => {
     color 0.25s ease,
     box-shadow 0.2s ease;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     color: $color-text;
     background-color: $color-white;
     color: $color-text;
@@ -162,7 +172,7 @@ const logo = computed(() => {
     justify-content: space-between;
     position: relative;
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       height: 70px;
       padding: 0 $spacing-lg;
     }
@@ -178,13 +188,13 @@ const logo = computed(() => {
     img {
       display: none;
 
-      @media (max-width: 900px) {
+      @media (max-width: 1024px) {
         display: block;
         height: 80px;
       }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       position: relative;
       z-index: 1100;
     }
@@ -199,7 +209,7 @@ const logo = computed(() => {
       width: auto;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       display: none;
     }
   }
@@ -240,7 +250,7 @@ const logo = computed(() => {
       }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       position: absolute;
       top: 70px;
       left: 0;
@@ -302,14 +312,14 @@ const logo = computed(() => {
       font-weight: normal;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       display: none;
     }
   }
 
   &__cta-mobile {
     display: none;
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       display: block;
       a {
         display: block;
@@ -353,13 +363,13 @@ const logo = computed(() => {
       transform: rotate(-45deg) translate(5px, -10px);
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       display: flex;
     }
   }
 
   &.navbar--rdv-page {
-    @media (min-width: 901px) {
+    @media (min-width: 1025px) {
       &:not(.navbar--scrolled) {
         color: $color-text;
       }

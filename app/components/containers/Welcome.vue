@@ -80,6 +80,23 @@ onMounted(() => {
   }
 }
 
+@media (max-width: 1024px) {
+  .welcome {
+    h2 {
+      font-size: 1.5rem;
+      line-height: 1.3;
+    }
+
+    &__text {
+      font-size: 0.95rem;
+    }
+
+    &__button {
+      margin-top: $spacing-lg;
+    }
+  }
+}
+
 @media (max-width: 767px) {
   .welcome {
     margin-top: $spacing-lg;

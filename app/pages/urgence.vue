@@ -172,6 +172,22 @@ const useEmergencyImageType = () => {
   }
 }
 
+@media (max-width: 1024px) {
+  .urgence {
+    &__container {
+      padding: 0;
+    }
+    &__intro {
+      padding: $spacing-md;
+    }
+
+    :deep(svg) {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
 // Media queries pour mobile
 @media (max-width: 768px) {
   .urgence {
@@ -196,7 +212,6 @@ const useEmergencyImageType = () => {
       font-size: 24px;
     }
 
-    // Pour que les SVG prennent aussi 90% de largeur
     :deep(svg) {
       width: 100%;
       height: auto;

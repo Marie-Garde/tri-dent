@@ -353,7 +353,6 @@ onMounted(() => {
   }
 }
 
-// Animations
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -375,7 +374,42 @@ onMounted(() => {
   }
 }
 
-// Media queries pour mobile
+@media (max-width: 1024px) {
+  .contact {
+    &__find-us {
+      margin: 20px auto;
+      padding: 0 $spacing-lg;
+
+      &__title {
+        padding-top: $spacing-lg;
+      }
+
+      &__map {
+        iframe {
+          width: 350px;
+          height: 280px;
+        }
+      }
+
+      &__text {
+        width: auto;
+      }
+    }
+
+    &__faq {
+      padding: 30px $spacing-lg;
+
+      &__accordion {
+        padding: 0;
+      }
+    }
+
+    &__form {
+      padding: 0;
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .contact {
     &__banner {

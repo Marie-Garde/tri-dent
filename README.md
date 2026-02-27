@@ -75,7 +75,7 @@ bun run preview
 ## Deploy (using Github Pages)
 
 ```bash
-NUXT_APP_BASE_URL=/tri-dent/ npx nuxt build --preset github_pages
+NUXT_APP_BASE_URL=/ npx nuxt build --preset github_pages
 
 npx gh-pages --dotfiles -d .output/public
 ```

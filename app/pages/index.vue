@@ -6,14 +6,11 @@
         <h1 class="stroke">Cabinet dentaire Tri-Dent</h1>
       </div>
     </div>
-
-    <!-- <Layout> -->
     <div class="home__layout">
       <Welcome />
       <FindUs />
       <Team />
     </div>
-    <!-- </Layout> -->
     <div class="full-width-image">
       <img :src="indoor" alt="Indoor Image" loading="lazy" decoding="async" />
     </div>
@@ -58,6 +55,10 @@ useIndexSeo();
     align-items: flex-end;
     position: relative;
 
+    @media (max-width: 1024px) {
+      height: 250px;
+    }
+
     @media (max-width: 767px) {
       height: 200px;
       flex-direction: column;
@@ -77,6 +78,11 @@ useIndexSeo();
       clip-path: polygon(0 10%, 0% 100%, 100% 100%);
       animation: logoSlideIn 1s ease-out;
 
+      @media (max-width: 1024px) {
+        height: 200px;
+        width: 200px;
+      }
+
       @media (max-width: 767px) {
         clip-path: polygon(0 50%, 0% 100%, 50% 100%);
       }
@@ -84,6 +90,10 @@ useIndexSeo();
       img {
         width: 60%;
         animation: logoFadeIn 1s ease-out 0.3s backwards;
+
+        @media (max-width: 1024px) {
+          width: 50%;
+        }
 
         @media (max-width: 767px) {
           width: 30%;
@@ -97,6 +107,11 @@ useIndexSeo();
       padding: $spacing-lg;
       background: linear-gradient(to left, #ffffff90 85%, transparent);
       animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards;
+
+      @media (max-width: 1024px) {
+        font-size: 3.5rem;
+        padding: $spacing-md $spacing-lg;
+      }
 
       @media (max-width: 767px) {
         font-size: 4.5rem;
@@ -143,17 +158,27 @@ useIndexSeo();
 .home__layout {
   max-width: 1280px;
   margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    padding: 0 $spacing-lg;
+  }
 }
 
 .full-width-image {
   width: 100%;
+  overflow: hidden;
   img {
     width: 100%;
     height: auto;
     display: block;
+    @media (max-width: 1024px) {
+      height: 30vh;
+      width: 100%;
+      object-fit: cover;
+    }
+
     @media (max-width: 767px) {
       height: 20vh;
-      width: auto;
     }
   }
 }

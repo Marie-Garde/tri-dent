@@ -86,19 +86,38 @@ onMounted(async () => {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 1024px) {
+      width: 220px;
+      height: 270px;
+    }
+
     img {
       margin-top: $spacing-md;
       height: 120px;
+
+      @media (max-width: 1024px) {
+        height: 100px;
+      }
     }
     h3 {
       margin-top: 1.5rem;
       font-weight: 500;
       font-size: 1.2rem;
+
+      @media (max-width: 1024px) {
+        font-size: 1.05rem;
+        margin-top: $spacing-md;
+      }
     }
     a {
       margin-bottom: $spacing-md;
       text-decoration: underline;
     }
+  }
+
+  @media (max-width: 1024px) {
+    padding: $spacing-xl $spacing-lg;
   }
 
   @media (max-width: 767px) {
