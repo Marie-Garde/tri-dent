@@ -1,116 +1,131 @@
-# Nuxt Minimal Starter
+# Le cabinet dentaire Tri-Dent
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 📌 Présentation du projet
 
-## Setup
+**Cabinet dentaire Tri-Dent** est un site vitrine développé pour un cabinet dentaire situé en France, dans le cadre de la rénovation complète de leurs locaux.
 
-Make sure to install dependencies:
+Le site met en valeur le nouveau cabinet, présente l'équipe de praticiens et d'assistantes, détaille les technologies utilisées et communique sur les valeurs du cabinet pour rassurer les patients. Il intègre également une importante section blog dédiée aux informations médicales : conseils dentaires, explications des pathologies et présentation des pratiques.
 
-```bash
-# npm
-npm install
+**Son objectif principal** : offrir une vitrine professionnelle moderne pour accompagner la réouverture du cabinet rénové, tout en fournissant un outil pratique pour informer et orienter les patients.
 
-# pnpm
-pnpm install
+---
 
-# yarn
-yarn install
+## 🎯 Objectifs du projet
 
-# bun
-bun install
-```
+- **Présenter le cabinet rénové** avec une identité visuelle forte et moderne
+- **Valoriser l'équipe et les technologies** pour instaurer la confiance auprès des patients
+- **Fournir des informations médicales accessibles** via un blog structuré (conseils, pathologies, pratiques)
+- **Optimiser le référencement local (SEO)** pour améliorer la visibilité du cabinet dans un secteur hautement concurrentiel
+- **Faciliter la prise de contact** avec un formulaire et une prise de rendez-vous par praticien
+- **Guider les patients en cas d'urgence** avec des pages dynamiques adaptées (jours ouvrés, week-ends, jours fériés)
 
-## Development Server
+---
 
-Start the development server on `http://localhost:3000`:
+## 🚀 Fonctionnalités principales
 
-```bash
-# npm
-npm run dev
+- **CMS headless Sanity** pour la gestion autonome du blog médical (conseils, articles sur les pathologies, pratiques dentaires)
+- **Carrousel de présentation** sur la page d'accueil (technologie personnalisée et complexe à implémenter)
+- **Pages détaillées** : présentation du cabinet, de l'équipe (dentistes et assistantes), des technologies utilisées, et des valeurs
+- **Blog médical structuré** : articles catégorisés pour faciliter l'accès aux informations pertinentes
+- **Formulaire de contact** avec envoi d'emails
+- **Prise de rendez-vous** intégrée, avec sélection par praticien
+- **Gestion dynamique des urgences** : affichage conditionnel des informations selon le jour (semaine, week-end, jour férié)
+- **Design responsive** optimisé pour mobile, tablette et desktop
+- **Optimisation SEO avancée** :
+  - Balises meta dynamiques
+  - Structure HTML sémantique
+  - Attributs alt sur toutes les images
+  - Fichiers robots.txt et sitemap XML
+  - Ciblage de mots-clés locaux et sectoriels
+  - Recherche approfondie de mots-clés dans un secteur hautement concurrentiel
 
-# pnpm
-pnpm dev
+---
 
-# yarn
-yarn dev
+## 🛠️ Stack technique
 
-# bun
-bun run dev
-```
+- **Frontend** : Nuxt.js, Vue Router
+- **CMS** : Sanity.io (headless CMS)
+- **Styling** : SASS (architecture modulaire)
+- **Qualité de code** : TypeScript, ESLint
+- **Déploiement** : Vercel *(en cours)*
+- **Nom de domaine** : *(à préciser)*
 
-## Production
+---
 
-Build the application for production:
+## 🧩 Architecture & bonnes pratiques
 
-```bash
-# npm
-npm run build
+### Architecture du projet
+- Architecture modulaire par feature
+- Composants globaux réutilisables
+- Gestion de la réactivité via des composables dédiés
+- Variables d'environnement sécurisées via `.env`
 
-# pnpm
-pnpm build
+### Gestion des données & CMS
+- Récupération des contenus depuis Sanity via des requêtes GROQ
+- Schémas Sanity structurés pour le blog médical (conseils, pathologies, pratiques)
+- Mise à jour du contenu sans redéploiement grâce au CMS headless
+- Gestion des états de chargement et rendu conditionnel
 
-# yarn
-yarn build
+### Clean code & conventions
+- Nommage cohérent : camelCase pour les variables/fonctions, PascalCase pour les composants
+- Composants courts et responsables d'une seule fonctionnalité
+- TypeScript pour un code typé et maintenable
+- Linting strict avec ESLint
+- Centralisation des constantes (routes, breakpoints, configurations)
+- Palette de couleurs définie via des variables SASS réutilisables
 
-# bun
-bun run build
-```
+---
 
-Locally preview production build:
+## 🎨 Conception & design
 
-```bash
-# npm
-npm run preview
+- **Maquettes réalisées sur Figma** avec validation client
+- **Définition du branding** : palette de couleurs, typographies, hiérarchie visuelle adaptée au secteur médical
+- **Approche mobile-first** pour garantir une expérience optimale sur tous les supports
+- **Respect des demandes client** tout en proposant une identité visuelle moderne et professionnelle
 
-# pnpm
-pnpm preview
+---
 
-# yarn
-yarn preview
+## ⚠️ Défis techniques rencontrés
 
-# bun
-bun run preview
-```
+- **Développement d'un carrousel complexe** : création d'un composant personnalisé avec animations fluides et navigation intuitive
+- **Gestion dynamique des urgences** : logique conditionnelle pour afficher les bonnes informations selon le contexte temporel (jours ouvrés, week-ends, jours fériés)
+- **Stratégie SEO dans un secteur concurrentiel** : recherche approfondie de mots-clés pertinents pour se démarquer face à une forte concurrence locale dans le secteur dentaire
+- **Intégration et configuration de Sanity** pour le blog médical avec une structure adaptée aux besoins du cabinet
+- **Suivi client** : gestion de la disponibilité limitée des praticiens pour les validations et retours
+- **Création de maquettes sur-mesure** : équilibre entre modernité visuelle et respect des contraintes/demandes du client
 
-## Deploy (using Github Pages)
+---
 
-```bash
-NUXT_APP_BASE_URL=/ npx nuxt build --preset github_pages
+## 🧠 Apprentissages
 
-npx gh-pages --dotfiles -d .output/public
-```
+- **Conception UX/UI orientée client** : adapter les maquettes aux besoins spécifiques d'un cabinet médical
+- **Gestion de projet client** : communication, suivi, gestion des disponibilités et validation des livrables
+- **Développement de composants complexes** : maîtrise de la création d'un carrousel personnalisé en Vue.js
+- **Mise en production d'un CMS headless** : configuration complète de Sanity pour un blog médical
+- **Stratégie SEO en environnement concurrentiel** : recherche et sélection de mots-clés efficaces dans un secteur saturé
+- **Déploiement professionnel** : préparation au déploiement sur Vercel (configuration DNS, certificat SSL, optimisation)
+- **Consolidation des compétences Nuxt.js** : SSR, routing, performance, réactivité
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+---
 
-# Nuxt 4 tips
+## 👤 Rôle dans le projet
 
-## Squelette initial
+- **Conception UX/UI** et réalisation des maquettes Figma
+- **Développement frontend complet** (Nuxt.js, SASS, TypeScript)
+- **Intégration et configuration du CMS Sanity** pour le blog médical
+- **Recherche et optimisation SEO** : analyse de la concurrence et sélection de mots-clés stratégiques
+- **Mise en ligne et configuration du déploiement** (Vercel + DNS) *(en cours)*
+- **Maintenance et support technique**
 
-| Élément            | Rôle                                                |
-| :----------------- | :-------------------------------------------------- |
-| app.vue            | Squelette global de ton site (header, footer, etc.) |
-| \<NuxtPage />      | Emplacement où la page active est rendue            |
-| app/pages/         | Contient les vraies pages de ton site               |
-| NuxtRouteAnnouncer | Accessibilité (peut être gardé)                     |
+---
 
-Résultat attendu :
-• / → affiche pages/index.vue dans le <main> de ton app.vue
-• /about → affiche pages/about.vue au même endroit
-• ton layout global reste visible partout
+## 🔮 Améliorations futures
 
-## Routing
+*Aucune amélioration prévue pour le moment – le site répond aux besoins actuels du cabinet.*
 
-| Élément     | Où le mettre    | Rôle                            |
-| :---------- | :-------------- | :------------------------------ |
-| app.vue     | app/            | Root de l'app                   |
-| pages/      | app/pages/      | Gère le routing automatiquement |
-| layouts/    | app/layouts/    | Layout globaux                  |
-| components/ | app/components/ | Composants réutilisables        |
+---
 
-## Styles
+## 🌍 Démo
 
-L'organisaiton des styles globaux se trouve dans `app/assets/scss/`
-
-- `_variables.scss` : contient les variables globales (couleurs, espacements, tailles, etc.).
-- `_typography.scss` : contient les règles de typographie globales.
-- `global.scss` : importe tous les fichiers partiels et définit le style root du projet.
+🔗 **Lien vers le site** : *(déploiement en cours)*  
+📸 **Screenshots** : *(à venir après déploiement)*
