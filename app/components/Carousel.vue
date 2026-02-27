@@ -50,6 +50,12 @@ const carouselStyle = computed(() => {
   margin-top: 2rem;
 }
 
+@media (max-width: 1024px) {
+  .carousel {
+    width: min(90vw, 700px);
+  }
+}
+
 .carousel[mask] {
   mask-image: linear-gradient(
     to right,

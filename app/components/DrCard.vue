@@ -59,9 +59,15 @@ import logo from "~/assets/images/logo trident.svg";
   box-shadow: 0 5px 5px $color-grey;
 
   &--expandable {
-    flex: 1 1 200px; // ou la valeur de base que tu as déjà
+    flex: 1 1 200px;
     max-width: 296px;
     min-width: 250px;
+
+    @media (max-width: 1024px) {
+      flex: 1 1 180px;
+      max-width: 220px;
+      min-width: 180px;
+    }
   }
 
   &--doctor {
@@ -103,6 +109,12 @@ import logo from "~/assets/images/logo trident.svg";
     padding: 0 $spacing-md;
     text-align: center;
     font-size: 20px;
+
+    @media (max-width: 1024px) {
+      font-size: 16px;
+      height: 70px;
+      padding: 0 $spacing-sm;
+    }
   }
 
   &__presentation {

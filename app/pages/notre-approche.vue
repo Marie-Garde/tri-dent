@@ -77,7 +77,7 @@
       <Divider />
       <!-- Carousel -->
       <div class="approche__technos-carousel">
-        <CarouselTechnoMobile v-if="isMobile" />
+        <CarouselTechnoMobile v-if="useCompactCarousel" />
         <CarouselTechno v-else />
       </div>
     </div>
@@ -85,7 +85,6 @@
 </template>
 
 <script setup lang="ts">
-import { useIsMobile } from "@/reactives/isMobile";
 import PracticeImage from "@/assets/images/approche/icons/search.svg";
 import InformImage from "@/assets/images/approche/icons/inform.svg";
 import AttendanceImage from "@/assets/images/approche/icons/attendance.svg";
@@ -100,7 +99,20 @@ definePageMeta({
 
 useNotreApprocheSeo();
 
-const isMobile = useIsMobile();
+const useCompactCarousel = ref(false);
+let compactQuery: MediaQueryList;
+
+onMounted(() => {
+  compactQuery = window.matchMedia("(max-width: 1024px)");
+  useCompactCarousel.value = compactQuery.matches;
+  compactQuery.addEventListener("change", (e) => {
+    useCompactCarousel.value = e.matches;
+  });
+});
+
+onUnmounted(() => {
+  compactQuery?.removeEventListener("change", () => {});
+});
 
 const valuesLine1 = [
   {

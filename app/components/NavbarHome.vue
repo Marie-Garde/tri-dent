@@ -135,7 +135,7 @@ onUnmounted(() => {
     justify-content: space-between;
     position: relative;
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       height: 70px;
       padding: 0 $spacing-lg;
     }
@@ -146,13 +146,13 @@ onUnmounted(() => {
     img {
       display: none;
 
-      @media (max-width: 900px) {
+      @media (max-width: 1024px) {
         display: block;
         height: 80px;
       }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       position: relative;
       z-index: 1100;
     }
@@ -168,7 +168,7 @@ onUnmounted(() => {
       width: auto;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       display: none;
     }
   }
@@ -199,7 +199,7 @@ onUnmounted(() => {
     }
 
     /* Mobile : menu masqué puis déroulant */
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       position: absolute;
       top: 70px;
       left: 0;
@@ -260,14 +260,14 @@ onUnmounted(() => {
       font-weight: normal; /* Override bold for active CTA */
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       display: none;
     }
   }
 
   &__cta-mobile {
     display: none;
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       display: block;
       a {
         display: block;
@@ -311,7 +311,7 @@ onUnmounted(() => {
       transform: rotate(-45deg) translate(5px, -10px);
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       display: flex;
     }
   }

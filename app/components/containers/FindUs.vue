@@ -66,6 +66,11 @@ import Divider from "~/components/Divider.vue";
     display: flex;
     flex-direction: column;
     gap: $spacing-md;
+
+    @media (max-width: 1024px) {
+      font-size: 0.95rem;
+      gap: $spacing-sm;
+    }
   }
 
   &__info {

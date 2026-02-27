@@ -191,6 +191,11 @@ onMounted(() => {
     justify-content: center;
     gap: $spacing-lg;
     align-items: start;
+
+    @media (max-width: 1024px) {
+      gap: $spacing-md;
+      padding: 0 $spacing-md;
+    }
   }
 
   &__card {
