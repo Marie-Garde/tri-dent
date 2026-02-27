@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   ssr: true,
 
   app: {
-    baseURL: "/tri-dent/",
+    baseURL: "/",
     buildAssetsDir: "assets",
   },
 
@@ -37,7 +37,6 @@ export default defineNuxtConfig({
   modules: ["@nuxt/icon", "@nuxt/fonts", "@pinia/nuxt", "@nuxtjs/sitemap"],
 
   site: {
-    url: "https://marie-garde.github.io/tri-dent/", // TODO: Update with your actual domain
-    // Other sitemap options can be added here if needed
+    url: "https://www.cabinet-dentaire-tri-dent-cornebarrieu.fr/",
   },
 });
