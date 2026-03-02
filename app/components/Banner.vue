@@ -8,8 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import Divider from "~/components/Divider.vue";
-
 const props = withDefaults(
   defineProps<{
     title: string;

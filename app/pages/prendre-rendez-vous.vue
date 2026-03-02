@@ -1,11 +1,6 @@
 <template>
   <div class="rdv">
-    <div class="rdv__banner">
-      <div class="rdv__banner__content">
-        <h1>Prendre rendez-vous</h1>
-        <Divider />
-      </div>
-    </div>
+    <Banner title="Prendre rendez-vous" image="/images/appointment/banner.png" />
 
     <div class="rdv__container">
       <div class="rdv__content">
@@ -59,7 +54,7 @@
                 </template>
 
                 <template v-else-if="contact.type === 'doctolib'">
-                  <img :src="doctolibIcon" alt="Icône Doctolib" />
+                  <img src="/images/appointment/doctolib-icon.png" alt="Icône Doctolib" />
                   <p>Doctolib</p>
                 </template>
               </Button>
@@ -71,14 +66,8 @@
   </div>
 </template>
 
-<script setup>
-import { ref, watch } from "vue";
-import Divider from "~/components/Divider.vue";
-import Button from "~/components/Button.vue";
-import DoctorDropdown from "~/components/DoctorDropdown.vue";
+<script setup lang="ts">
 import { doctors } from "~/data/dentists";
-import { usePrendreRendezVousSeo } from "~/composables/usePrendreRendezVousSeo";
-import doctolibIcon from "~/assets/images/appointment/doctolib-icon.png";
 
 definePageMeta({
   layout: "default",
@@ -99,32 +88,6 @@ watch(selectedDoctorName, (newName) => {
 
 .rdv {
   background-color: $color-bg-blue;
-
-  &__banner {
-    width: 100%;
-    height: 60vh;
-    background-image: url("~/assets/images/appointment/banner.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &__content {
-      max-width: 800px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: $color-primary;
-
-      h1 {
-        font-size: 36px;
-        font-weight: 700;
-        margin: 0;
-      }
-    }
-  }
 
   &__container {
     max-width: 1280px;
@@ -241,15 +204,6 @@ watch(selectedDoctorName, (newName) => {
 
 @media (max-width: 768px) {
   .rdv {
-    &__banner {
-      height: 30vh;
-      margin-top: 130px;
-
-      &__content {
-        margin: auto 0;
-      }
-    }
-
     &__container {
       padding: $spacing-md;
     }

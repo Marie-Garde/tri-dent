@@ -1,26 +1,6 @@
 <template>
   <div class="approche">
-    <div class="approche__banner">
-      <div class="approche__banner__text">
-        <div class="approche__banner__text__title">
-          <h1>Notre approche</h1>
-          <Divider light />
-        </div>
-        <div class="approche__banner__text__description">
-          <p>
-            Vous accompagner avec attention, clarté et personnalisation à chaque
-            étape de votre parcours de soin est notre mission. Nous vous
-            expliquons clairement la nature des soins, les étapes et la durée
-            pour obtenir votre consentement éclairé, en adaptant notre
-            communication à vos attentes. Dès votre arrivée, nous vous
-            accueillons avec le sourire et veillons à votre confort. Nous
-            personnalisons notre relation en fonction de vos besoins et
-            émotions, et mettons en œuvre des solutions pour apaiser votre
-            stress si nécessaire.
-          </p>
-        </div>
-      </div>
-    </div>
+    <ApprocheBanner />
 
     <div class="approche__valeurs" ref="valeursSection">
       <h2>Les valeurs qui nous guident</h2>
@@ -85,14 +65,6 @@
 </template>
 
 <script setup lang="ts">
-import PracticeImage from "@/assets/images/approche/icons/search.svg";
-import InformImage from "@/assets/images/approche/icons/inform.svg";
-import AttendanceImage from "@/assets/images/approche/icons/attendance.svg";
-import PersonalizationImage from "@/assets/images/approche/icons/personalization.svg";
-import CalendarImage from "@/assets/images/approche/icons/calendar.svg";
-import NetworkImage from "@/assets/images/approche/icons/network.svg";
-import { useNotreApprocheSeo } from "~/composables/useNotreApprocheSeo";
-
 definePageMeta({
   layout: "default",
 });
@@ -116,30 +88,30 @@ onUnmounted(() => {
 
 const valuesLine1 = [
   {
-    imageSrc: PracticeImage,
+    imageSrc: "/images/approche/icons/search.svg",
     text: "Pratiquer dans les règles de l'art avec professionnalisme",
   },
   {
-    imageSrc: InformImage,
+    imageSrc: "/images/approche/icons/inform.svg",
     text: "Informer clairement et obtenir un consentement éclairé",
   },
   {
-    imageSrc: AttendanceImage,
+    imageSrc: "/images/approche/icons/attendance.svg",
     text: "Accueillir avec bienveillance et attention",
   },
 ];
 
 const valuesLine2 = [
   {
-    imageSrc: PersonalizationImage,
+    imageSrc: "/images/approche/icons/personalization.svg",
     text: "Personnaliser la relation de soin",
   },
   {
-    imageSrc: CalendarImage,
+    imageSrc: "/images/approche/icons/calendar.svg",
     text: "Assurer un suivi post-soin attentif",
   },
   {
-    imageSrc: NetworkImage,
+    imageSrc: "/images/approche/icons/network.svg",
     text: "Travailler en réseau avec ses collègues",
   },
 ];
@@ -175,46 +147,9 @@ onMounted(() => {
 @use "sass:color";
 
 .approche {
-  &__banner {
-    padding: 0 $spacing-xl;
-    height: 580px;
-    background:
-      linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
-      url("~/assets/images/approche/banner.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &__text {
-      display: flex;
-      max-width: 1280px;
-      margin: 0 auto;
-
-      &__title {
-        flex: 2;
-
-        h1 {
-          color: $color-white-soft;
-          font-size: 36px;
-        }
-        .divider {
-          margin-left: 0;
-        }
-      }
-
-      &__description {
-        flex: 3;
-        color: $color-white-soft;
-      }
-    }
-  }
-
   &__valeurs {
     padding: $spacing-xl;
-    background-image: url("~/assets/images/approche/valeurs.png");
+    background-image: url("/images/approche/valeurs.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -306,42 +241,6 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .approche {
-    &__banner {
-      height: 60vh;
-      margin-top: 130px;
-      padding: 0;
-
-      &__text {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: $spacing-md;
-        width: 90%;
-
-        &__title {
-          flex: 1;
-
-          h1 {
-            font-size: 28px;
-          }
-
-          .divider {
-            margin-left: auto;
-            margin-right: auto;
-          }
-        }
-
-        &__description {
-          flex: 1;
-          text-align: center;
-
-          p {
-            font-size: 0.95rem;
-          }
-        }
-      }
-    }
-
     &__valeurs {
       padding: $spacing-lg $spacing-md;
 

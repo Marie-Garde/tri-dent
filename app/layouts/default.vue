@@ -10,9 +10,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
-import Navbar from "~/components/Navbar.vue";
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 @use "@/assets/scss/variables" as *;
