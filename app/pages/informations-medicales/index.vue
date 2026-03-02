@@ -26,7 +26,6 @@
       </div>
 
       <div class="info__content">
-        <!-- ✅ Composant de recherche -->
         <ArticlesSearch
           v-model="searchQuery"
           :filtered-count="filteredArticles.length"
@@ -84,7 +83,6 @@
             </article>
           </div>
 
-          <!-- ✅ Pagination -->
           <Pagination
             v-if="totalPages > 1"
             v-model:current-page="currentPage"
@@ -97,12 +95,8 @@
 </template>
 
 <script setup lang="ts">
-import Divider from "~/components/Divider.vue";
-import ArticlesSearch from "~/components/ArticlesSearch.vue";
-import Pagination from "~/components/Pagination.vue";
 import { useArticlesStore } from "~/stores/articles";
 import { urlFor } from "~/lib/sanity";
-import { useInformationsMedicalesIndexSeo } from "~/composables/useInformationsMedicalesIndexSeo";
 
 definePageMeta({
   layout: "default",
@@ -143,10 +137,8 @@ const filteredArticles = computed(() => {
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.toLowerCase().trim();
     articles = articles.filter((article) => {
-      // Recherche dans le titre
       const titleMatch = article.titre.toLowerCase().includes(query);
 
-      // Recherche dans les tags
       const tagMatch = article.tags?.some((tag) =>
         tag.titre.toLowerCase().includes(query),
       );
@@ -179,7 +171,6 @@ watch([searchQuery, selectedThematique], () => {
   currentPage.value = 1;
 });
 
-// Methods
 function selectThematique(thematiqueId: string | null) {
   selectedThematique.value = thematiqueId;
 }
@@ -187,7 +178,6 @@ function selectThematique(thematiqueId: string | null) {
 function getExcerpt(contenu: any[]): string {
   if (!contenu || contenu.length === 0) return "";
 
-  // Extraire tout le texte des blocs
   let fullText = "";
 
   for (const block of contenu) {
@@ -200,7 +190,6 @@ function getExcerpt(contenu: any[]): string {
     }
   }
 
-  // Prendre les 20 premiers mots
   const words = fullText.trim().split(/\s+/);
   if (words.length <= 20) {
     return fullText.trim();
@@ -219,7 +208,7 @@ function getExcerpt(contenu: any[]): string {
     height: 60vh;
     background:
       linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url("~/assets/images/informations-medicales/banner.png");
+      url("/images/informations-medicales/banner.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
