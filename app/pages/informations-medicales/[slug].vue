@@ -1,6 +1,6 @@
 <template>
   <div class="slug">
-    <PageBanner
+    <Banner
       :title="article?.titre ?? 'Informations médicales'"
       :image="bannerImage"
       light
@@ -13,11 +13,9 @@
         </div>
 
         <article v-else class="article">
-          <!-- En-tête -->
           <header class="article__header">
             <p class="article__date">{{ formatDate(article.publishedAt) }}</p>
 
-            <!-- Tags -->
             <div v-if="article.tags?.length" class="article__tags">
               <span
                 v-for="tag in article.tags"
@@ -29,12 +27,10 @@
             </div>
           </header>
 
-          <!-- Contenu flexible -->
           <div v-if="article.contenu" class="article__content">
             <PortableTextRenderer :blocks="article.contenu" />
           </div>
 
-          <!-- Bouton retour -->
           <div class="article__footer">
             <NuxtLink to="/informations-medicales" class="back-button">
               ← Retour aux articles
@@ -47,11 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import PageBanner from "~/components/Banner.vue";
-import PortableTextRenderer from "~/components/PortableTextRenderer.vue";
 import bannerImage from "~/assets/images/informations-medicales/banner-article.png";
-import { useArticlesStore } from "~/stores/articles";
-import { useArticleSeo } from "~/composables/useArticleSeo";
 
 definePageMeta({
   layout: "default",
@@ -60,20 +52,16 @@ definePageMeta({
 const route = useRoute();
 const articlesStore = useArticlesStore();
 
-// Charger les articles si pas déjà fait
 await articlesStore.fetchArticles();
 
-// Récupérer l'article par son slug
 const article = computed(() =>
   articlesStore.articleBySlug(route.params.slug as string),
 );
 
-// Si l'article n'existe pas, rediriger vers la liste
 if (!article.value) {
   navigateTo("/informations-medicales");
 }
 
-// Gérer le SEO avec le composable
 useArticleSeo(article);
 
 function formatDate(dateString: string) {
@@ -85,9 +73,7 @@ function formatDate(dateString: string) {
 }
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
-
+<style lang="scss" scoped>
 .slug {
   &__wrapper {
     background-color: $color-bg-blue;

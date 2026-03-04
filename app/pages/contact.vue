@@ -177,11 +177,7 @@
   </div>
 </template>
 
-<script setup>
-import Form from "@/components/Form.vue";
-import { ref } from "vue";
-import { useContactSeo } from "~/composables/useContactSeo";
-
+<script setup lang="ts">
 definePageMeta({
   layout: "default",
 });
@@ -189,8 +185,6 @@ definePageMeta({
 useContactSeo();
 
 const openAccordionId = ref(null);
-
-// Refs pour les sections
 const findUsSection = ref(null);
 const faqSection = ref(null);
 
@@ -216,9 +210,7 @@ onMounted(() => {
 });
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
-
+<style lang="scss" scoped>
 .contact {
   &__container {
     margin: 0 auto;

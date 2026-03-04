@@ -42,30 +42,29 @@
         </div>
       </div>
       <div v-if="isMobile">
-        <EmergencyImageSundayMob v-if="useEmergencyImageType() === 'sunday'" />
+        <EmergencyImageSundayMob v-if="getEmergencyImageType() === 'sunday'" />
         <EmergencyImageSaturdayMob
-          v-if="useEmergencyImageType() === 'saturday'"
+          v-if="getEmergencyImageType() === 'saturday'"
         />
-        <EmergencyImageWeekMob v-if="useEmergencyImageType() === 'week'" />
+        <EmergencyImageWeekMob v-if="getEmergencyImageType() === 'week'" />
       </div>
       <div v-else>
-        <EmergencyImageSunday v-if="useEmergencyImageType() === 'sunday'" />
-        <EmergencyImageSaturday v-if="useEmergencyImageType() === 'saturday'" />
-        <EmergencyImageWeek v-if="useEmergencyImageType() === 'week'" />
+        <EmergencyImageSunday v-if="getEmergencyImageType() === 'sunday'" />
+        <EmergencyImageSaturday v-if="getEmergencyImageType() === 'saturday'" />
+        <EmergencyImageWeek v-if="getEmergencyImageType() === 'week'" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import EmergencyImageWeek from "~/assets/images/emergency/emergencyImageWeek.vue";
 import EmergencyImageSaturday from "~/assets/images/emergency/emergencyImageSaturday.vue";
 import EmergencyImageSunday from "~/assets/images/emergency/emergencyImageSunday.vue";
 import EmergencyImageWeekMob from "~/assets/images/emergency/emergencyImageWeekMob.vue";
 import EmergencyImageSaturdayMob from "~/assets/images/emergency/emergencyImageSaturdayMob.vue";
 import EmergencyImageSundayMob from "~/assets/images/emergency/emergencyImageSundayMob.vue";
-import { useIsMobile } from "@/reactives/isMobile";
-import { useUrgenceSeo } from "~/composables/useUrgenceSeo";
+import { useIsMobile } from "~/reactives/isMobile";
 
 definePageMeta({
   layout: "default",
@@ -89,33 +88,18 @@ const offDays = [
   "2026-12-25",
 ];
 
-const useEmergencyImageType = () => {
+function getEmergencyImageType() {
   const today = new Date();
-  const day = today.getDay(); // 0 = Dimanche, 1 = Lundi, ..., 6 = Samedi
-
-  // Formater la date actuelle en 'YYYY-MM-DD'
+  const day = today.getDay();
   const dateStr = today.toISOString().split("T")[0];
 
-  // Vérifier si c'est un jour férié
-  const isDayOff = offDays.includes(dateStr);
-
-  if (day === 0 || isDayOff) {
-    return "sunday";
-  }
-
-  // Samedi (6) → saturday
-  if (day === 6) {
-    return "saturday";
-  }
-
-  // Lundi (1) à Vendredi (5) → week
+  if (day === 0 || offDays.includes(dateStr)) return "sunday";
+  if (day === 6) return "saturday";
   return "week";
-};
+}
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
-
+<style lang="scss" scoped>
 .urgence {
   &__banner {
     width: 100%;
@@ -188,7 +172,6 @@ const useEmergencyImageType = () => {
   }
 }
 
-// Media queries pour mobile
 @media (max-width: 768px) {
   .urgence {
     &__banner {
