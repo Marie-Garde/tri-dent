@@ -11,6 +11,8 @@
         :src="image"
         :alt="name"
         class="card__image"
+        width="230"
+        height="230"
         loading="lazy"
         decoding="async"
       />
@@ -42,12 +44,9 @@ withDefaults(
     expandable: false,
   },
 );
-import logo from "~/assets/images/logo trident.svg";
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .card {
   position: relative;
   width: 100%;

@@ -6,6 +6,8 @@
         alt="Elipse décorative"
         class="side-text-image__elipse"
         aria-hidden="true"
+        width="60"
+        height="410"
         loading="lazy"
         decoding="async"
       />
@@ -16,7 +18,7 @@
 
     <div class="side-text-image__image">
       <slot name="image">
-        <img :src="img" :alt="imgAlt" loading="lazy" decoding="async" />
+        <img :src="img" :alt="imgAlt" width="500" height="430" loading="lazy" decoding="async" />
       </slot>
     </div>
   </div>
@@ -38,8 +40,6 @@ withDefaults(
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .side-text-image {
   display: flex;
   align-items: center;

@@ -21,7 +21,7 @@
           >
             <div class="slide-card">
               <div class="slide-image">
-                <img :src="item.image" :alt="item.title" />
+                <img :src="item.image" :alt="item.title" width="400" height="240" loading="lazy" decoding="async" />
               </div>
               <div class="slide-content">
                 <h3 class="slide-title">{{ item.title }}</h3>
@@ -43,7 +43,6 @@
       </button>
     </div>
 
-    <!-- Pagination dots -->
     <div class="pagination-dots">
       <button
         v-for="(item, index) in items"
@@ -55,13 +54,11 @@
       ></button>
     </div>
 
-    <!-- Counter -->
     <div class="slide-counter">{{ currentIndex + 1 }} / {{ items.length }}</div>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
 import CFAOImage from "@/assets/images/approche/techno/CFAO.png";
 import ConeBeamImage from "@/assets/images/approche/techno/ConeBeam.png";
 import MicroscopeImage from "@/assets/images/approche/techno/microscope.jpg";
@@ -117,7 +114,7 @@ const items = ref([
   },
 ]);
 
-const formatDescription = (text) => {
+const formatDescription = (text: string) => {
   return text.replace(/\.\s+([A-Z])/g, ".\n\n$1");
 };
 
@@ -133,20 +130,19 @@ const previousSlide = () => {
   }
 };
 
-const goToSlide = (index) => {
+const goToSlide = (index: number) => {
   currentIndex.value = index;
 };
 
-// Touch support for swipe
 let touchStartX = 0;
 let touchEndX = 0;
 
-const handleTouchStart = (e) => {
-  touchStartX = e.changedTouches[0].screenX;
+const handleTouchStart = (e: TouchEvent) => {
+  touchStartX = e.changedTouches[0]?.screenX ?? 0;
 };
 
-const handleTouchEnd = (e) => {
-  touchEndX = e.changedTouches[0].screenX;
+const handleTouchEnd = (e: TouchEvent) => {
+  touchEndX = e.changedTouches[0]?.screenX ?? 0;
   handleSwipe();
 };
 
@@ -160,8 +156,7 @@ const handleSwipe = () => {
 };
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
+<style lang="scss" scoped>
 
 .techno-carousel-mobile {
   width: 100%;
@@ -240,7 +235,6 @@ const handleSwipe = () => {
   padding-right: $spacing-xs;
   white-space: pre-line;
 
-  /* Custom scrollbar */
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -323,7 +317,6 @@ const handleSwipe = () => {
   font-weight: 500;
 }
 
-// Responsive adjustments
 @media (max-width: 480px) {
   .slide-card {
     height: 65vh;

@@ -20,8 +20,7 @@ defineProps<{
 }>();
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
+<style lang="scss" scoped>
 
 .articles-search {
   margin-bottom: $spacing-lg;

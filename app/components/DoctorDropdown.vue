@@ -11,6 +11,8 @@
           :src="selectedDoctor.image"
           :alt="selectedDoctor.name"
           class="doctor-image"
+          width="40"
+          height="40"
         />
         <span class="doctor-name">{{ selectedDoctor.name }}</span>
       </div>
@@ -41,44 +43,44 @@
         class="doctor-item"
         @click="selectDoctor(doctor)"
       >
-        <img :src="doctor.image" :alt="doctor.name" class="doctor-image" />
+        <img :src="doctor.image" :alt="doctor.name" class="doctor-image" width="40" height="40" loading="lazy" decoding="async" />
         <span class="doctor-name">{{ doctor.name }}</span>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref, watch, onMounted, onUnmounted } from "vue";
+<script setup lang="ts">
+interface Doctor {
+  name: string;
+  image?: string;
+}
 
-const props = defineProps({
-  doctors: {
-    type: Array,
-    required: true,
+const props = withDefaults(
+  defineProps<{
+    doctors: Doctor[];
+    modelValue?: string;
+    placeholder?: string;
+    error?: boolean;
+  }>(),
+  {
+    modelValue: "",
+    placeholder: "Praticien",
+    error: false,
   },
-  modelValue: {
-    type: String,
-    default: "",
-  },
-  placeholder: {
-    type: String,
-    default: "Praticien",
-  },
-  error: {
-    type: Boolean,
-    default: false,
-  },
-});
+);
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits<{
+  "update:modelValue": [value: string];
+}>();
 
 const isDoctorListVisible = ref(false);
-const selectedDoctor = ref(null);
-const dropdownRef = ref(null);
+const selectedDoctor = ref<Doctor | null>(null);
+const dropdownRef = ref<HTMLElement | null>(null);
 
-const noReferrerOption = { name: "Pas de dentiste référent", image: null };
+const noReferrerOption: Doctor = { name: "Pas de dentiste référent" };
 
-const selectDoctor = (doctor) => {
+const selectDoctor = (doctor: Doctor) => {
   selectedDoctor.value = doctor;
   isDoctorListVisible.value = false;
   emit("update:modelValue", doctor.name);
@@ -97,8 +99,8 @@ watch(
   { immediate: true },
 );
 
-const handleClickOutside = (event) => {
-  if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
+const handleClickOutside = (event: MouseEvent) => {
+  if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
     isDoctorListVisible.value = false;
   }
 };
@@ -107,13 +109,12 @@ onMounted(() => {
   document.addEventListener("click", handleClickOutside);
 });
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   document.removeEventListener("click", handleClickOutside);
 });
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
+<style lang="scss" scoped>
 .doctor-selector {
   position: relative;
   width: 100%;

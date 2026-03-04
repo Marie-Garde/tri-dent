@@ -7,7 +7,7 @@
   />
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   light: { type: Boolean, default: false },
   vertical: { type: Boolean, default: false },
@@ -16,8 +16,6 @@ const { light, vertical } = props;
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .divider {
   border-bottom: 2px solid $color-darkblue;
   margin: $spacing-md;

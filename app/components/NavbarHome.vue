@@ -5,14 +5,12 @@
         <img :src="logo" alt="Logo Tri-Dent" />
       </NuxtLink>
 
-      <!-- Bouton burger (mobile uniquement) -->
       <button class="navbar__toggle" @click="toggleMenu" aria-label="Menu">
         <span :class="{ open: isOpen }"></span>
         <span :class="{ open: isOpen }"></span>
         <span :class="{ open: isOpen }"></span>
       </button>
 
-      <!-- Menu principal -->
       <ul class="navbar__menu" :class="{ open: isOpen }">
         <li>
           <NuxtLink @click="toggleMenu()" to="/notre-approche"
@@ -25,7 +23,6 @@
           >
         </li>
 
-        <!-- Logo centré uniquement sur desktop -->
         <NuxtLink to="/" class="navbar__logo--center">
           <img :src="logo" alt="Logo Tri-Dent" />
         </NuxtLink>
@@ -50,7 +47,6 @@
         </li>
       </ul>
 
-      <!-- CTA desktop -->
       <NuxtLink to="/prendre-rendez-vous" class="navbar__cta">
         Prendre rendez-vous
       </NuxtLink>
@@ -59,8 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
-import logo from "~/assets/images/logo trident.svg";
+import logo from "~/assets/images/logo-trident.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
 
 const isOpen = ref(false);
@@ -68,7 +63,6 @@ const toggleMenu = () => {
   isOpen.value = !isOpen.value;
 };
 
-// visible après scroll
 const isVisible = ref(false);
 const SCROLL_THRESHOLD = 20;
 
@@ -81,13 +75,12 @@ onMounted(() => {
   onScroll();
 });
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   window.removeEventListener("scroll", onScroll);
 });
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
 @use "sass:color";
 
 @keyframes slideFromTop {
@@ -102,20 +95,16 @@ onUnmounted(() => {
 }
 
 .navbar {
-  /** sticky en haut de l'écran */
   position: sticky;
   top: 0;
   z-index: 1000;
   height: 0;
   font-family: "Nunito";
 
-  /** cachée initialement (hors écran) puis apparition par transition */
   opacity: 0;
   pointer-events: none;
-  /* remove transform transition: we use the keyframe animation instead */
   transition: opacity 0.35s ease, box-shadow 0.2s ease;
 
-  /** quand visible après scroll */
   &.navbar--visible {
     opacity: 1;
     pointer-events: auto;
@@ -141,7 +130,6 @@ onUnmounted(() => {
     }
   }
 
-  /* Logo principal (toujours visible) */
   &__logo {
     img {
       display: none;
@@ -158,7 +146,6 @@ onUnmounted(() => {
     }
   }
 
-  /* Logo centré uniquement sur desktop */
   &__logo--center {
     display: flex;
     align-items: center;
@@ -198,7 +185,6 @@ onUnmounted(() => {
       }
     }
 
-    /* Mobile : menu masqué puis déroulant */
     @media (max-width: 1024px) {
       position: absolute;
       top: 70px;
@@ -257,7 +243,7 @@ onUnmounted(() => {
     }
 
     &.router-link-exact-active {
-      font-weight: normal; /* Override bold for active CTA */
+      font-weight: normal;
     }
 
     @media (max-width: 1024px) {

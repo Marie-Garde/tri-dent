@@ -26,7 +26,6 @@
       </div>
 
       <div class="info__content">
-        <!-- ✅ Composant de recherche -->
         <ArticlesSearch
           v-model="searchQuery"
           :filtered-count="filteredArticles.length"
@@ -84,7 +83,6 @@
             </article>
           </div>
 
-          <!-- ✅ Pagination -->
           <Pagination
             v-if="totalPages > 1"
             v-model:current-page="currentPage"
@@ -97,12 +95,7 @@
 </template>
 
 <script setup lang="ts">
-import Divider from "~/components/Divider.vue";
-import ArticlesSearch from "~/components/ArticlesSearch.vue";
-import Pagination from "~/components/Pagination.vue";
-import { useArticlesStore } from "~/stores/articles";
 import { urlFor } from "~/lib/sanity";
-import { useInformationsMedicalesIndexSeo } from "~/composables/useInformationsMedicalesIndexSeo";
 
 definePageMeta({
   layout: "default",
@@ -112,7 +105,6 @@ useInformationsMedicalesIndexSeo();
 
 const articlesStore = useArticlesStore();
 
-// Charger les données au montage
 onMounted(async () => {
   await Promise.all([
     articlesStore.fetchArticles(),
@@ -120,37 +112,29 @@ onMounted(async () => {
   ]);
 });
 
-// State pour les filtres et pagination
 const selectedThematique = ref<string | null>(null);
-const searchQuery = ref<string>("");
-const currentPage = ref<number>(1);
+const searchQuery = ref("");
+const currentPage = ref(1);
 const articlesPerPage = 5;
 
-// Computed
 const thematiques = computed(() => articlesStore.thematiques);
 
 const filteredArticles = computed(() => {
   let articles = articlesStore.articles;
 
-  // Filtrer par thématique
   if (selectedThematique.value) {
     articles = articles.filter((article) =>
       article.thematique?.some((t) => t._id === selectedThematique.value),
     );
   }
 
-  // Filtrer par recherche (titre ou tags)
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.toLowerCase().trim();
     articles = articles.filter((article) => {
-      // Recherche dans le titre
       const titleMatch = article.titre.toLowerCase().includes(query);
-
-      // Recherche dans les tags
       const tagMatch = article.tags?.some((tag) =>
         tag.titre.toLowerCase().includes(query),
       );
-
       return titleMatch || tagMatch;
     });
   }
@@ -158,28 +142,19 @@ const filteredArticles = computed(() => {
   return articles;
 });
 
-// Pagination
 const totalPages = computed(() =>
   Math.ceil(filteredArticles.value.length / articlesPerPage),
 );
 
 const paginatedArticles = computed(() => {
   const start = (currentPage.value - 1) * articlesPerPage;
-  const end = start + articlesPerPage;
-  const result = filteredArticles.value.slice(start, end);
-  console.log(
-    "articles:",
-    result.map((a) => a.slug),
-  );
-  return filteredArticles.value.slice(start, end);
+  return filteredArticles.value.slice(start, start + articlesPerPage);
 });
 
-// Watch pour réinitialiser la page quand les filtres changent
 watch([searchQuery, selectedThematique], () => {
   currentPage.value = 1;
 });
 
-// Methods
 function selectThematique(thematiqueId: string | null) {
   selectedThematique.value = thematiqueId;
 }
@@ -187,39 +162,30 @@ function selectThematique(thematiqueId: string | null) {
 function getExcerpt(contenu: any[]): string {
   if (!contenu || contenu.length === 0) return "";
 
-  // Extraire tout le texte des blocs
   let fullText = "";
-
   for (const block of contenu) {
     if (block._type === "block" && block.children) {
       for (const child of block.children) {
-        if (child.text) {
-          fullText += child.text + " ";
-        }
+        if (child.text) fullText += child.text + " ";
       }
     }
   }
 
-  // Prendre les 20 premiers mots
   const words = fullText.trim().split(/\s+/);
-  if (words.length <= 20) {
-    return fullText.trim();
-  }
-
-  return words.slice(0, 20).join(" ") + "...";
+  return words.length <= 20
+    ? fullText.trim()
+    : words.slice(0, 20).join(" ") + "...";
 }
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
-
+<style lang="scss" scoped>
 .info {
   &__banner {
     width: 100%;
     height: 60vh;
     background:
       linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url("~/assets/images/informations-medicales/banner.png");
+      url("/images/informations-medicales/banner.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -387,7 +353,7 @@ function getExcerpt(contenu: any[]): string {
           color: $color-primary;
         }
         p {
-          margin: 16px 0 0 0;
+          margin: $spacing-md 0 0 0;
         }
       }
 
@@ -487,7 +453,6 @@ function getExcerpt(contenu: any[]): string {
   }
 }
 
-// ✅ RESPONSIVE TABLETTE
 @media (max-width: 1024px) and (min-width: 769px) {
   .info {
     &__container {

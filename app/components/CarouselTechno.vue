@@ -3,8 +3,12 @@
     <div class="wheel-center">
       <img
         src="/images/logo trident.svg"
-        alt="Trident Logo"
+        alt="Logo Tri-Dent"
         class="wheel-center-logo"
+        width="160"
+        height="160"
+        loading="lazy"
+        decoding="async"
       />
     </div>
     <div
@@ -15,7 +19,7 @@
       :class="{ 'active-item': index === 3 }"
       @click="rotateToIndex(index)"
     >
-      <img :src="item.image" alt="Orbiting image" />
+      <img :src="item.image" :alt="item.title" width="140" height="140" loading="lazy" decoding="async" />
       <div v-if="index !== 3" class="item-title-overlay">
         <h3>{{ item.title }}</h3>
       </div>
@@ -33,8 +37,7 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
 import CFAOImage from "@/assets/images/approche/techno/CFAO.png";
 import ConeBeamImage from "@/assets/images/approche/techno/ConeBeam.png";
 import MicroscopeImage from "@/assets/images/approche/techno/microscope.jpg";
@@ -43,8 +46,14 @@ import TriosImage from "@/assets/images/approche/techno/Trios.png";
 import radio from "@/assets/images/approche/techno/radio.png";
 import solarPannel from "@/assets/images/approche/techno/solarPannel.jpg";
 
-const swapping = ref([]);
-const items = ref([
+interface TechnoItem {
+  image: string;
+  title: string;
+  description: string;
+}
+
+const swapping = ref<number[]>([]);
+const items = ref<TechnoItem[]>([
   {
     image: ConeBeamImage,
     title: "CBCT",
@@ -155,23 +164,21 @@ const items = ref([
 const numItems = items.value.length;
 const radius = 300;
 
-// Index de l'élément au centre (horizontalement aligné avec le rond noir)
 const centerIndex = Math.floor(numItems / 2);
 
-const getItemStyle = (index) => {
+const getItemStyle = (index: number) => {
   const angle = -90 + (index / (numItems - 1)) * 180;
-  let x = radius * Math.cos(angle * (Math.PI / 180));
-  let y = radius * Math.sin(angle * (Math.PI / 180));
+  const x = radius * Math.cos(angle * (Math.PI / 180));
+  const y = radius * Math.sin(angle * (Math.PI / 180));
 
-  let style = {
+  const style: Record<string, string | number> = {
     transform: `translate(${x}px, ${y}px)`,
     cursor: index !== centerIndex ? "pointer" : "default",
     opacity: swapping.value.includes(index) ? 0 : 1,
   };
 
-  // Apply specific styles for the 4th item (index 3)
   if (index === 3) {
-    const rightOffset = 200; // Adjust this value as needed to move it further right
+    const rightOffset = 200;
     style.transform = `translate(${x + rightOffset}px, ${y}px)`;
     style.height = "80vh";
     style.borderRadius = "5";
@@ -179,14 +186,12 @@ const getItemStyle = (index) => {
   return style;
 };
 
-const getLineStyle = (index) => {
+const getLineStyle = (index: number) => {
   const angle = -90 + (index / (numItems - 1)) * 180;
-  let lineHeight = radius; // Default height
+  let lineHeight = radius;
 
   if (index === 3) {
-    // For the 4th item, make the line longer to reach the rectangle
-    // The height property, when rotated -90deg, controls the horizontal length
-    lineHeight = radius + 250; // Arbitrarily increased by 250px for now. This will need adjustment based on visual.
+    lineHeight = radius + 250;
   }
 
   return {
@@ -195,19 +200,15 @@ const getLineStyle = (index) => {
   };
 };
 
-const rotateToIndex = (clickedIndex) => {
-  // Ne rien faire si on clique sur l'image centrale
+const rotateToIndex = (clickedIndex: number) => {
   if (clickedIndex === centerIndex) return;
-
-  // Échanger les positions de l'image cliquée avec l'image centrale
-  const temp = items.value[centerIndex];
-  items.value[centerIndex] = items.value[clickedIndex];
+  const temp = items.value[centerIndex]!;
+  items.value[centerIndex] = items.value[clickedIndex]!;
   items.value[clickedIndex] = temp;
 };
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
+<style lang="scss" scoped>
 .wheel-container {
   position: relative;
   width: 100%;

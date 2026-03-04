@@ -1,4 +1,4 @@
 User-Agent: *
 Disallow:
 
-Sitemap: https://www.your-domain.com/sitemap.xml # TODO: Update with your actual domain
+Sitemap: https://www.cabinet-dentaire-tri-dent-cornebarrieu.fr/sitemap.xml

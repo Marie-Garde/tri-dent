@@ -8,8 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import Divider from "~/components/Divider.vue";
-
 const props = withDefaults(
   defineProps<{
     title: string;
@@ -26,8 +24,7 @@ const bannerStyle = computed(() => ({
 }));
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
+<style lang="scss" scoped>
 
 .page-banner {
   width: 100%;
