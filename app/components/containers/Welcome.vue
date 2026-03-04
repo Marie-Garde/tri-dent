@@ -22,8 +22,6 @@
 
 <script setup lang="ts">
 import team from "~/assets/images/home/home-team.jpg";
-import Divider from "~/components/Divider.vue";
-import Button from "~/components/Button.vue";
 
 const welcomeSection = ref(null);
 
@@ -50,8 +48,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .welcome {
   margin-top: $spacing-md;
 

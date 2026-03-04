@@ -44,12 +44,9 @@ withDefaults(
     expandable: false,
   },
 );
-import logo from "~/assets/images/logo-trident.svg";
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .card {
   position: relative;
   width: 100%;

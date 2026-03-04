@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   title: {
     type: String,
@@ -36,8 +36,6 @@ const toggleAccordion = () => {
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .accordion {
   width: 100%;
   margin-bottom: $spacing-md;
@@ -73,7 +71,6 @@ const toggleAccordion = () => {
   box-shadow: 0 2px 4px rgba($color-dark, 0.25);
 }
 
-/* Accordion Slide Transition */
 .accordion-slide-enter-active,
 .accordion-slide-leave-active {
   transition: max-height 0.5s ease-in-out;
@@ -87,7 +84,7 @@ const toggleAccordion = () => {
 
 .accordion-slide-enter-to,
 .accordion-slide-leave-from {
-  max-height: 500px; /* Adjust as needed, ensure it's larger than max possible content height */
+  max-height: 500px;
 }
 
 @media (max-width: 768px) {

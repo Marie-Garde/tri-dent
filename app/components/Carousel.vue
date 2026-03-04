@@ -4,8 +4,7 @@
   </div>
 </template>
 
-<script setup>
-import { computed } from "vue";
+<script setup lang="ts">
 
 const props = defineProps({
   itemCount: {
@@ -41,7 +40,7 @@ const carouselStyle = computed(() => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .carousel {
   position: relative;
   width: min(80vw, 1200px);
@@ -65,7 +64,6 @@ const carouselStyle = computed(() => {
   );
 }
 
-/* chaque enfant agit comme un article du carrousel */
 .carousel > * {
   position: absolute;
   top: 0;
@@ -78,7 +76,6 @@ const carouselStyle = computed(() => {
   animation-iteration-count: infinite;
 }
 
-/* applique un décalage basé sur la variable --i passée dans le style inline */
 .carousel > * {
   left: calc(100% + var(--carousel-item-gap));
   animation-delay: calc(
@@ -97,7 +94,6 @@ const carouselStyle = computed(() => {
   }
 }
 
-/* pause à l'arrêt */
 .carousel:hover > * {
   animation-play-state: paused;
 }

@@ -3,7 +3,7 @@
     <input
       :type="type"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       :placeholder="placeholder"
       class="input-line"
       :class="{ 'error-border': error }"
@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineProps({
   modelValue: {
     type: String,
@@ -39,7 +39,7 @@ defineProps({
 defineEmits(["update:modelValue"]);
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .input-wrapper {
   position: relative;
   display: flex;

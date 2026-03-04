@@ -1,10 +1,6 @@
-<script setup>
-import { reactive, ref } from "vue";
+<script setup lang="ts">
 import emailjs from "@emailjs/browser";
 import { doctors } from "~/data/dentists";
-import DoctorDropdown from "./DoctorDropdown.vue";
-import TextInput from "./TextInput.vue";
-import TextareaInput from "./TextareaInput.vue";
 
 const form = reactive({
   lastName: "",
@@ -16,14 +12,13 @@ const form = reactive({
   rgpdConsent: false,
 });
 
-const errors = reactive({});
+const errors = reactive<Record<string, string>>({});
 const isSubmitting = ref(false);
 const status = reactive({
   message: "",
   type: "",
 });
 
-// Configuration EmailJS
 const config = useRuntimeConfig();
 const EMAILJS_SERVICE_ID = config.public.emailjsServiceId;
 const EMAILJS_TEMPLATE_ID = config.public.emailjsTemplateId;
@@ -56,7 +51,6 @@ const validateForm = () => {
 };
 
 async function submitForm() {
-  // Valider le formulaire
   if (!validateForm()) {
     return;
   }
@@ -65,7 +59,6 @@ async function submitForm() {
   status.message = "";
 
   try {
-    // Préparer les données pour le template EmailJS
     const templateParams = {
       firstName: form.firstName,
       lastName: form.lastName,
@@ -75,39 +68,31 @@ async function submitForm() {
       message: form.message,
     };
 
-    // Envoyer via EmailJS
-    console.log(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY);
-    const response = await emailjs.send(
+    await emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID,
       templateParams,
       EMAILJS_PUBLIC_KEY,
     );
 
-    console.log("Email envoyé avec succès:", response);
-
     status.message =
       "Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.";
     status.type = "success";
 
-    // Réinitialiser le formulaire
     Object.keys(form).forEach((key) => {
-      form[key] = key === "rgpdConsent" ? false : "";
+      (form as Record<string, string | boolean>)[key] = key === "rgpdConsent" ? false : "";
     });
 
-    // Réinitialiser les erreurs
     Object.keys(errors).forEach((key) => {
       errors[key] = "";
     });
   } catch (error) {
-    console.error("Erreur lors de l'envoi:", error);
     status.message =
       "Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement.";
     status.type = "error";
   } finally {
     isSubmitting.value = false;
 
-    // Effacer le message après 7 secondes
     setTimeout(() => {
       status.message = "";
     }, 7000);
@@ -190,7 +175,6 @@ async function submitForm() {
       </div>
     </div>
 
-    <!-- Messages de statut -->
     <div v-if="status.message" :class="['status-message', status.type]">
       {{ status.message }}
     </div>
@@ -201,8 +185,7 @@ async function submitForm() {
   </form>
 </template>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
+<style lang="scss" scoped>
 
 .contact-form {
   width: 100%;

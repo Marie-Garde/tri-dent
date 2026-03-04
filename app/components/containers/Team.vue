@@ -151,7 +151,6 @@ onMounted(() => {
     },
   );
 
-  // Observer toutes les grilles
   [associatesGrid.value, doctorsGrid.value, assistantsGrid.value].forEach(
     (grid) => {
       if (grid) observer.observe(grid);
@@ -161,8 +160,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .team {
   &__section {
     margin-bottom: $spacing-xl;

@@ -66,13 +66,11 @@
   </footer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import logo from "~/assets/images/logo-trident-light.svg";
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .footer {
   background-color: $color-green;
   color: $color-white;
@@ -141,7 +139,6 @@ import logo from "~/assets/images/logo-trident-light.svg";
   }
 }
 
-/* Responsive: stack sections on small screens */
 @media (max-width: 1023px) {
   .footer {
     padding: $spacing-lg;
@@ -192,7 +189,6 @@ import logo from "~/assets/images/logo-trident-light.svg";
   }
 }
 
-/* small polish: ensure links wrap and spacing is reasonable */
 .footer a,
 .footer span {
   word-break: break-word;

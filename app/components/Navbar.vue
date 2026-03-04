@@ -77,8 +77,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from "vue";
-import { useRoute } from "vue-router";
 import logoLight from "~/assets/images/logo-trident-light.svg";
 import logoDark from "~/assets/images/logo-trident.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
@@ -112,7 +110,7 @@ onMounted(() => {
   compactQuery.addEventListener("change", updateCompact);
 });
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   window.removeEventListener("scroll", onScroll);
   compactQuery?.removeEventListener("change", updateCompact);
 });
@@ -133,7 +131,6 @@ const logo = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
 @use "sass:color";
 
 .navbar {
