@@ -5,7 +5,7 @@ export const useNotreApprocheSeo = () => {
   const description =
     "Découvrez l'approche unique du Cabinet Dentaire Tri-Dent : attention, clarté et personnalisation à chaque étape de votre parcours de soin. Nos valeurs et technologies au service de votre sourire.";
   const url = `${BASE_URL}/notre-approche`;
-  const image = `${BASE_URL}/images/approche/banner.png`;
+  const image = `${BASE_URL}/images/approche/banner.webp`;
 
   useHead({
     title,

@@ -5,7 +5,7 @@ export const useUrgenceSeo = () => {
   const description =
     "Que faire en cas d'urgence dentaire ? Le Cabinet Dentaire Tri-Dent vous guide sur les premiers gestes et la procédure à suivre en dehors des horaires d'ouverture. Contactez-nous rapidement.";
   const url = `${BASE_URL}/urgence`;
-  const image = `${BASE_URL}/images/home/cabinet.png`;
+  const image = `${BASE_URL}/images/home/cabinet.webp`;
 
   useHead({
     title,

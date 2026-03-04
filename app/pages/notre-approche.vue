@@ -140,7 +140,7 @@ onBeforeUnmount(() => {
 .approche {
   &__valeurs {
     padding: $spacing-xl;
-    background-image: url("/images/approche/valeurs.png");
+    background-image: url("/images/approche/valeurs.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

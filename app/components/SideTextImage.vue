@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import elipse from "~/assets/images/SideTextImage/elipse.png";
+const elipse = "/images/elipse.png";
 
 withDefaults(
   defineProps<{

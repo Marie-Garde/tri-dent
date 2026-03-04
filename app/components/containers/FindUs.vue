@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import cabinet from "~/assets/images/home/cabinet.jpg";
+const cabinet = "/images/home/cabinet.webp";
 </script>
 
 <style lang="scss" scoped>

@@ -77,9 +77,9 @@
 </template>
 
 <script setup lang="ts">
-import logoLight from "~/assets/images/logo-trident-light.svg";
-import logoDark from "~/assets/images/logo-trident.svg";
-import notificationImportant from "~/assets/images/notification_important.svg";
+const logoLight = "/images/logo-trident-light.svg";
+const logoDark = "/images/logo-trident.svg";
+const notificationImportant = "/images/notification_important.svg";
 
 const route = useRoute();
 

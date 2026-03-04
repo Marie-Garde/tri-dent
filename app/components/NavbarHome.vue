@@ -55,8 +55,8 @@
 </template>
 
 <script setup lang="ts">
-import logo from "~/assets/images/logo-trident.svg";
-import notificationImportant from "~/assets/images/notification_important.svg";
+const logo = "/images/logo-trident.svg";
+const notificationImportant = "/images/notification_important.svg";
 
 const isOpen = ref(false);
 const toggleMenu = () => {

@@ -29,7 +29,7 @@
   height: 580px;
   background:
     linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
-    url("/images/approche/banner.png");
+    url("/images/approche/banner.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

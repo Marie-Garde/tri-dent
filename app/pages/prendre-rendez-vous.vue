@@ -2,8 +2,7 @@
   <div class="rdv">
     <Banner
       title="Prendre rendez-vous"
-      image="/images/appointment/banner.png"
-      light
+      image="/images/appointment/banner.webp"
     />
 
     <div class="rdv__container">
@@ -58,6 +57,14 @@
                 </template>
 
                 <template v-else-if="contact.type === 'doctolib'">
+                  <img
+                    src="/images/appointment/doctolib-icon.png"
+                    alt="Icône Doctolib"
+                    width="24"
+                    height="24"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <img
                     src="/images/appointment/doctolib-icon.png"
                     alt="Icône Doctolib"

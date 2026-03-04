@@ -1,7 +1,16 @@
 <template>
   <div class="herobanner">
     <div class="herobanner__content">
-      <div class="logo"><img src="/images/logo trident.svg" alt="Logo Tri-Dent" width="150" height="150" loading="eager" fetchpriority="high" /></div>
+      <div class="logo">
+        <img
+          src="/images/logo-trident.svg"
+          alt="Logo Tri-Dent"
+          width="150"
+          height="150"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
       <h1 class="stroke">Cabinet dentaire Tri-Dent</h1>
     </div>
   </div>
@@ -13,7 +22,7 @@ useHead({
     {
       rel: "preload",
       as: "image",
-      href: "/images/home/hero_home.png",
+      href: "/images/home/hero_home.webp",
     },
   ],
 });
@@ -23,7 +32,7 @@ useHead({
 .herobanner {
   width: 100%;
   height: 100vh;
-  background-image: url("/images/home/hero_home.png");
+  background-image: url("/images/home/hero_home.webp");
   background-size: cover;
   background-position: center;
   display: flex;

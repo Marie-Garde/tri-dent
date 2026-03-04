@@ -185,7 +185,7 @@ function getExcerpt(contenu: any[]): string {
     height: 60vh;
     background:
       linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url("/images/informations-medicales/banner.png");
+      url("/images/informations-medicales/banner.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -43,7 +43,7 @@ export const useArticleSeo = (
       ? `${BASE_URL}/informations-medicales/${article.value.slug}`
       : `${BASE_URL}/informations-medicales`;
 
-  const image = `${BASE_URL}/images/informations-medicales/banner.png`;
+  const image = `${BASE_URL}/images/informations-medicales/banner.webp`;
 
   useHead({
     title,

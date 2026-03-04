@@ -2,7 +2,7 @@
   <div class="wheel-container">
     <div class="wheel-center">
       <img
-        src="/images/logo trident.svg"
+        src="/images/logo-trident.svg"
         alt="Logo Tri-Dent"
         class="wheel-center-logo"
         width="160"
@@ -19,7 +19,14 @@
       :class="{ 'active-item': index === 3 }"
       @click="rotateToIndex(index)"
     >
-      <img :src="item.image" :alt="item.title" width="140" height="140" loading="lazy" decoding="async" />
+      <img
+        :src="item.image"
+        :alt="item.title"
+        width="140"
+        height="140"
+        loading="lazy"
+        decoding="async"
+      />
       <div v-if="index !== 3" class="item-title-overlay">
         <h3>{{ item.title }}</h3>
       </div>
@@ -38,14 +45,6 @@
 </template>
 
 <script setup lang="ts">
-import CFAOImage from "@/assets/images/approche/techno/CFAO.png";
-import ConeBeamImage from "@/assets/images/approche/techno/ConeBeam.png";
-import MicroscopeImage from "@/assets/images/approche/techno/microscope.jpg";
-import SmillersImage from "@/assets/images/approche/techno/smillers.jpg";
-import TriosImage from "@/assets/images/approche/techno/Trios.png";
-import radio from "@/assets/images/approche/techno/radio.png";
-import solarPannel from "@/assets/images/approche/techno/solarPannel.jpg";
-
 interface TechnoItem {
   image: string;
   title: string;
@@ -55,7 +54,7 @@ interface TechnoItem {
 const swapping = ref<number[]>([]);
 const items = ref<TechnoItem[]>([
   {
-    image: ConeBeamImage,
+    image: "/images/approche/techno/ConeBeam.webp",
     title: "CBCT",
     description: `
       <p>Le Cone Beam, également appelé CBCT, est une imagerie volumétrique par faisceau conique. Il permet un examen performant des tissus minéralisés (dents, cartilages, os) et met en évidence avec une bonne précision (de l'ordre du millimètre) les lésions ou affections osseuses.</p>
@@ -75,7 +74,7 @@ const items = ref<TechnoItem[]>([
     `,
   },
   {
-    image: TriosImage,
+    image: "/images/approche/techno/Trios.webp",
     title: "TRIOS® 6",
     description: `
       <p>La Caméra intra-orale numérique Trios 6 est le nouveau scanner intra-oral de la société danoise 3Shape. La caméra d'empreinte numérique transforme la façon dont sont créées les empreintes dentaires. Son utilisation réduit les désagréments pour les patients et améliore la précision des résultats.</p>
@@ -92,7 +91,7 @@ const items = ref<TechnoItem[]>([
     `,
   },
   {
-    image: solarPannel,
+    image: "/images/approche/techno/solarPannel.webp",
     title: "Energie solaire",
     description: `
       <p>Peu de temps après l'ouverture du cabinet, de nombreux panneaux photovoltaïques ont été installés sur le toit plat du cabinet. Dans ce projet, l'accent a été mis sur l'efficacité et l'optimisation de l'espace afin d'allier performance énergétique et réduction de l'empreinte carbone.</p>
@@ -103,7 +102,7 @@ const items = ref<TechnoItem[]>([
     `,
   },
   {
-    image: CFAOImage,
+    image: "/images/approche/techno/CFAO.webp",
     title: "CFAO Cerec",
     description: `
       <p>Des restaurations dentaires en céramique en 1 temps. La technologie CFAO (Conception et Fabrication Assisté par Ordinateur) CEREC permet de réaliser vos inlays en céramique directement au cabinet, en une seule séance.</p>
@@ -119,7 +118,7 @@ const items = ref<TechnoItem[]>([
     `,
   },
   {
-    image: MicroscopeImage,
+    image: "/images/approche/techno/microscope.webp",
     title: "Microscope optique CJ-Optik",
     description: `
       <p>Un équipement fait pour certaines interventions chirurgicales, en particulier pour retirer les parties de racines infectées.</p>
@@ -128,7 +127,7 @@ const items = ref<TechnoItem[]>([
     `,
   },
   {
-    image: SmillersImage,
+    image: "/images/approche/techno/smillers.webp",
     title: "Aligneurs",
     description: `
       <p>Gouttières transparentes préconisées pour réduire l'espace de vos dents (diasteme) et l'alignements des dents.</p>
@@ -145,7 +144,7 @@ const items = ref<TechnoItem[]>([
     `,
   },
   {
-    image: radio,
+    image: "/images/approche/techno/radio.webp",
     title: "Analyse radio assistée par IA",
     description: `
       <p>Grâce à la visualisation instantanée générée par l'Intelligence Artificielle des éléments en couleur sur la radiographie panoramique, le praticien peut s'appuyer sur un outil visuel pour expliquer de manière simple, ludique et pédagogique les éléments présents sur la radiographie.</p>

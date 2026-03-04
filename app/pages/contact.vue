@@ -218,7 +218,7 @@ onMounted(() => {
   &__banner {
     width: 100%;
     height: 60vh;
-    background-image: url("~/assets/images/contact/banner.png");
+    background-image: url("/images/contact/banner.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
