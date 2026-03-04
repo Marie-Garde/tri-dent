@@ -11,6 +11,8 @@
           :src="selectedDoctor.image"
           :alt="selectedDoctor.name"
           class="doctor-image"
+          width="40"
+          height="40"
         />
         <span class="doctor-name">{{ selectedDoctor.name }}</span>
       </div>
@@ -41,7 +43,7 @@
         class="doctor-item"
         @click="selectDoctor(doctor)"
       >
-        <img :src="doctor.image" :alt="doctor.name" class="doctor-image" />
+        <img :src="doctor.image" :alt="doctor.name" class="doctor-image" width="40" height="40" loading="lazy" decoding="async" />
         <span class="doctor-name">{{ doctor.name }}</span>
       </div>
     </div>

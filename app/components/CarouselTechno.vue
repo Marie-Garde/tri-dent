@@ -3,8 +3,12 @@
     <div class="wheel-center">
       <img
         src="/images/logo trident.svg"
-        alt="Trident Logo"
+        alt="Logo Tri-Dent"
         class="wheel-center-logo"
+        width="160"
+        height="160"
+        loading="lazy"
+        decoding="async"
       />
     </div>
     <div
@@ -15,7 +19,7 @@
       :class="{ 'active-item': index === 3 }"
       @click="rotateToIndex(index)"
     >
-      <img :src="item.image" alt="Orbiting image" />
+      <img :src="item.image" :alt="item.title" width="140" height="140" loading="lazy" decoding="async" />
       <div v-if="index !== 3" class="item-title-overlay">
         <h3>{{ item.title }}</h3>
       </div>

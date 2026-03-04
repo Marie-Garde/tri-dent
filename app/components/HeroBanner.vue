@@ -1,13 +1,23 @@
 <template>
   <div class="herobanner">
     <div class="herobanner__content">
-      <div class="logo"><img src="/images/logo trident.svg" alt="Logo Tri-Dent" /></div>
+      <div class="logo"><img src="/images/logo trident.svg" alt="Logo Tri-Dent" width="150" height="150" loading="eager" fetchpriority="high" /></div>
       <h1 class="stroke">Cabinet dentaire Tri-Dent</h1>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useHead({
+  link: [
+    {
+      rel: "preload",
+      as: "image",
+      href: "/images/home/hero_home.png",
+    },
+  ],
+});
+</script>
 
 <style lang="scss" scoped>
 @use "@/assets/scss/variables" as *;
