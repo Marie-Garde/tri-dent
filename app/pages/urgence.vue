@@ -93,7 +93,7 @@ function getEmergencyImageType() {
   const day = today.getDay();
   const dateStr = today.toISOString().split("T")[0];
 
-  if (day === 0 || offDays.includes(dateStr)) return "sunday";
+  if (day === 0 || offDays.includes(dateStr ?? "")) return "sunday";
   if (day === 6) return "saturday";
   return "week";
 }
