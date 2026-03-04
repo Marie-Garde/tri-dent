@@ -24,8 +24,6 @@
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .approche__banner {
   padding: 0 $spacing-xl;
   height: 580px;

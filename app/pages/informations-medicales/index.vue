@@ -95,7 +95,6 @@
 </template>
 
 <script setup lang="ts">
-import { useArticlesStore } from "~/stores/articles";
 import { urlFor } from "~/lib/sanity";
 
 definePageMeta({
@@ -106,7 +105,6 @@ useInformationsMedicalesIndexSeo();
 
 const articlesStore = useArticlesStore();
 
-// Charger les données au montage
 onMounted(async () => {
   await Promise.all([
     articlesStore.fetchArticles(),
@@ -114,35 +112,29 @@ onMounted(async () => {
   ]);
 });
 
-// State pour les filtres et pagination
 const selectedThematique = ref<string | null>(null);
-const searchQuery = ref<string>("");
-const currentPage = ref<number>(1);
+const searchQuery = ref("");
+const currentPage = ref(1);
 const articlesPerPage = 5;
 
-// Computed
 const thematiques = computed(() => articlesStore.thematiques);
 
 const filteredArticles = computed(() => {
   let articles = articlesStore.articles;
 
-  // Filtrer par thématique
   if (selectedThematique.value) {
     articles = articles.filter((article) =>
       article.thematique?.some((t) => t._id === selectedThematique.value),
     );
   }
 
-  // Filtrer par recherche (titre ou tags)
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.toLowerCase().trim();
     articles = articles.filter((article) => {
       const titleMatch = article.titre.toLowerCase().includes(query);
-
       const tagMatch = article.tags?.some((tag) =>
         tag.titre.toLowerCase().includes(query),
       );
-
       return titleMatch || tagMatch;
     });
   }
@@ -150,23 +142,15 @@ const filteredArticles = computed(() => {
   return articles;
 });
 
-// Pagination
 const totalPages = computed(() =>
   Math.ceil(filteredArticles.value.length / articlesPerPage),
 );
 
 const paginatedArticles = computed(() => {
   const start = (currentPage.value - 1) * articlesPerPage;
-  const end = start + articlesPerPage;
-  const result = filteredArticles.value.slice(start, end);
-  console.log(
-    "articles:",
-    result.map((a) => a.slug),
-  );
-  return filteredArticles.value.slice(start, end);
+  return filteredArticles.value.slice(start, start + articlesPerPage);
 });
 
-// Watch pour réinitialiser la page quand les filtres changent
 watch([searchQuery, selectedThematique], () => {
   currentPage.value = 1;
 });
@@ -179,29 +163,22 @@ function getExcerpt(contenu: any[]): string {
   if (!contenu || contenu.length === 0) return "";
 
   let fullText = "";
-
   for (const block of contenu) {
     if (block._type === "block" && block.children) {
       for (const child of block.children) {
-        if (child.text) {
-          fullText += child.text + " ";
-        }
+        if (child.text) fullText += child.text + " ";
       }
     }
   }
 
   const words = fullText.trim().split(/\s+/);
-  if (words.length <= 20) {
-    return fullText.trim();
-  }
-
-  return words.slice(0, 20).join(" ") + "...";
+  return words.length <= 20
+    ? fullText.trim()
+    : words.slice(0, 20).join(" ") + "...";
 }
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
-
+<style lang="scss" scoped>
 .info {
   &__banner {
     width: 100%;
@@ -376,7 +353,7 @@ function getExcerpt(contenu: any[]): string {
           color: $color-primary;
         }
         p {
-          margin: 16px 0 0 0;
+          margin: $spacing-md 0 0 0;
         }
       }
 
@@ -476,7 +453,6 @@ function getExcerpt(contenu: any[]): string {
   }
 }
 
-// ✅ RESPONSIVE TABLETTE
 @media (max-width: 1024px) and (min-width: 769px) {
   .info {
     &__container {

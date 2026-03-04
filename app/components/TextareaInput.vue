@@ -2,7 +2,7 @@
   <div class="input-wrapper">
     <textarea
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
       :placeholder="placeholder"
       class="input-line textarea"
       :class="{ 'error-border': error }"
@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineProps({
   modelValue: {
     type: String,
@@ -34,7 +34,7 @@ defineProps({
 defineEmits(["update:modelValue"]);
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .input-wrapper {
   position: relative;
   display: flex;

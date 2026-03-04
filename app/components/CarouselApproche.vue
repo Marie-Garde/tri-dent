@@ -8,19 +8,24 @@
         :class="getPositionClass(idx)"
         @click="selected = idx"
       >
-        <img :src="item.imageUrl" :alt="item.title" width="800" height="500" loading="lazy" decoding="async" />
+        <img :src="item.imageUrl" :alt="item.alt" width="800" height="500" loading="lazy" decoding="async" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+<script setup lang="ts">
 import { sanityClient, urlFor } from "~/lib/sanity";
 
+interface CarouselImage {
+  _id: string;
+  alt: string;
+  imageUrl: string;
+}
+
 const selected = ref(0);
-const items = ref([]);
-let carouselInterval = null;
+const items = ref<CarouselImage[]>([]);
+let carouselInterval: ReturnType<typeof setInterval> | null = null;
 
 const nextSlide = () => {
   if (items.value.length > 0) {
@@ -35,18 +40,17 @@ onMounted(async () => {
   "imageUrl": image.asset->url
 }`;
   items.value = await sanityClient.fetch(query);
-  console.log("Sanity data:", items.value);
 
-  carouselInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+  carouselInterval = setInterval(nextSlide, 4000);
 });
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   if (carouselInterval) {
     clearInterval(carouselInterval);
   }
 });
 
-function getPositionClass(idx) {
+function getPositionClass(idx: number) {
   const n = items.value.length;
 
   if (idx === selected.value) return "is-active";
@@ -59,8 +63,7 @@ function getPositionClass(idx) {
 }
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
+<style lang="scss" scoped>
 
 .playlist-carousel {
   margin: 0 auto;
@@ -136,7 +139,6 @@ function getPositionClass(idx) {
   }
 }
 
-// Media queries pour tablettes
 @media (max-width: 768px) {
   .playlist-carousel {
     max-width: 90%;
@@ -196,7 +198,6 @@ function getPositionClass(idx) {
   }
 }
 
-// Media queries pour écrans très petits en mode paysage
 @media (max-width: 768px) and (max-height: 500px) {
   .playlist-carousel {
     height: 200px;
