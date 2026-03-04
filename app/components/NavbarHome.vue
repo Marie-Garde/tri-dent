@@ -60,7 +60,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import logo from "~/assets/images/logo trident.svg";
+import logo from "~/assets/images/logo-trident.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
 
 const isOpen = ref(false);

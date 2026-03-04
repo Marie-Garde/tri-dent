@@ -8,7 +8,7 @@
         :class="getPositionClass(idx)"
         @click="selected = idx"
       >
-        <img :src="item.imageUrl" :alt="item.title" />
+        <img :src="item.imageUrl" :alt="item.title" width="800" height="500" loading="lazy" decoding="async" />
       </div>
     </div>
   </div>

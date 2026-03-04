@@ -1,6 +1,6 @@
 <template>
   <div class="value-card">
-    <img :src="imageSrc" :alt="text" class="value-card__icon" />
+    <img :src="imageSrc" :alt="text" class="value-card__icon" width="120" height="120" loading="lazy" decoding="async" />
     <p class="value-card__text">{{ text }}</p>
   </div>
 </template>

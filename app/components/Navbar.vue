@@ -80,7 +80,7 @@
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { useRoute } from "vue-router";
 import logoLight from "~/assets/images/logo-trident-light.svg";
-import logoDark from "~/assets/images/logo trident.svg";
+import logoDark from "~/assets/images/logo-trident.svg";
 import notificationImportant from "~/assets/images/notification_important.svg";
 
 const route = useRoute();

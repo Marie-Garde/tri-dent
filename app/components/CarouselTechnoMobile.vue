@@ -21,7 +21,7 @@
           >
             <div class="slide-card">
               <div class="slide-image">
-                <img :src="item.image" :alt="item.title" />
+                <img :src="item.image" :alt="item.title" width="400" height="240" loading="lazy" decoding="async" />
               </div>
               <div class="slide-content">
                 <h3 class="slide-title">{{ item.title }}</h3>

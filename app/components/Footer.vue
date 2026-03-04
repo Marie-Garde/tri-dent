@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer__container">
       <div class="footer__logo">
-        <img :src="logo" alt="Logo Trident" width="344" />
+        <img :src="logo" alt="Logo du cabinet dentaire Tri-Dent" width="344" height="200" loading="lazy" decoding="async" />
       </div>
       <div class="footer__container__find-us">
         <h3>Nous contacter</h3>

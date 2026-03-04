@@ -119,13 +119,54 @@ definePageMeta({
   layout: "default",
 });
 
+const BASE_URL = "https://www.cabinet-dentaire-tri-dent-cornebarrieu.fr";
+const title = "Mentions Légales - Cabinet Dentaire Tri-Dent";
+const description =
+  "Consultez les mentions légales du Cabinet Dentaire Tri-Dent. Informations sur le propriétaire du site, la protection des données personnelles, la propriété intellectuelle et l'utilisation des cookies.";
+const url = `${BASE_URL}/mentions-legales`;
+const image = `${BASE_URL}/images/home/cabinet.png`;
+
 useHead({
-  title: "Mentions Légales - Cabinet Dentaire Tri-Dent",
+  title,
   meta: [
+    { name: "description", content: description },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:url", content: url },
+    { property: "og:type", content: "website" },
+    { property: "og:image", content: image },
+    { property: "og:locale", content: "fr_FR" },
+    { property: "og:site_name", content: "Cabinet Dentaire Tri-Dent" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+    { name: "twitter:image", content: image },
+  ],
+  link: [
+    { rel: "canonical", href: url },
+    { rel: "alternate", hreflang: "fr", href: url },
+  ],
+  script: [
     {
-      name: "description",
-      content:
-        "Consultez les mentions légales du Cabinet Dentaire Tri-Dent. Informations sur le propriétaire du site, la protection des données personnelles, la propriété intellectuelle et l'utilisation des cookies.",
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Accueil",
+            item: BASE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Mentions légales",
+            item: url,
+          },
+        ],
+      }),
     },
   ],
 });

@@ -54,7 +54,7 @@
                 </template>
 
                 <template v-else-if="contact.type === 'doctolib'">
-                  <img src="/images/appointment/doctolib-icon.png" alt="Icône Doctolib" />
+                  <img src="/images/appointment/doctolib-icon.png" alt="Icône Doctolib" width="24" height="24" loading="lazy" decoding="async" />
                   <p>Doctolib</p>
                 </template>
               </Button>
@@ -76,7 +76,7 @@ definePageMeta({
 usePrendreRendezVousSeo();
 
 const selectedDoctorName = ref("");
-const selectedDoctor = ref(null);
+const selectedDoctor = ref<(typeof doctors)[number] | null>(null);
 
 watch(selectedDoctorName, (newName) => {
   selectedDoctor.value = doctors.find((d) => d.name === newName) || null;
