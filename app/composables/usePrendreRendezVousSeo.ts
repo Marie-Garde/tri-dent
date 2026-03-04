@@ -5,7 +5,7 @@ export const usePrendreRendezVousSeo = () => {
   const description =
     "Prenez rendez-vous facilement avec le Cabinet Dentaire Tri-Dent à Cornebarrieu. Instructions pour les nouveaux patients et accès direct à la prise de rendez-vous pour les patients existants.";
   const url = `${BASE_URL}/prendre-rendez-vous`;
-  const image = `${BASE_URL}/images/appointment/banner.png`;
+  const image = `${BASE_URL}/images/appointment/banner.webp`;
 
   useHead({
     title,

@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import team from "~/assets/images/home/home-team.jpg";
+const team = "/images/home/home-team.webp";
 
 const welcomeSection = ref(null);
 

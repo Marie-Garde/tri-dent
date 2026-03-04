@@ -1,4 +1,4 @@
-import avatarImg from "~/assets/images/avatar.png";
+const avatarImg = "/images/avatar.png";
 
 export const doctors = [
   {

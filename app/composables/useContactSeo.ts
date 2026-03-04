@@ -5,7 +5,7 @@ export const useContactSeo = () => {
   const description =
     "Contactez le Cabinet Dentaire Tri-Dent à Cornebarrieu. Retrouvez nos coordonnées, plan d'accès et posez toutes vos questions via notre formulaire de contact ou par téléphone.";
   const url = `${BASE_URL}/contact`;
-  const image = `${BASE_URL}/images/contact/contact.png`;
+  const image = `${BASE_URL}/images/contact/contact.webp`;
 
   useHead({
     title,

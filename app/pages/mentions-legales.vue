@@ -124,7 +124,7 @@ const title = "Mentions Légales - Cabinet Dentaire Tri-Dent";
 const description =
   "Consultez les mentions légales du Cabinet Dentaire Tri-Dent. Informations sur le propriétaire du site, la protection des données personnelles, la propriété intellectuelle et l'utilisation des cookies.";
 const url = `${BASE_URL}/mentions-legales`;
-const image = `${BASE_URL}/images/home/cabinet.png`;
+const image = `${BASE_URL}/images/home/cabinet.webp`;
 
 useHead({
   title,

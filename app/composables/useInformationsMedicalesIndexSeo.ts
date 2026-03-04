@@ -6,7 +6,7 @@ export const useInformationsMedicalesIndexSeo = () => {
   const description =
     "Retrouvez toutes les informations médicales et conseils pratiques de votre Cabinet Dentaire Tri-Dent. Articles sur la santé dentaire, les traitements, la prévention et l'hygiène bucco-dentaire.";
   const url = `${BASE_URL}/informations-medicales`;
-  const image = `${BASE_URL}/images/informations-medicales/banner.png`;
+  const image = `${BASE_URL}/images/informations-medicales/banner.webp`;
 
   useHead({
     title,

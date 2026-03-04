@@ -55,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import avatarImg from "~/assets/images/avatar.png";
+const avatarImg = "/images/avatar.png";
 
 const teamMembers = [
   {

@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import logo from "~/assets/images/logo-trident-light.svg";
+const logo = "/images/logo-trident-light.svg";
 </script>
 
 <style lang="scss" scoped>

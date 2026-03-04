@@ -18,14 +18,21 @@
 
     <div class="side-text-image__image">
       <slot name="image">
-        <img :src="img" :alt="imgAlt" width="500" height="430" loading="lazy" decoding="async" />
+        <img
+          :src="img"
+          :alt="imgAlt"
+          width="500"
+          height="430"
+          loading="lazy"
+          decoding="async"
+        />
       </slot>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import elipse from "~/assets/images/SideTextImage/elipse.png";
+const elipse = "/images/elipse.png";
 
 withDefaults(
   defineProps<{
@@ -106,7 +113,8 @@ withDefaults(
 
     img {
       height: 100%;
-      object-fit: contain;
+      width: 100%;
+      object-fit: cover;
 
       @media (max-width: 1024px) {
         object-fit: cover;

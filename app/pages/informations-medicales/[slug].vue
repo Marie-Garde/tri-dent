@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import bannerImage from "~/assets/images/informations-medicales/banner-article.png";
+const bannerImage = "/images/informations-medicales/banner-article.webp";
 
 definePageMeta({
   layout: "default",

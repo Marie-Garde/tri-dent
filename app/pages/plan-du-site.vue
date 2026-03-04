@@ -35,7 +35,7 @@ const title = "Plan du Site - Cabinet Dentaire Tri-Dent";
 const description =
   "Découvrez l'organisation complète du site du Cabinet Dentaire Tri-Dent grâce à notre plan du site. Accédez facilement à toutes les pages et informations importantes.";
 const url = `${BASE_URL}/plan-du-site`;
-const image = `${BASE_URL}/images/home/cabinet.png`;
+const image = `${BASE_URL}/images/home/cabinet.webp`;
 
 useHead({
   title,

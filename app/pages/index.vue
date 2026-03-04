@@ -7,7 +7,14 @@
       <Team />
     </div>
     <div class="full-width-image">
-      <img src="/images/home/cabinet-indoor.png" alt="Vue intérieure du cabinet dentaire Tri-Dent à Cornebarrieu" width="1280" height="400" loading="lazy" decoding="async" />
+      <img
+        src="/images/home/cabinet-indoor.webp"
+        alt="Vue intérieure du cabinet dentaire Tri-Dent à Cornebarrieu"
+        width="1280"
+        height="400"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
     <MedicalInformations />
   </div>

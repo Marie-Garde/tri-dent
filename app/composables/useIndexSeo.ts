@@ -6,7 +6,7 @@ export const useIndexSeo = () => {
   const description =
     "Découvrez le Cabinet Dentaire Tri-Dent à Cornebarrieu. Une équipe complète de professionnels dévoués à votre santé bucco-dentaire, offrant des soins modernes et personnalisés.";
   const url = BASE_URL;
-  const image = `${BASE_URL}/images/home/cabinet.png`;
+  const image = `${BASE_URL}/images/home/cabinet.webp`;
 
   useHead({
     title,

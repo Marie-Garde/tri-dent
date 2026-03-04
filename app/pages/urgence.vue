@@ -58,12 +58,6 @@
 </template>
 
 <script setup lang="ts">
-import EmergencyImageWeek from "~/assets/images/emergency/emergencyImageWeek.vue";
-import EmergencyImageSaturday from "~/assets/images/emergency/emergencyImageSaturday.vue";
-import EmergencyImageSunday from "~/assets/images/emergency/emergencyImageSunday.vue";
-import EmergencyImageWeekMob from "~/assets/images/emergency/emergencyImageWeekMob.vue";
-import EmergencyImageSaturdayMob from "~/assets/images/emergency/emergencyImageSaturdayMob.vue";
-import EmergencyImageSundayMob from "~/assets/images/emergency/emergencyImageSundayMob.vue";
 import { useIsMobile } from "~/reactives/isMobile";
 
 definePageMeta({
@@ -106,7 +100,7 @@ function getEmergencyImageType() {
     height: 60vh;
     background:
       linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url("~/assets/images/urgence/banner.png");
+      url("/images/urgence/banner.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
