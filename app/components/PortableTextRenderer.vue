@@ -26,7 +26,6 @@
         </li>
       </ul>
 
-      <!-- Liste numérotée -->
       <ol v-else-if="block.type === 'number-list'" class="number-list">
         <li v-for="(item, itemIndex) in block.items" :key="itemIndex">
           <span v-for="(child, childIndex) in item.children" :key="childIndex">
@@ -51,7 +50,6 @@
         </li>
       </ol>
 
-      <!-- Bloc de texte standard -->
       <component
         v-else-if="block._type === 'block'"
         :is="getBlockComponent(block.style)"
@@ -79,7 +77,6 @@
         </template>
       </component>
 
-      <!-- Bloc image -->
       <figure
         v-else-if="block._type === 'imageBlock'"
         :class="['image-block', getImageClass(index)]"
@@ -117,7 +114,6 @@ const props = defineProps<{
   blocks: any[];
 }>();
 
-// Grouper les items de liste consécutifs
 const processedBlocks = computed(() => {
   const result: any[] = [];
   let currentList: any = null;
@@ -125,16 +121,13 @@ const processedBlocks = computed(() => {
   for (let i = 0; i < props.blocks.length; i++) {
     const block = props.blocks[i];
 
-    // Si c'est un item de liste
     if (block.listItem === "bullet" || block.listItem === "number") {
       const listType =
         block.listItem === "bullet" ? "bullet-list" : "number-list";
 
-      // Si on est déjà dans une liste du même type, ajouter l'item
       if (currentList && currentList.type === listType) {
         currentList.items.push(block);
       } else {
-        // Sinon, créer une nouvelle liste
         if (currentList) {
           result.push(currentList);
         }
@@ -144,17 +137,14 @@ const processedBlocks = computed(() => {
         };
       }
     } else {
-      // Si on était dans une liste, la fermer
       if (currentList) {
         result.push(currentList);
         currentList = null;
       }
-      // Ajouter le bloc normal
       result.push(block);
     }
   }
 
-  // Ne pas oublier la dernière liste
   if (currentList) {
     result.push(currentList);
   }
@@ -196,7 +186,6 @@ function getFileUrl(ref: string) {
   return `https://cdn.sanity.io/files/${config.public.sanityProjectId}/${config.public.sanityDataset}/${id}.${extension}`;
 }
 
-// Déterminer si l'image est suivie d'une autre image
 function getImageClass(index: number) {
   const blocks = processedBlocks.value;
   const currentBlock = blocks[index];
@@ -205,28 +194,23 @@ function getImageClass(index: number) {
 
   const isImageBlock = (block: any) => block?._type === "imageBlock";
 
-  // Si l'image suivante est aussi une image
   if (isImageBlock(nextBlock)) {
     return "image-paired image-paired--first";
   }
 
-  // Si l'image précédente était une image
   if (isImageBlock(prevBlock)) {
     return "image-paired image-paired--second";
   }
 
-  // Image seule
   return "image-single";
 }
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
+<style lang="scss" scoped>
 
 .portable-text {
   line-height: 1.8;
 
-  // Listes
   .bullet-list,
   .number-list {
     margin: $spacing-md 0;
@@ -324,14 +308,12 @@ function getImageClass(index: number) {
     }
   }
 
-  // Image seule : max 50% et centrée
   .image-single {
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
   }
 
-  // Images côte à côte
   .image-paired {
     display: inline-block;
     width: 49%;
@@ -406,7 +388,6 @@ function getImageClass(index: number) {
       font-size: 18px;
     }
 
-    // Sur mobile, toutes les images prennent 100% de largeur
     .image-single,
     .image-paired {
       max-width: 100%;

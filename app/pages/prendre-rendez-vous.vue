@@ -108,9 +108,7 @@ watch(selectedDoctorName, (newName) => {
 });
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
-
+<style lang="scss" scoped>
 .rdv {
   background-color: $color-bg-blue;
 
@@ -132,7 +130,7 @@ watch(selectedDoctorName, (newName) => {
     &__right {
       background-color: $color-white;
       padding: $spacing-lg;
-      border-radius: 8px;
+      border-radius: $border-radius-lg;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
@@ -250,7 +248,7 @@ watch(selectedDoctorName, (newName) => {
         margin-bottom: 0;
       }
       .buttons {
-        margin-top: 16px;
+        margin-top: $spacing-md;
         flex-direction: column;
         gap: $spacing-sm;
       }
@@ -262,13 +260,13 @@ watch(selectedDoctorName, (newName) => {
         margin-top: 0;
       }
       .divider {
-        margin: 0 auto 16px auto;
+        margin: 0 auto $spacing-md auto;
       }
       p {
         margin: 0;
       }
       .buttons {
-        margin-top: 16px;
+        margin-top: $spacing-md;
         flex-direction: column;
         gap: $spacing-sm;
       }

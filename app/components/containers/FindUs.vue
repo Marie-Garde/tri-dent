@@ -36,12 +36,9 @@
 
 <script setup lang="ts">
 import cabinet from "~/assets/images/home/cabinet.jpg";
-import Divider from "~/components/Divider.vue";
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .find-us {
   background-color: $color-bg-blue;
   width: 100%;

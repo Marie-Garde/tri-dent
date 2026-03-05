@@ -16,10 +16,8 @@ const { imageSrc, text } = props;
 
 <style lang="scss" scoped>
 .value-card {
-  /* Removed fixed width to allow dynamic expansion */
-  /* width: 304px; */
-  flex: 1; /* Allow card to grow */
-  max-width: 380px; /* Set a max-width to prevent cards from becoming too wide */
+  flex: 1;
+  max-width: 380px;
   height: 264px;
   padding: $spacing-md;
   border-radius: $border-radius-lg;
@@ -37,7 +35,6 @@ const { imageSrc, text } = props;
   object-fit: contain;
 }
 
-/* todo: font-size responsive */
 .value-card__text {
   margin: 0;
   font-size: 24px;

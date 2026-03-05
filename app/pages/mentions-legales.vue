@@ -173,8 +173,6 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .legal-notice {
   &__banner {
     height: 400px;

@@ -47,8 +47,6 @@ withDefaults(
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .side-text-image {
   display: flex;
   align-items: center;

@@ -28,7 +28,6 @@ withDefaults(defineProps<Props>(), {
 
 <style lang="scss" scoped>
 @use "sass:color";
-@use "@/assets/scss/variables" as *;
 
 .button {
   display: inline-flex;

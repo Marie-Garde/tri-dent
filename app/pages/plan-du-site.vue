@@ -16,7 +16,6 @@
           <NuxtLink to="/informations-medicales"
             >Informations Médicales</NuxtLink
           >
-          <!-- Si il y a des sous-pages dynamiques, lister les articles ici serait bien -->
         </li>
         <li><NuxtLink to="/contact">Contact</NuxtLink></li>
         <li><NuxtLink to="/mentions-legales">Mentions Légales</NuxtLink></li>
@@ -85,8 +84,6 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .sitemap {
   &__banner {
     height: 400px;

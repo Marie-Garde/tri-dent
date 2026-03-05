@@ -34,15 +34,11 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import Carousel from "../Carousel.vue";
-import { useArticlesStore } from "~/stores/articles";
+<script setup lang="ts">
 import { urlFor } from "~/lib/sanity";
 
 const articlesStore = useArticlesStore();
 
-// ✅ Utiliser computed pour que ça se mette à jour automatiquement
 const recentArticles = computed(() => articlesStore.recentArticles);
 
 onMounted(async () => {
@@ -51,7 +47,6 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
 .medical-information {
   background-color: $color-yellow-transparent;
   margin-top: -$spacing-md;

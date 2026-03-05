@@ -14,8 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { useIndexSeo } from "~/composables/useIndexSeo";
-
 definePageMeta({
   layout: "home",
 });
@@ -24,8 +22,6 @@ useIndexSeo();
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .home__layout {
   max-width: 1280px;
   margin: 0 auto;

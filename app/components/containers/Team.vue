@@ -85,8 +85,6 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-
 .team {
   &__section {
     margin-bottom: $spacing-xl;

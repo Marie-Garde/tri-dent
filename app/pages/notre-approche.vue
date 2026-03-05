@@ -55,7 +55,7 @@
       <h2>Nos technologies phares</h2>
       <Divider />
       <div class="approche__technos-carousel">
-        <CarouselTechnoMobile v-if="useCompactCarousel" />
+        <CarouselTechnoMobile v-if="isCompactView" />
         <CarouselTechno v-else />
       </div>
     </div>
@@ -69,20 +69,11 @@ definePageMeta({
 
 useNotreApprocheSeo();
 
-const useCompactCarousel = ref(false);
-let compactQuery: MediaQueryList;
+const isCompactView = ref(false);
+let mediaQuery: MediaQueryList | undefined;
 
-onMounted(() => {
-  compactQuery = window.matchMedia("(max-width: 1024px)");
-  useCompactCarousel.value = compactQuery.matches;
-  compactQuery.addEventListener("change", (e) => {
-    useCompactCarousel.value = e.matches;
-  });
-});
-
-onUnmounted(() => {
-  compactQuery?.removeEventListener("change", () => {});
-});
+const valeursSection = ref<HTMLElement | null>(null);
+const technosSection = ref<HTMLElement | null>(null);
 
 const valuesLine1 = [
   {
@@ -114,11 +105,15 @@ const valuesLine2 = [
   },
 ];
 
-// Refs uniquement pour les sections avec animations
-const valeursSection = ref(null);
-const technosSection = ref(null);
+function onMediaChange(e: MediaQueryListEvent) {
+  isCompactView.value = e.matches;
+}
 
 onMounted(() => {
+  mediaQuery = window.matchMedia("(max-width: 1024px)");
+  isCompactView.value = mediaQuery.matches;
+  mediaQuery.addEventListener("change", onMediaChange);
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -128,22 +123,20 @@ onMounted(() => {
         }
       });
     },
-    {
-      threshold: 0.15,
-      rootMargin: "0px 0px -50px 0px",
-    },
+    { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
   );
 
   [valeursSection.value, technosSection.value].forEach((section) => {
     if (section) observer.observe(section);
   });
 });
+
+onBeforeUnmount(() => {
+  mediaQuery?.removeEventListener("change", onMediaChange);
+});
 </script>
 
 <style lang="scss" scoped>
-@use "@/assets/scss/variables" as *;
-@use "sass:color";
-
 .approche {
   &__valeurs {
     padding: $spacing-xl;
@@ -229,7 +222,6 @@ onMounted(() => {
   }
 }
 
-// Animation unique, plus subtile
 @keyframes fadeInUp {
   to {
     opacity: 1;

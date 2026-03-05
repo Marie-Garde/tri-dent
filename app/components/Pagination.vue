@@ -53,8 +53,7 @@ defineEmits<{
 }>();
 </script>
 
-<style scoped lang="scss">
-@use "@/assets/scss/variables" as *;
+<style lang="scss" scoped>
 
 .pagination {
   display: flex;
