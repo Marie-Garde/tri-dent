@@ -11,19 +11,14 @@ export const useDoctorsStore = defineStore("doctors", {
   }),
 
   getters: {
-    partners: (state) =>
-      state.doctors.filter((d) => d.role === "partner"),
+    partners: (state) => state.doctors.filter((d) => d.role === "partner"),
 
-    dentists: (state) =>
-      state.doctors.filter((d) => d.role === "doctor"),
+    dentists: (state) => state.doctors.filter((d) => d.role === "doctor"),
 
-    assistants: (state) =>
-      state.doctors.filter((d) => d.role === "assistant"),
+    assistants: (state) => state.doctors.filter((d) => d.role === "assistant"),
 
     doctorsWithContact: (state) =>
-      state.doctors.filter(
-        (d) => d.contact && d.contact.length > 0,
-      ),
+      state.doctors.filter((d) => d.contact && d.contact.length > 0),
 
     avatarUrl: () => (doctor: SanityDoctor) => {
       if (doctor.avatar?.asset) {
@@ -46,6 +41,7 @@ export const useDoctorsStore = defineStore("doctors", {
           nom,
           role,
           avatar,
+          description,
           contact[] {
             type,
             valeur
@@ -54,8 +50,7 @@ export const useDoctorsStore = defineStore("doctors", {
 
         this.doctors = await sanityClient.fetch(query);
       } catch (err: any) {
-        this.error =
-          err.message || "Erreur lors du chargement de l'équipe";
+        this.error = err.message || "Erreur lors du chargement de l'équipe";
       } finally {
         this.loading = false;
       }

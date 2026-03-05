@@ -7,6 +7,7 @@ export interface SanityDoctor {
   _id: string;
   nom: string;
   role: "partner" | "doctor" | "assistant";
+  description: string;
   avatar?: {
     asset: { _ref: string };
     alt?: string;

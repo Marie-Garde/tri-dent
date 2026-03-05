@@ -24,8 +24,8 @@
       <div class="card__name">
         {{ name }}
       </div>
-      <div v-if="presentation" class="card__presentation">
-        {{ presentation }}
+      <div v-if="description" class="card__presentation">
+        {{ description }}
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@ withDefaults(
     image?: string;
     name: string;
     status: string;
-    presentation?: string;
+    description?: string;
     expandable?: boolean;
   }>(),
   {
