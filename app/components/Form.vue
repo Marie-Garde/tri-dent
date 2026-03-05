@@ -96,7 +96,8 @@ async function submitForm() {
     status.type = "success";
 
     Object.keys(form).forEach((key) => {
-      (form as Record<string, string | boolean>)[key] = key === "rgpdConsent" ? false : "";
+      (form as Record<string, string | boolean>)[key] =
+        key === "rgpdConsent" ? false : "";
     });
 
     Object.keys(errors).forEach((key) => {
@@ -202,7 +203,6 @@ async function submitForm() {
 </template>
 
 <style lang="scss" scoped>
-
 .contact-form {
   width: 100%;
   max-width: 600px;
