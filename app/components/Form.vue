@@ -1,6 +1,22 @@
 <script setup lang="ts">
 import emailjs from "@emailjs/browser";
-import { doctors } from "~/data/dentists";
+import DoctorDropdown from "./DoctorDropdown.vue";
+import TextInput from "./TextInput.vue";
+import TextareaInput from "./TextareaInput.vue";
+import { useDoctorsStore } from "~/stores/doctors";
+
+const doctorsStore = useDoctorsStore();
+
+onMounted(async () => {
+  await doctorsStore.fetchDoctors();
+});
+
+const doctors = computed(() =>
+  doctorsStore.doctorsWithContact.map((d) => ({
+    name: d.nom,
+    image: doctorsStore.avatarUrl(d),
+  })),
+);
 
 const form = reactive({
   lastName: "",
@@ -80,7 +96,8 @@ async function submitForm() {
     status.type = "success";
 
     Object.keys(form).forEach((key) => {
-      (form as Record<string, string | boolean>)[key] = key === "rgpdConsent" ? false : "";
+      (form as Record<string, string | boolean>)[key] =
+        key === "rgpdConsent" ? false : "";
     });
 
     Object.keys(errors).forEach((key) => {
@@ -186,7 +203,6 @@ async function submitForm() {
 </template>
 
 <style lang="scss" scoped>
-
 .contact-form {
   width: 100%;
   max-width: 600px;
