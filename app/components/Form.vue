@@ -1,6 +1,22 @@
 <script setup lang="ts">
 import emailjs from "@emailjs/browser";
-import { doctors } from "~/data/dentists";
+import DoctorDropdown from "./DoctorDropdown.vue";
+import TextInput from "./TextInput.vue";
+import TextareaInput from "./TextareaInput.vue";
+import { useDoctorsStore } from "~/stores/doctors";
+
+const doctorsStore = useDoctorsStore();
+
+onMounted(async () => {
+  await doctorsStore.fetchDoctors();
+});
+
+const doctors = computed(() =>
+  doctorsStore.doctorsWithContact.map((d) => ({
+    name: d.nom,
+    image: doctorsStore.avatarUrl(d),
+  })),
+);
 
 const form = reactive({
   lastName: "",

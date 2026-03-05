@@ -1,6 +1,10 @@
 <template>
   <div class="rdv">
-    <Banner title="Prendre rendez-vous" image="/images/appointment/banner.png" />
+    <Banner
+      title="Prendre rendez-vous"
+      image="/images/appointment/banner.png"
+      light
+    />
 
     <div class="rdv__container">
       <div class="rdv__content">
@@ -36,10 +40,10 @@
                 :key="contact.type"
                 :href="
                   contact.type === 'phone'
-                    ? `tel:${contact.url}`
+                    ? `tel:${contact.valeur}`
                     : contact.type === 'email'
-                      ? `mailto:${contact.url}`
-                      : contact.url
+                      ? `mailto:${contact.valeur}`
+                      : contact.valeur
                 "
                 target="_blank"
                 class="contact-button"
@@ -54,7 +58,14 @@
                 </template>
 
                 <template v-else-if="contact.type === 'doctolib'">
-                  <img src="/images/appointment/doctolib-icon.png" alt="Icône Doctolib" width="24" height="24" loading="lazy" decoding="async" />
+                  <img
+                    src="/images/appointment/doctolib-icon.png"
+                    alt="Icône Doctolib"
+                    width="24"
+                    height="24"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <p>Doctolib</p>
                 </template>
               </Button>
@@ -67,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { doctors } from "~/data/dentists";
+import type { SanityDoctor } from "~/types/doctor";
 
 definePageMeta({
   layout: "default",
@@ -75,11 +86,25 @@ definePageMeta({
 
 usePrendreRendezVousSeo();
 
+const doctorsStore = useDoctorsStore();
+
+onMounted(async () => {
+  await doctorsStore.fetchDoctors();
+});
+
+const doctors = computed(() =>
+  doctorsStore.doctorsWithContact.map((d) => ({
+    name: d.nom,
+    image: doctorsStore.avatarUrl(d),
+  })),
+);
+
 const selectedDoctorName = ref("");
-const selectedDoctor = ref<(typeof doctors)[number] | null>(null);
+const selectedDoctor = ref<SanityDoctor | null>(null);
 
 watch(selectedDoctorName, (newName) => {
-  selectedDoctor.value = doctors.find((d) => d.name === newName) || null;
+  selectedDoctor.value =
+    doctorsStore.doctorsWithContact.find((d) => d.nom === newName) || null;
 });
 </script>
 
