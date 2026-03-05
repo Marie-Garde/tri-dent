@@ -48,14 +48,12 @@
         cabinet des dernières innovations dentaires. Votre confort et votre
         sécurité sont au cœur de notre pratique.
       </p>
-      <!-- Carousel -->
       <CarouselApproche />
     </div>
 
     <div class="approche__technos" ref="technosSection">
       <h2>Nos technologies phares</h2>
       <Divider />
-      <!-- Carousel -->
       <div class="approche__technos-carousel">
         <CarouselTechnoMobile v-if="useCompactCarousel" />
         <CarouselTechno v-else />

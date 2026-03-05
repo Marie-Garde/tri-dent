@@ -4,15 +4,14 @@
       <h2>Une équipe complète pour vous aider</h2>
       <Divider />
     </div>
-    <div v-if="associates.length" class="team__section">
+    <div v-if="doctorsStore.partners.length" class="team__section">
       <div class="team__grid" ref="associatesGrid">
         <DrCard
-          v-for="(doctor, index) in associates"
-          :key="doctor.name"
-          :image="doctor.img"
-          :name="doctor.name"
-          :status="doctor.status"
-          :presentation="doctor.presentation"
+          v-for="(doctor, index) in doctorsStore.partners"
+          :key="doctor._id"
+          :image="doctorsStore.avatarUrl(doctor)"
+          :name="doctor.nom"
+          status="Associate"
           class="team__card"
           :style="{ '--card-index': index }"
           expandable
@@ -20,15 +19,14 @@
       </div>
     </div>
 
-    <div v-if="doctors.length" class="team__section">
+    <div v-if="doctorsStore.dentists.length" class="team__section">
       <div class="team__grid" ref="doctorsGrid">
         <DrCard
-          v-for="(doctor, index) in doctors"
-          :key="doctor.name"
-          :image="doctor.img"
-          :name="doctor.name"
-          :status="doctor.status"
-          :presentation="doctor.presentation"
+          v-for="(doctor, index) in doctorsStore.dentists"
+          :key="doctor._id"
+          :image="doctorsStore.avatarUrl(doctor)"
+          :name="doctor.nom"
+          status="Dr"
           class="team__card"
           :style="{ '--card-index': index }"
           expandable
@@ -36,15 +34,14 @@
       </div>
     </div>
 
-    <div v-if="assistants.length" class="team__section">
+    <div v-if="doctorsStore.assistants.length" class="team__section">
       <div class="team__grid" ref="assistantsGrid">
         <DrCard
-          v-for="(member, index) in assistants"
-          :key="member.name"
-          :image="member.img"
-          :name="member.name"
-          :status="member.status"
-          :presentation="member.presentation"
+          v-for="(member, index) in doctorsStore.assistants"
+          :key="member._id"
+          :image="doctorsStore.avatarUrl(member)"
+          :name="member.nom"
+          status="Assistante"
           class="team__card"
           :style="{ '--card-index': index }"
           expandable
@@ -55,87 +52,15 @@
 </template>
 
 <script setup lang="ts">
-import avatarImg from "~/assets/images/avatar.png";
-
-const teamMembers = [
-  {
-    name: "Dr. Réda BOUNAB",
-    status: "Associate",
-    img: avatarImg,
-    presentation: "Omnipratique, Implantologie",
-  },
-  {
-    name: "Dr. Sandrine DE CARVALHO",
-    status: "Associate",
-    img: avatarImg,
-    presentation: "Omnipratique, Implantologie",
-  },
-  {
-    name: "Dr. Laure RISPAL",
-    status: "Associate",
-    img: avatarImg,
-    presentation: "Omnipratique",
-  },
-  {
-    name: "Dr. Patrick SALINAS",
-    status: "Associate",
-    img: avatarImg,
-    presentation: "Omnipratique, Orthodontie adulte, Implantologie",
-  },
-  {
-    name: "Dr. Mathilde HOURSET",
-    status: "Dr",
-    img: avatarImg,
-    presentation:
-      "Omnipratique, Pédodontie, Orthodontie interceptive, Occlusodontie",
-  },
-  {
-    name: "Dr. Hugo SENTILLES",
-    status: "Dr",
-    img: avatarImg,
-    presentation: "Omnipratique",
-  },
-  {
-    name: "Céline",
-    status: "Assistante",
-    img: avatarImg,
-    presentation: "Assistante dentaire qualifiée",
-  },
-  {
-    name: "Maylis",
-    status: "Assistante",
-    img: avatarImg,
-    presentation: "Assistante dentaire qualifiée",
-  },
-  {
-    name: "Séverine",
-    status: "Assistante",
-    img: avatarImg,
-    presentation: "Assistante dentaire qualifiée",
-  },
-  {
-    name: "Julie",
-    status: "Assistante",
-    img: avatarImg,
-    presentation: "Assistante dentaire qualifiée",
-  },
-];
-
-const associates = computed(() =>
-  teamMembers.filter((member) => member.status === "Associate"),
-);
-const doctors = computed(() =>
-  teamMembers.filter((member) => member.status === "Dr"),
-);
-const assistants = computed(() =>
-  teamMembers.filter((member) => member.status === "Assistante"),
-);
+const doctorsStore = useDoctorsStore();
 
 const associatesGrid = ref(null);
 const doctorsGrid = ref(null);
 const assistantsGrid = ref(null);
 
-onMounted(() => {
+onMounted(async () => {
+  await doctorsStore.fetchDoctors();
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -151,7 +76,6 @@ onMounted(() => {
     },
   );
 
-  // Observer toutes les grilles
   [associatesGrid.value, doctorsGrid.value, assistantsGrid.value].forEach(
     (grid) => {
       if (grid) observer.observe(grid);
