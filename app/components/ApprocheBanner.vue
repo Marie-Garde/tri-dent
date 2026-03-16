@@ -21,8 +21,6 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
-
 <style lang="scss" scoped>
 .approche__banner {
   padding: 0 $spacing-xl;

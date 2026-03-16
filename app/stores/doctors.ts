@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
-import { sanityClient } from "~/lib/sanity";
-import { urlFor } from "~/lib/sanity";
+import { getSanityClient, urlFor } from "~/lib/sanity";
 import type { SanityDoctor } from "~/types/doctor";
 
 export const useDoctorsStore = defineStore("doctors", {
@@ -48,7 +47,7 @@ export const useDoctorsStore = defineStore("doctors", {
           }
         }`;
 
-        this.doctors = await sanityClient.fetch(query);
+        this.doctors = await getSanityClient().fetch(query);
       } catch (err: any) {
         this.error = err.message || "Erreur lors du chargement de l'équipe";
       } finally {

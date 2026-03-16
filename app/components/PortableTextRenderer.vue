@@ -1,7 +1,6 @@
 <template>
   <div class="portable-text">
     <template v-for="(block, index) in processedBlocks" :key="index">
-      <!-- Liste à puces -->
       <ul v-if="block.type === 'bullet-list'" class="bullet-list">
         <li v-for="(item, itemIndex) in block.items" :key="itemIndex">
           <span v-for="(child, childIndex) in item.children" :key="childIndex">
@@ -207,7 +206,6 @@ function getImageClass(index: number) {
 </script>
 
 <style lang="scss" scoped>
-
 .portable-text {
   line-height: 1.8;
 

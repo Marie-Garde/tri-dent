@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { sanityClient } from "~/lib/sanity";
+import { getSanityClient } from "~/lib/sanity";
 import type { Article, Tag, Thematique } from "~/types/article";
 
 export const useArticlesStore = defineStore("articles", {
@@ -13,21 +13,18 @@ export const useArticlesStore = defineStore("articles", {
   }),
 
   getters: {
-    // Récupérer les articles par thématique
     articlesByThematique: (state) => (thematiqueId: string) => {
       return state.articles.filter((article) =>
         article.thematique?.some((t) => t._id === thematiqueId)
       );
     },
 
-    // Récupérer les articles par tag
     articlesByTag: (state) => (tagId: string) => {
       return state.articles.filter((article) =>
         article.tags?.some((tag) => tag._id === tagId)
       );
     },
 
-    // Récupérer un article par son slug
     articleBySlug: (state) => (slug: string) => {
       return state.articles.find((article) => article.slug.current === slug);
     },
@@ -60,10 +57,9 @@ export const useArticlesStore = defineStore("articles", {
           }
         }`;
 
-        this.articles = await sanityClient.fetch(query);
+        this.articles = await getSanityClient().fetch(query);
       } catch (err: any) {
         this.error = err.message || "Erreur lors du chargement des articles";
-        console.error("Erreur Sanity:", err);
       } finally {
         this.loading = false;
       }
@@ -80,9 +76,9 @@ export const useArticlesStore = defineStore("articles", {
           titre
         }`;
 
-        this.tags = await sanityClient.fetch(query);
+        this.tags = await getSanityClient().fetch(query);
       } catch (err: any) {
-        console.error("Erreur lors du chargement des tags:", err);
+        this.error = err.message || "Erreur lors du chargement des tags";
       }
     },
 
@@ -97,9 +93,9 @@ export const useArticlesStore = defineStore("articles", {
           titre
         }`;
 
-        this.thematiques = await sanityClient.fetch(query);
+        this.thematiques = await getSanityClient().fetch(query);
       } catch (err: any) {
-        console.error("Erreur lors du chargement des thématiques:", err);
+        this.error = err.message || "Erreur lors du chargement des thématiques";
       }
     },
 
@@ -116,9 +112,9 @@ export const useArticlesStore = defineStore("articles", {
           icone
         }`;
 
-        this.recentArticles = await sanityClient.fetch(query);
+        this.recentArticles = await getSanityClient().fetch(query);
       } catch (err: any) {
-        console.error("Erreur lors du chargement des articles récents:", err);
+        this.error = err.message || "Erreur lors du chargement des articles récents";
       }
     },
   },

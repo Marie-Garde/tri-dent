@@ -6,12 +6,10 @@
 </template>
 
 <script lang="ts" setup>
-interface Props {
+defineProps<{
   imageSrc: string;
   text: string;
-}
-const props = defineProps<Props>();
-const { imageSrc, text } = props;
+}>();
 </script>
 
 <style lang="scss" scoped>
