@@ -127,5 +127,7 @@ Le site met en valeur le nouveau cabinet, présente l'équipe de praticiens et d
 
 ## 🌍 Démo
 
-🔗 **Lien vers le site** : *(déploiement en cours)*  
-📸 **Screenshots** : *(à venir après déploiement)*
+🔗 **Lien vers le site** : [*Voir le site*  ](https://www.cabinet-dentaire-tri-dent-cornebarrieu.fr/)
+📸 **Screenshots** : 
+<img width="1898" height="954" alt="Capture d’écran 2026-03-16 à 14 47 47" src="https://github.com/user-attachments/assets/e2255871-a4ee-46c4-84be-45f7f64bf474" />
+<img width="1898" height="954" alt="Capture d’écran 2026-03-16 à 14 48 07" src="https://github.com/user-attachments/assets/da5e2dda-0c29-4a01-98f5-53c7d0d54451" />
