@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import emailjs from "@emailjs/browser";
-import DoctorDropdown from "./DoctorDropdown.vue";
-import TextInput from "./TextInput.vue";
-import TextareaInput from "./TextareaInput.vue";
-import { useDoctorsStore } from "~/stores/doctors";
 
 const doctorsStore = useDoctorsStore();
 

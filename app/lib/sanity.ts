@@ -1,15 +1,19 @@
 import { createClient } from "@sanity/client";
 import { createImageUrlBuilder } from "@sanity/image-url";
+import type { SanityClient } from "@sanity/client";
 
-export const sanityClient = createClient({
-  projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID || "k5e2e78k",
-  dataset: process.env.NUXT_PUBLIC_SANITY_DATASET || "production",
-  apiVersion: "2024-01-01",
-  useCdn: true,
-});
+let _client: SanityClient;
+let _builder: ReturnType<typeof createImageUrlBuilder>;
 
-const builder = createImageUrlBuilder(sanityClient);
+export function initSanity(projectId: string, dataset: string) {
+  _client = createClient({ projectId, dataset, apiVersion: "2024-01-01", useCdn: true });
+  _builder = createImageUrlBuilder(_client);
+}
+
+export function getSanityClient(): SanityClient {
+  return _client;
+}
 
 export function urlFor(source: any) {
-  return builder.image(source);
+  return _builder.image(source);
 }

@@ -26,7 +26,6 @@ main {
 }
 
 .layout__container {
-  /*max-width: 1280px;*/
   margin: 0 auto;
   width: 100%;
   height: 100%;

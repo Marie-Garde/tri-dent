@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { sanityClient, urlFor } from "~/lib/sanity";
+import { getSanityClient, urlFor } from "~/lib/sanity";
 
 interface CarouselImage {
   _id: string;
@@ -39,7 +39,7 @@ onMounted(async () => {
   alt,
   "imageUrl": image.asset->url
 }`;
-  items.value = await sanityClient.fetch(query);
+  items.value = await getSanityClient().fetch(query);
 
   carouselInterval = setInterval(nextSlide, 4000);
 });

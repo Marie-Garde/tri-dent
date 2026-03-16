@@ -8,11 +8,10 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   light: { type: Boolean, default: false },
   vertical: { type: Boolean, default: false },
 });
-const { light, vertical } = props;
 </script>
 
 <style lang="scss" scoped>
