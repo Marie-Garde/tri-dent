@@ -56,16 +56,17 @@ withDefaults(
   background-color: $color-white;
   padding-bottom: 82px;
   box-shadow: 0 5px 5px $color-grey;
+  overflow: hidden;
 
   &--expandable {
-    flex: 1 1 200px;
-    max-width: 296px;
-    min-width: 250px;
+    flex: 1 1 180px;
+    max-width: 240px;
+    min-width: 200px;
 
     @media (max-width: 1024px) {
-      flex: 1 1 180px;
-      max-width: 220px;
-      min-width: 180px;
+      flex: 1 1 150px;
+      max-width: 190px;
+      min-width: 155px;
     }
   }
 
@@ -76,7 +77,6 @@ withDefaults(
   &__image-container {
     aspect-ratio: 1;
     overflow: hidden;
-    border-radius: 8px 8px 0 0;
   }
 
   &__image {
@@ -91,7 +91,6 @@ withDefaults(
     left: 0;
     width: 100%;
     background-color: $color-yellow-transparent;
-    border-radius: 0 0 4px 4px;
     transition: all 0.3s ease-in-out;
 
     &--doctor {

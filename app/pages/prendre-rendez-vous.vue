@@ -3,6 +3,7 @@
     <Banner
       title="Prendre rendez-vous"
       image="/images/appointment/banner.webp"
+      light
     />
 
     <div class="rdv__container">
@@ -31,50 +32,35 @@
             :doctors="doctors"
             placeholder="Praticien"
           />
-          <div v-if="selectedDoctor" class="contact-buttons">
+          <div v-if="hasSelection" class="contact-buttons">
             <p>Votre prise de rendez-vous :</p>
             <div>
+              <Button href="tel:0561069192" class="contact-button">
+                <Icon name="mdi:phone" size="24" />
+                <span>05 61 06 91 92</span>
+              </Button>
               <Button
-                v-for="contact in selectedDoctor.contact"
-                :key="contact.type"
-                :href="
-                  contact.type === 'phone'
-                    ? `tel:${contact.valeur}`
-                    : contact.type === 'email'
-                      ? `mailto:${contact.valeur}`
-                      : contact.valeur
-                "
+                href="mailto:secretariat@scmtrident.fr"
+                class="contact-button"
+              >
+                <Icon name="mdi:email" size="24" />
+                <span>secretariat@scmtrident.fr</span>
+              </Button>
+              <Button
+                v-if="platformContact"
+                :href="platformContact.valeur"
                 target="_blank"
                 class="contact-button"
               >
-                <template v-if="contact.type === 'phone'" variant="secondary">
-                  <Icon name="mdi:phone" /> 05 61 06 91 92
-                </template>
-
-                <template v-if="contact.type === 'email'" variant="secondary">
-                  <Icon name="mdi:email" size="24" />
-                  secretariat@scmtrident.fr
-                </template>
-
-                <template v-else-if="contact.type === 'doctolib'">
-                  <img
-                    src="/images/appointment/doctolib-icon.png"
-                    alt="Icône Doctolib"
-                    width="24"
-                    height="24"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="/images/appointment/doctolib-icon.png"
-                    alt="Icône Doctolib"
-                    width="24"
-                    height="24"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <p>Doctolib</p>
-                </template>
+                <img
+                  :src="PLATFORM_META[platformContact.type].icon"
+                  :alt="`Icône ${PLATFORM_META[platformContact.type].label}`"
+                  width="24"
+                  height="24"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span>{{ PLATFORM_META[platformContact.type].label }}</span>
               </Button>
             </div>
           </div>
@@ -85,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SanityDoctor } from "~/types/doctor";
+import type { DoctorContact, SanityDoctor } from "~/types/doctor";
 
 definePageMeta({
   layout: "default",
@@ -109,9 +95,32 @@ const doctors = computed(() =>
 const selectedDoctorName = ref("");
 const selectedDoctor = ref<SanityDoctor | null>(null);
 
+const hasSelection = computed(() => selectedDoctorName.value !== "");
+
 watch(selectedDoctorName, (newName) => {
   selectedDoctor.value =
     doctorsStore.doctorsWithContact.find((d) => d.nom === newName) || null;
+});
+
+type PlatformType = Extract<DoctorContact["type"], "doctolib" | "logos">;
+
+const PLATFORM_META: Record<PlatformType, { label: string; icon: string }> = {
+  doctolib: {
+    label: "Doctolib",
+    icon: "/images/appointment/doctolib-icon.png",
+  },
+  logos: {
+    label: "Logos",
+    icon: "/images/appointment/logos-icon.png",
+  },
+};
+
+const platformContact = computed(() => {
+  const contact = selectedDoctor.value?.contact?.find(
+    (c): c is DoctorContact & { type: PlatformType } =>
+      c.type === "doctolib" || c.type === "logos",
+  );
+  return contact ?? null;
 });
 </script>
 
@@ -204,23 +213,29 @@ watch(selectedDoctorName, (newName) => {
       }
 
       .contact-button {
-        flex: 1;
+        flex: 1 1 0;
+        min-width: 0;
         background-color: $color-green;
         color: $color-white;
         border: 1px solid $color-green;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: $spacing-sm;
-        font-size: 24px;
+        gap: $spacing-sm;
+        padding: $spacing-sm $spacing-md;
+        font-size: $spacing-md;
 
         img {
           width: 24px;
           height: 24px;
+          flex-shrink: 0;
         }
 
-        p {
-          margin: 0 0 0 $spacing-sm;
+        span {
+          min-width: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
         &:hover {

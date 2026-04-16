@@ -1,10 +1,11 @@
 export interface DoctorContact {
-  type: "email" | "phone" | "doctolib";
+  type: "email" | "phone" | "doctolib" | "logos";
   valeur: string;
 }
 
 export interface SanityDoctor {
   _id: string;
+  index: number;
   nom: string;
   role: "partner" | "doctor" | "assistant";
   description: string;

@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-const cabinet = "/images/home/cabinet.webp";
+const cabinet = "/images/home/office-entrance.webp";
 </script>
 
 <style lang="scss" scoped>

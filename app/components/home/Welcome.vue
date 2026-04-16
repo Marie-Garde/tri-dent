@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-const team = "/images/home/home-team.webp";
+const team = "/images/home/team.webp";
 
 const welcomeSection = ref(null);
 

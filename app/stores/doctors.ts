@@ -10,11 +10,8 @@ export const useDoctorsStore = defineStore("doctors", {
   }),
 
   getters: {
-    partners: (state) => state.doctors.filter((d) => d.role === "partner"),
-
-    dentists: (state) => state.doctors.filter((d) => d.role === "doctor"),
-
-    assistants: (state) => state.doctors.filter((d) => d.role === "assistant"),
+    sortedByIndex: (state) =>
+      [...state.doctors].sort((a, b) => (a.index ?? 0) - (b.index ?? 0)),
 
     doctorsWithContact: (state) =>
       state.doctors.filter((d) => d.contact && d.contact.length > 0),
@@ -35,9 +32,10 @@ export const useDoctorsStore = defineStore("doctors", {
       this.error = null;
 
       try {
-        const query = `*[_type == "doctor"] | order(nom asc) {
+        const query = `*[_type == "doctor"] | order(index asc) {
           _id,
           nom,
+          index,
           role,
           avatar,
           description,

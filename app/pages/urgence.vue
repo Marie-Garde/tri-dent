@@ -1,11 +1,10 @@
 <template>
   <div class="urgence">
-    <div class="urgence__banner">
-      <div class="urgence__banner__content">
-        <h1>Urgence dentaire, que faire ?</h1>
-        <Divider light />
-      </div>
-    </div>
+    <Banner
+      title="Urgence dentaire, que faire ?"
+      image="/images/urgence/banner.webp"
+      light
+    />
 
     <div class="urgence__container">
       <div class="urgence__intro">
@@ -95,35 +94,6 @@ function getEmergencyImageType() {
 
 <style lang="scss" scoped>
 .urgence {
-  &__banner {
-    width: 100%;
-    height: 60vh;
-    background:
-      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url("/images/urgence/banner.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &__content {
-      max-width: 1280px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: $color-white-soft;
-
-      h1 {
-        font-size: 36px;
-        font-weight: 700;
-        margin: 0;
-        color: $color-white-soft;
-      }
-    }
-  }
-
   &__container {
     max-width: 1280px;
     width: 100%;
@@ -168,14 +138,6 @@ function getEmergencyImageType() {
 
 @media (max-width: 768px) {
   .urgence {
-    &__banner {
-      height: 30vh;
-      margin-top: 130px;
-
-      &__content {
-        margin: auto 0;
-      }
-    }
     &__container {
       width: 90%;
       padding: $spacing-md;
@@ -183,10 +145,6 @@ function getEmergencyImageType() {
 
     &__intro {
       width: 100%;
-    }
-
-    &__banner__content h1 {
-      font-size: 24px;
     }
 
     :deep(svg) {

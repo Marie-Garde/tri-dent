@@ -4,47 +4,20 @@
       <h2>Une équipe complète pour vous aider</h2>
       <Divider />
     </div>
-    <div v-if="doctorsStore.partners.length" class="team__section">
-      <div class="team__grid" ref="associatesGrid">
+    <div
+      v-for="(row, rowIndex) in rows"
+      v-show="row.length"
+      :key="rowIndex"
+      class="team__section"
+    >
+      <div class="team__grid" :ref="(el) => (rowRefs[rowIndex] = el)">
         <DrCard
-          v-for="(doctor, index) in doctorsStore.partners"
+          v-for="(doctor, index) in row"
           :key="doctor._id"
           :image="doctorsStore.avatarUrl(doctor)"
           :name="doctor.nom"
           :description="doctor.description"
-          status="Associate"
-          class="team__card"
-          :style="{ '--card-index': index }"
-          expandable
-        />
-      </div>
-    </div>
-
-    <div v-if="doctorsStore.dentists.length" class="team__section">
-      <div class="team__grid" ref="doctorsGrid">
-        <DrCard
-          v-for="(doctor, index) in doctorsStore.dentists"
-          :key="doctor._id"
-          :image="doctorsStore.avatarUrl(doctor)"
-          :name="doctor.nom"
-          :description="doctor.description"
-          status="Dr"
-          class="team__card"
-          :style="{ '--card-index': index }"
-          expandable
-        />
-      </div>
-    </div>
-
-    <div v-if="doctorsStore.assistants.length" class="team__section">
-      <div class="team__grid" ref="assistantsGrid">
-        <DrCard
-          v-for="(member, index) in doctorsStore.assistants"
-          :key="member._id"
-          :image="doctorsStore.avatarUrl(member)"
-          :name="member.nom"
-          :description="member.description"
-          status="Assistante"
+          :status="roleToStatus(doctor.role)"
           class="team__card"
           :style="{ '--card-index': index }"
           expandable
@@ -55,14 +28,34 @@
 </template>
 
 <script setup lang="ts">
+import type { SanityDoctor } from "~/types/doctor";
+
 const doctorsStore = useDoctorsStore();
 
-const associatesGrid = ref(null);
-const doctorsGrid = ref(null);
-const assistantsGrid = ref(null);
+const ROW_SIZES = [4, 2, 4];
+
+const rows = computed<SanityDoctor[][]>(() => {
+  const list = doctorsStore.sortedByIndex;
+  const result: SanityDoctor[][] = [];
+  let cursor = 0;
+  for (const size of ROW_SIZES) {
+    result.push(list.slice(cursor, cursor + size));
+    cursor += size;
+  }
+  return result;
+});
+
+const roleToStatus = (role: SanityDoctor["role"]) => {
+  if (role === "assistant") return "Assistante";
+  if (role === "partner") return "Associate";
+  return "Dr";
+};
+
+const rowRefs = ref<(Element | null)[]>([]);
 
 onMounted(async () => {
   await doctorsStore.fetchDoctors();
+  await nextTick();
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -79,11 +72,9 @@ onMounted(async () => {
     },
   );
 
-  [associatesGrid.value, doctorsGrid.value, assistantsGrid.value].forEach(
-    (grid) => {
-      if (grid) observer.observe(grid);
-    },
-  );
+  rowRefs.value.forEach((grid) => {
+    if (grid) observer.observe(grid);
+  });
 });
 </script>
 
